@@ -1,17 +1,75 @@
 {
-  "_comment": "Launch SKU set. Only wash-test-verified blanks/colors. printful_variant_ids filled after fulfillment-testing each mapping. Prices filled from wash-test COGS.",
+  "_comment": "MD27 women's faith capsule (Mother's Day / Proverbs 31). Blank = Bella+Canvas 6400 (women's), left-chest DTG. Price $26.99 free-ship (decided in launch report 2026-07-14). Wash-test skipped — Printful is the pinned provider; prices anchored to Printful published pricing, re-verify at design lock. printful_variant_map filled at build via catalog lookup (needs PRINTFUL_TOKEN).",
+  "defaults": {
+    "line": "faith-md27",
+    "blank": "Bella+Canvas 6400",
+    "placement": "left-chest",
+    "price": 26.99,
+    "sizes": ["S", "M", "L", "XL", "2XL"]
+  },
   "products": [
     {
-      "handle": "example-faith-tee",
-      "title": "EXAMPLE — Faith Tee (replace me)",
-      "line": "faith",
-      "blank": "Bella+Canvas 3001",
-      "print_file": "art/example.png",
-      "price": null,
-      "colors": ["black", "white"],
-      "sizes": ["S", "M", "L", "XL", "2XL"],
-      "printful_variant_map": {},
-      "description": "<drafted by Claude after wash-test — taste-forward, fabric+fit block, size chart>"
+      "handle": "called-to-this",
+      "title": "Called To This — Faith Tee",
+      "role": "Hero",
+      "verse": null,
+      "colorways": [
+        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_01_called_heatherdust_leftchest.png" },
+        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_01_called_vintagewhite_leftchest.png" },
+        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_01_called_heatherolive_leftchest.png" },
+        { "slug": "softpink", "label": "Soft Pink", "print_file": "business-os/design/out/print/MD27_01_called_softpink_leftchest.png" }
+      ],
+      "printful_variant_map": {}
+    },
+    {
+      "handle": "strength-and-dignity",
+      "title": "Strength & Dignity — Proverbs 31:25 Faith Tee",
+      "role": "Core — church group SKU",
+      "verse": "PROV. 31:25",
+      "colorways": [
+        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_02_strength_heatherdust_leftchest.png" },
+        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_02_strength_vintagewhite_leftchest.png" },
+        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_02_strength_heatherolive_leftchest.png" }
+      ],
+      "printful_variant_map": {}
+    },
+    {
+      "handle": "fuerza-y-dignidad",
+      "title": "Fuerza y Dignidad — Proverbios 31:25 Faith Tee",
+      "role": "Differentiator — Spanish (RVR1960), never discount",
+      "verse": "PROV. 31:25",
+      "colorways": [
+        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_03_fuerza_heatherdust_leftchest.png" },
+        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_03_fuerza_vintagewhite_leftchest.png" },
+        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_03_fuerza_black_leftchest.png" }
+      ],
+      "printful_variant_map": {}
+    },
+    {
+      "handle": "amen-again",
+      "title": "Amén, Again — Faith Tee",
+      "role": "Test — humor",
+      "verse": null,
+      "colorways": [
+        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_04_amen_heatherdust_leftchest.png" },
+        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_04_amen_vintagewhite_leftchest.png" },
+        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_04_amen_heatherolive_leftchest.png" },
+        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_04_amen_black_leftchest.png" }
+      ],
+      "printful_variant_map": {}
+    },
+    {
+      "handle": "her-children-rise",
+      "title": "Her Children Rise — Faith Tee",
+      "role": "Core — adult-child buyer",
+      "verse": null,
+      "colorways": [
+        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_05_herchildren_heatherdust_leftchest.png" },
+        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_05_herchildren_vintagewhite_leftchest.png" },
+        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_05_herchildren_black_leftchest.png" },
+        { "slug": "softpink", "label": "Soft Pink", "print_file": "business-os/design/out/print/MD27_05_herchildren_softpink_leftchest.png" }
+      ],
+      "printful_variant_map": {}
     }
   ]
 }

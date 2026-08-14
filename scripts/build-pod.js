@@ -9,11 +9,11 @@ const PROVIDER = process.env.POD_PROVIDER || "printful";
 
 async function main() {
   const raw = await readFile(new URL("../data/products.json", import.meta.url), "utf8");
-  const { products } = JSON.parse(raw);
+  const { products, defaults = {} } = JSON.parse(raw);
   const real = products.filter((p) => !p.handle.startsWith("example-"));
 
   if (!real.length) {
-    console.log("Only example product present. Add real products to data/products.json first.");
+    console.log("No real products in data/products.json.");
     return;
   }
   if (PROVIDER !== "printful") {
@@ -21,18 +21,28 @@ async function main() {
     return;
   }
 
-  const { pf } = await import("./lib/printful.js");
+  const sizes = defaults.sizes || [];
+  let blocked = 0;
   for (const p of real) {
-    if (p.price == null) throw new Error(`Product ${p.handle}: price is null (set from wash-test COGS).`);
-    if (!p.printful_variant_map || !Object.keys(p.printful_variant_map).length) {
-      throw new Error(`Product ${p.handle}: printful_variant_map empty (map + fulfillment-test each variant first).`);
+    const price = p.price ?? defaults.price;
+    const expectedVariants = (p.colorways?.length || 0) * sizes.length;
+    if (price == null) { console.error(`  BLOCK ${p.handle}: no price`); blocked++; continue; }
+    const mapped = Object.keys(p.printful_variant_map || {}).length;
+    if (mapped < expectedVariants) {
+      console.error(`  BLOCK ${p.handle}: variant map ${mapped}/${expectedVariants} — run catalog resolve first (needs PRINTFUL_TOKEN)`);
+      blocked++;
+      continue;
     }
-    // Create sync product -> Printful pushes it to the connected Shopify store.
-    // Endpoint + payload finalized against the live catalog once a mapping exists.
-    console.log(`  would create Printful sync product: ${p.handle} (${Object.keys(p.printful_variant_map).length} variants)`);
-    // await pf("/store/products", { method: "POST", body: buildSyncProduct(p) });
+    // Ready: create sync product -> Printful pushes it to the connected Shopify store.
+    console.log(`  would create: ${p.handle} @ $${price} (${expectedVariants} variants)`);
+    // await pf("/store/products", { method: "POST", body: buildSyncProduct(p, defaults) });
   }
-  console.log("POD build complete (dry run until variant maps + prices are filled).");
+  if (blocked) {
+    console.log(`\n${blocked}/${real.length} products blocked on variant maps.`);
+    console.log("Next: fetch Printful catalog IDs for Bella 6400 (color x size) and fill printful_variant_map.");
+  } else {
+    console.log("POD build complete.");
+  }
 }
 
 main().catch((e) => {
