@@ -5,7 +5,21 @@
     "blank": "Bella+Canvas 6400",
     "placement": "left-chest",
     "price": 26.99,
-    "sizes": ["S", "M", "L", "XL", "2XL"]
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "_printful_color_note": "Design swatches (heatherdust/heatherolive/softpink) don't exist in Printful's 6400 palette; mapped to closest real color. CONFIRM against a physical sample before public launch.",
+    "printful_color_map": {
+      "heatherdust": "Heather Stone",
+      "vintagewhite": "Vintage White",
+      "heatherolive": "Military Green",
+      "black": "Black",
+      "softpink": "Mauve"
+    }
   },
   "products": [
     {
@@ -14,12 +28,49 @@
       "role": "Hero",
       "verse": null,
       "colorways": [
-        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_01_called_heatherdust_leftchest.png" },
-        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_01_called_vintagewhite_leftchest.png" },
-        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_01_called_heatherolive_leftchest.png" },
-        { "slug": "softpink", "label": "Soft Pink", "print_file": "business-os/design/out/print/MD27_01_called_softpink_leftchest.png" }
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_01_called_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_01_called_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/MD27_01_called_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "softpink",
+          "label": "Soft Pink",
+          "print_file": "business-os/design/out/print/MD27_01_called_softpink_leftchest.png"
+        }
       ],
-      "printful_variant_map": {}
+      "printful_variant_map": {
+        "heatherdust:S": 14273,
+        "heatherdust:M": 14274,
+        "heatherdust:L": 14275,
+        "heatherdust:XL": 14276,
+        "heatherdust:2XL": 14277,
+        "vintagewhite:S": 46513,
+        "vintagewhite:M": 46514,
+        "vintagewhite:L": 46515,
+        "vintagewhite:XL": 46516,
+        "vintagewhite:2XL": 46517,
+        "heatherolive:S": 46532,
+        "heatherolive:M": 46533,
+        "heatherolive:L": 46534,
+        "heatherolive:XL": 46535,
+        "heatherolive:2XL": 46536,
+        "softpink:S": 46507,
+        "softpink:M": 46508,
+        "softpink:L": 46509,
+        "softpink:XL": 46510,
+        "softpink:2XL": 46511
+      }
     },
     {
       "handle": "strength-and-dignity",
@@ -27,11 +78,39 @@
       "role": "Core — church group SKU",
       "verse": "PROV. 31:25",
       "colorways": [
-        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_02_strength_heatherdust_leftchest.png" },
-        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_02_strength_vintagewhite_leftchest.png" },
-        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_02_strength_heatherolive_leftchest.png" }
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_02_strength_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_02_strength_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/MD27_02_strength_heatherolive_leftchest.png"
+        }
       ],
-      "printful_variant_map": {}
+      "printful_variant_map": {
+        "heatherdust:S": 14273,
+        "heatherdust:M": 14274,
+        "heatherdust:L": 14275,
+        "heatherdust:XL": 14276,
+        "heatherdust:2XL": 14277,
+        "vintagewhite:S": 46513,
+        "vintagewhite:M": 46514,
+        "vintagewhite:L": 46515,
+        "vintagewhite:XL": 46516,
+        "vintagewhite:2XL": 46517,
+        "heatherolive:S": 46532,
+        "heatherolive:M": 46533,
+        "heatherolive:L": 46534,
+        "heatherolive:XL": 46535,
+        "heatherolive:2XL": 46536
+      }
     },
     {
       "handle": "fuerza-y-dignidad",
@@ -39,11 +118,39 @@
       "role": "Differentiator — Spanish (RVR1960), never discount",
       "verse": "PROV. 31:25",
       "colorways": [
-        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_03_fuerza_heatherdust_leftchest.png" },
-        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_03_fuerza_vintagewhite_leftchest.png" },
-        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_03_fuerza_black_leftchest.png" }
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_black_leftchest.png"
+        }
       ],
-      "printful_variant_map": {}
+      "printful_variant_map": {
+        "heatherdust:S": 14273,
+        "heatherdust:M": 14274,
+        "heatherdust:L": 14275,
+        "heatherdust:XL": 14276,
+        "heatherdust:2XL": 14277,
+        "vintagewhite:S": 46513,
+        "vintagewhite:M": 46514,
+        "vintagewhite:L": 46515,
+        "vintagewhite:XL": 46516,
+        "vintagewhite:2XL": 46517,
+        "black:S": 10187,
+        "black:M": 10188,
+        "black:L": 10189,
+        "black:XL": 10190,
+        "black:2XL": 10191
+      }
     },
     {
       "handle": "amen-again",
@@ -51,12 +158,49 @@
       "role": "Test — humor",
       "verse": null,
       "colorways": [
-        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_04_amen_heatherdust_leftchest.png" },
-        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_04_amen_vintagewhite_leftchest.png" },
-        { "slug": "heatherolive", "label": "Heather Olive", "print_file": "business-os/design/out/print/MD27_04_amen_heatherolive_leftchest.png" },
-        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_04_amen_black_leftchest.png" }
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_04_amen_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_04_amen_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/MD27_04_amen_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/MD27_04_amen_black_leftchest.png"
+        }
       ],
-      "printful_variant_map": {}
+      "printful_variant_map": {
+        "heatherdust:S": 14273,
+        "heatherdust:M": 14274,
+        "heatherdust:L": 14275,
+        "heatherdust:XL": 14276,
+        "heatherdust:2XL": 14277,
+        "vintagewhite:S": 46513,
+        "vintagewhite:M": 46514,
+        "vintagewhite:L": 46515,
+        "vintagewhite:XL": 46516,
+        "vintagewhite:2XL": 46517,
+        "heatherolive:S": 46532,
+        "heatherolive:M": 46533,
+        "heatherolive:L": 46534,
+        "heatherolive:XL": 46535,
+        "heatherolive:2XL": 46536,
+        "black:S": 10187,
+        "black:M": 10188,
+        "black:L": 10189,
+        "black:XL": 10190,
+        "black:2XL": 10191
+      }
     },
     {
       "handle": "her-children-rise",
@@ -64,12 +208,49 @@
       "role": "Core — adult-child buyer",
       "verse": null,
       "colorways": [
-        { "slug": "heatherdust", "label": "Heather Dust", "print_file": "business-os/design/out/print/MD27_05_herchildren_heatherdust_leftchest.png" },
-        { "slug": "vintagewhite", "label": "Vintage White", "print_file": "business-os/design/out/print/MD27_05_herchildren_vintagewhite_leftchest.png" },
-        { "slug": "black", "label": "Black", "print_file": "business-os/design/out/print/MD27_05_herchildren_black_leftchest.png" },
-        { "slug": "softpink", "label": "Soft Pink", "print_file": "business-os/design/out/print/MD27_05_herchildren_softpink_leftchest.png" }
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_05_herchildren_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_05_herchildren_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/MD27_05_herchildren_black_leftchest.png"
+        },
+        {
+          "slug": "softpink",
+          "label": "Soft Pink",
+          "print_file": "business-os/design/out/print/MD27_05_herchildren_softpink_leftchest.png"
+        }
       ],
-      "printful_variant_map": {}
+      "printful_variant_map": {
+        "heatherdust:S": 14273,
+        "heatherdust:M": 14274,
+        "heatherdust:L": 14275,
+        "heatherdust:XL": 14276,
+        "heatherdust:2XL": 14277,
+        "vintagewhite:S": 46513,
+        "vintagewhite:M": 46514,
+        "vintagewhite:L": 46515,
+        "vintagewhite:XL": 46516,
+        "vintagewhite:2XL": 46517,
+        "black:S": 10187,
+        "black:M": 10188,
+        "black:L": 10189,
+        "black:XL": 10190,
+        "black:2XL": 10191,
+        "softpink:S": 46507,
+        "softpink:M": 46508,
+        "softpink:L": 46509,
+        "softpink:XL": 46510,
+        "softpink:2XL": 46511
+      }
     }
   ]
 }
