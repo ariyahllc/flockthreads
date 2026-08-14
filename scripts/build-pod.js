@@ -1,51 +1,74 @@
-// Creates POD products (Printful) from data/products.json and syncs to Shopify.
-// Idempotent by handle. Run: npm run build:pod
+// Creates Printful sync products from data/products.json and pushes them to Shopify.
+// Uploads each print file to Shopify Files first, then POST /store/products.
 //
-// NOTE: skeleton. Fills in once wash-test picks the provider and printful_variant_map
-// is populated per product. Guards against half-configured data so it fails loud, not silent.
+// Usage:
+//   node --env-file=.env scripts/build-pod.js              # DRY: first product only, prints payload
+//   node --env-file=.env scripts/build-pod.js only=amen-again
+//   node --env-file=.env scripts/build-pod.js commit only=called-to-this   # create ONE for real
+//   node --env-file=.env scripts/build-pod.js commit all                   # create all
 import { readFile } from "node:fs/promises";
+import { pf } from "./lib/printful.js";
+import { uploadImage } from "./lib/shopify-files.js";
 
-const PROVIDER = process.env.POD_PROVIDER || "printful";
+const args = process.argv.slice(2);
+const COMMIT = args.includes("commit");
+const ALL = args.includes("all");
+const ONLY = (args.find((a) => a.startsWith("only=")) || "").split("=")[1];
 
-async function main() {
-  const raw = await readFile(new URL("../data/products.json", import.meta.url), "utf8");
-  const { products, defaults = {} } = JSON.parse(raw);
-  const real = products.filter((p) => !p.handle.startsWith("example-"));
-
-  if (!real.length) {
-    console.log("No real products in data/products.json.");
-    return;
-  }
-  if (PROVIDER !== "printful") {
-    console.log(`POD_PROVIDER=${PROVIDER} not wired yet (only printful).`);
-    return;
-  }
-
-  const sizes = defaults.sizes || [];
-  let blocked = 0;
-  for (const p of real) {
-    const price = p.price ?? defaults.price;
-    const expectedVariants = (p.colorways?.length || 0) * sizes.length;
-    if (price == null) { console.error(`  BLOCK ${p.handle}: no price`); blocked++; continue; }
-    const mapped = Object.keys(p.printful_variant_map || {}).length;
-    if (mapped < expectedVariants) {
-      console.error(`  BLOCK ${p.handle}: variant map ${mapped}/${expectedVariants} — run catalog resolve first (needs PRINTFUL_TOKEN)`);
-      blocked++;
-      continue;
-    }
-    // Ready: create sync product -> Printful pushes it to the connected Shopify store.
-    console.log(`  would create: ${p.handle} @ $${price} (${expectedVariants} variants)`);
-    // await pf("/store/products", { method: "POST", body: buildSyncProduct(p, defaults) });
-  }
-  if (blocked) {
-    console.log(`\n${blocked}/${real.length} products blocked on variant maps.`);
-    console.log("Next: fetch Printful catalog IDs for Bella 6400 (color x size) and fill printful_variant_map.");
-  } else {
-    console.log("POD build complete.");
-  }
+async function existingNames() {
+  const list = await pf("/store/products");
+  return new Set(list.map((p) => p.name));
 }
 
-main().catch((e) => {
-  console.error("BUILD FAILED:", e.message);
-  process.exit(1);
-});
+function buildPayload(p, price, artUrls) {
+  const sync_variants = [];
+  for (const [key, variant_id] of Object.entries(p.printful_variant_map)) {
+    const slug = key.split(":")[0];
+    sync_variants.push({
+      variant_id,
+      retail_price: price.toFixed(2),
+      files: [{ type: "default", url: artUrls[slug] }],
+    });
+  }
+  return { sync_product: { name: p.title }, sync_variants };
+}
+
+async function main() {
+  const data = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+  const price = data.defaults.price;
+
+  let targets = data.products;
+  if (ONLY) targets = targets.filter((p) => p.handle === ONLY);
+  else if (!ALL) targets = targets.slice(0, 1); // safe default: first only
+
+  console.log(`Mode: ${COMMIT ? "COMMIT" : "DRY"} | targets: ${targets.map((t) => t.handle).join(", ")}\n`);
+
+  const taken = COMMIT ? await existingNames() : new Set();
+
+  for (const p of targets) {
+    const expected = (p.colorways.length) * data.defaults.sizes.length;
+    const mapped = Object.keys(p.printful_variant_map).length;
+    if (mapped < expected) { console.error(`  SKIP ${p.handle}: variant map ${mapped}/${expected} — run resolve-catalog.js`); continue; }
+    if (COMMIT && taken.has(p.title)) { console.log(`  exists, skip: ${p.title}`); continue; }
+
+    // Upload one art file per colorway (cached, deduped).
+    const artUrls = {};
+    for (const cw of p.colorways) {
+      process.stdout.write(`  upload ${cw.slug} … `);
+      artUrls[cw.slug] = await uploadImage(cw.print_file);
+      console.log("ok");
+    }
+
+    const payload = buildPayload(p, price, artUrls);
+    if (!COMMIT) {
+      console.log(`  DRY payload for ${p.handle}: ${payload.sync_variants.length} variants @ $${price}`);
+      console.log("  " + JSON.stringify(payload.sync_variants[0], null, 0));
+      continue;
+    }
+    const res = await pf("/store/products", { method: "POST", body: payload });
+    console.log(`  CREATED ${p.title} (printful sync id ${res.id})`);
+  }
+  console.log(COMMIT ? "\nDone. Check Printful + Shopify products." : "\nDry run complete. Add 'commit' to create.");
+}
+
+main().catch((e) => { console.error("BUILD FAILED:", e.message); process.exit(1); });

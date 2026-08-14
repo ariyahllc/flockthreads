@@ -1,0 +1,14 @@
+# Shopify app config (config-as-code). Deploy with: shopify app deploy
+# Grants the Admin API scopes the build scripts need. After deploy, reinstall
+# the app on the store so the client_credentials token picks up the new scopes.
+client_id = "f17dea652320236eed77ca6022560e67"
+name = "flockthreads-build"
+application_url = "https://flockthreads.com"
+embedded = false
+
+[access_scopes]
+scopes = "write_products,read_products,write_content,write_publications,write_files,read_orders,write_orders"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [ "https://flockthreads.com/api/auth" ]
