@@ -6,6 +6,9 @@ name = "flockthreads-build"
 application_url = "https://flockthreads.com"
 embedded = false
 
+[webhooks]
+api_version = "2025-07"
+
 [access_scopes]
 scopes = "write_products,read_products,write_content,write_publications,write_files,read_orders,write_orders"
 use_legacy_install_flow = true
