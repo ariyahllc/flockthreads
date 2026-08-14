@@ -1,0 +1,153 @@
+{
+  "_source": "business-os/reports/faith-apparel-launch-2026-07-14.md — Product & Design Brief §2, §3, §4",
+  "capsule": "MD27",
+  "canvas": {
+    "px": 1200,
+    "dpi": 300,
+    "safeAreaInches": 4
+  },
+  "inks": {
+    "charcoal": {
+      "hex": "#2B2B2B",
+      "label": "Deep Charcoal"
+    },
+    "bone": {
+      "hex": "#EDE7DC",
+      "label": "Bone"
+    }
+  },
+  "_garmentPreviewOnly": "Approximate Bella+Canvas swatch hexes. For contact-sheet review only — never used in print files.",
+  "garments": {
+    "heatherdust": {
+      "hex": "#C7BCAE",
+      "ink": "charcoal",
+      "label": "Heather Dust"
+    },
+    "vintagewhite": {
+      "hex": "#F1EDE4",
+      "ink": "charcoal",
+      "label": "Vintage White"
+    },
+    "heatherolive": {
+      "hex": "#5F6650",
+      "ink": "bone",
+      "label": "Heather Olive"
+    },
+    "black": {
+      "hex": "#1C1C1C",
+      "ink": "bone",
+      "label": "Black"
+    },
+    "softpink": {
+      "hex": "#E3C5C2",
+      "ink": "charcoal",
+      "label": "Soft Pink"
+    }
+  },
+  "typography": {
+    "family": "Spectral",
+    "weightFile": "Spectral-Medium.ttf",
+    "_licenseNote": "OFL stand-in for the brief's paid picks (Untitled Serif / Freight Text Pro / Tiempos Text / GT Sectra). Swap before commercial print; those need a $50-300 extended merch license.",
+    "leading": 1.08,
+    "capsuleBodyPx": null,
+    "_capsuleBodyNote": "Normalised mode: one body size for the whole capsule so the pieces read as a family. null = auto (smallest width-based size, so no design overruns its specced width). Set a number to override; widths then float and are capped by maxWidthInches.",
+    "maxWidthInches": 3.5,
+    "refSizeRatio": 0.4,
+    "refMinPx": 76,
+    "refWeightFile": "Spectral-SemiBold.ttf",
+    "_refWeightNote": "Reference line is set heavier (SemiBold) and larger than the body. At the original 0.3 ratio in Medium it rendered 0.96pt — under the brief 1.5pt DTG minimum — and would have broken up on heather blends. refMinPx is an ABSOLUTE floor, not a ratio: once the floor binds, the ref no longer scales with the body, and on the shorter Spanish line it dominated the glyph population and pinned the design at 1.44pt. 76px clears every design at 1.68pt.",
+    "refLetterSpacingEm": 0.16,
+    "refGapEm": 0.85
+  },
+  "designs": [
+    {
+      "id": "01",
+      "slug": "called",
+      "name": "Called",
+      "lines": [
+        "called",
+        "to this"
+      ],
+      "ref": null,
+      "widthInches": 3,
+      "scaleMultiplier": 1.4,
+      "_scaleNote": "Hero carries deliberate emphasis. Normalised alone made it the smallest piece in the capsule; width-based made it 3x everything else. 1.4x is the middle — confirm against a physical sample.",
+      "role": "Hero",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "softpink"
+      ]
+    },
+    {
+      "id": "02",
+      "slug": "strength",
+      "name": "Strength & Dignity",
+      "lines": [
+        "strength and dignity",
+        "are her clothing"
+      ],
+      "ref": "PROV. 31:25",
+      "widthInches": 3.25,
+      "role": "Core — church SKU",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive"
+      ]
+    },
+    {
+      "id": "03",
+      "slug": "fuerza",
+      "name": "Fuerza y Dignidad",
+      "lines": [
+        "fuerza y dignidad",
+        "son su vestidura"
+      ],
+      "ref": "PROV. 31:25",
+      "widthInches": 3.25,
+      "role": "Differentiator — Spanish (RVR1960)",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "black"
+      ]
+    },
+    {
+      "id": "04",
+      "slug": "amen",
+      "name": "Amén, Again",
+      "lines": [
+        "amén, again"
+      ],
+      "ref": null,
+      "widthInches": 2.75,
+      "role": "Test — humor",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "black"
+      ]
+    },
+    {
+      "id": "05",
+      "slug": "herchildren",
+      "name": "Her Children Rise",
+      "lines": [
+        "her children rise up",
+        "and call her blessed"
+      ],
+      "ref": null,
+      "widthInches": 3.25,
+      "role": "Core — adult-child buyer",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "black",
+        "softpink"
+      ]
+    }
+  ]
+}

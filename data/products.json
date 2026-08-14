@@ -1,0 +1,17 @@
+{
+  "_comment": "Launch SKU set. Only wash-test-verified blanks/colors. printful_variant_ids filled after fulfillment-testing each mapping. Prices filled from wash-test COGS.",
+  "products": [
+    {
+      "handle": "example-faith-tee",
+      "title": "EXAMPLE — Faith Tee (replace me)",
+      "line": "faith",
+      "blank": "Bella+Canvas 3001",
+      "print_file": "art/example.png",
+      "price": null,
+      "colors": ["black", "white"],
+      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "printful_variant_map": {},
+      "description": "<drafted by Claude after wash-test — taste-forward, fabric+fit block, size chart>"
+    }
+  ]
+}
