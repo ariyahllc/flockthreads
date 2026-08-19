@@ -7,12 +7,17 @@
 //
 // PRINTFUL_TOKEN must be a Manual Order / API store token (Shopify-connected stores
 // reject API order creation, same as product creation).
+import { readFile } from "node:fs/promises";
 import { gql } from "./lib/shopify.js";
 import { pf } from "./lib/printful.js";
 
 const args = process.argv.slice(2);
 const CONFIRM = args.includes("confirm");
 const TRACK = args.includes("track");
+
+// Left-chest placement (position box) shared by every order item.
+const { defaults } = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+const PLACE = defaults.printful_placement;
 
 // --- Shopify helpers ---
 async function paidUnsentOrders() {
@@ -41,7 +46,13 @@ function toPrintfulOrder(o) {
   for (const li of o.lineItems.nodes) {
     const vid = li.variant?.vid?.value, art = li.variant?.art?.value;
     if (!vid || !art) throw new Error(`${o.name}: line item missing printful mapping (skip/fix product)`);
-    items.push({ variant_id: Number(vid), quantity: li.quantity, files: [{ url: art }] });
+    items.push({
+      variant_id: Number(vid), quantity: li.quantity,
+      files: [{
+        type: PLACE.placement, url: art,
+        position: { area_width: PLACE.area_width, area_height: PLACE.area_height, width: PLACE.width, height: PLACE.height, top: PLACE.top, left: PLACE.left },
+      }],
+    });
   }
   return {
     external_id: o.name,

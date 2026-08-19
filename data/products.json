@@ -19,6 +19,16 @@
       "heatherolive": "Military Green",
       "black": "Black",
       "softpink": "Mauve"
+    },
+    "_placement_note": "Left-chest box within the 6400 front print area (1500x1800). Verified via mockup 2026. Fine-tune against a physical sample.",
+    "printful_placement": {
+      "placement": "front",
+      "area_width": 1500,
+      "area_height": 1800,
+      "width": 430,
+      "height": 430,
+      "top": 300,
+      "left": 760
     }
   },
   "products": [
