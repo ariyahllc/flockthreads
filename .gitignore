@@ -5,3 +5,6 @@ node_modules/
 .DS_Store
 dist/
 tmp/
+
+theme_live/
+_verify/
