@@ -12,6 +12,7 @@
 import { readFile } from "node:fs/promises";
 import { gql } from "./lib/shopify.js";
 import { uploadImage } from "./lib/shopify-files.js";
+import { productDescription } from "./lib/description.js";
 
 const args = process.argv.slice(2);
 const ALL = args.includes("all");
@@ -64,7 +65,7 @@ async function main() {
           title: p.title, handle: p.handle, status: "DRAFT",
           productType: "T-Shirt", vendor: "FlockThreads",
           tags: [defaults.line, "faith", p.role].filter(Boolean),
-          descriptionHtml: `<p>${p.title}${p.verse ? ` — ${p.verse}` : ""}</p>`,
+          descriptionHtml: productDescription(p),
           productOptions: [
             { name: "Color", values: colorValues },
             { name: "Size", values: sizeValues },
