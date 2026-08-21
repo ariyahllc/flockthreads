@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -1884,4 +1885,16 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   .sticky-content {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
+}
+
+/* FlockThreads brand: EB Garamond headings (matches Claude Design hero) */
+:root{
+  --font-h1--family:'EB Garamond', Georgia, serif !important;
+  --font-h2--family:'EB Garamond', Georgia, serif !important;
+  --font-h3--family:'EB Garamond', Georgia, serif !important;
+  --font-h4--family:'EB Garamond', Georgia, serif !important;
+  --font-h5--family:'EB Garamond', Georgia, serif !important;
+  --font-h6--family:'EB Garamond', Georgia, serif !important;
+  --font-heading--family:'EB Garamond', Georgia, serif !important;
+  --font-accent--family:'EB Garamond', Georgia, serif !important;
 }
