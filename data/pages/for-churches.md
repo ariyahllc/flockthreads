@@ -1,23 +1,21 @@
 # For Churches & Ministries
 
-Outfitting a group shouldn't take three phone calls and a spreadsheet. We make custom group orders simple — for VBS, mission trips, youth camp, women's ministry, and every event in between.
+Outfitting a group shouldn't take a dozen phone calls and two weeks of stress. We make it simple.
 
 ## How it works
 
-1. **Tell us what you need.** Your design (or ours), colors, and a rough count.
-2. **We send a proof.** You approve exactly what will print — no surprises.
-3. **One order, one invoice.** The group leader places it; we handle the rest.
-4. **It ships to you** on premium, wash-tested blanks your people will actually wear.
+1. **Tell us what you need.** Your design (or ours), colors, sizes, and your deadline.
+2. **We handle the rest.** One clear quote, one point of contact, quality blanks and prints.
+3. **You collect once.** The group leader places one order — no chasing everyone for payment through us.
 
-## Why churches pick us
+Perfect for VBS, mission trips, youth camp, worship teams, retreats, and fundraisers.
 
-- **Real quality.** The same soft, side-seamed tees and guaranteed prints as our retail line.
-- **No minimum headaches.** Small groups welcome.
-- **Fundraising built in.** Add a give-back to your order — your group raises money on every shirt, and it costs you nothing extra.
-- **Deadlines respected.** Tell us your event date; we plan the order around it.
+## Why churches choose us
 
-## Start an order
+- **Quality that lasts the whole season.** Soft, side-seamed blanks and prints that survive real wear.
+- **A give-back option.** Add a small amount per shirt that comes back to your ministry — the buyer covers it, your margin is untouched.
+- **Plan-ahead friendly.** Church events run on long runways. We help you order early and stress less.
 
-Email us with your event, date, and rough count, and we'll send options within a day.
+## Start your group order
 
-*(Automated group ordering with shared links is coming. For now, every order gets a real person.)*
+Head to our contact page with your event, rough quantity, and date, and we'll get you a quote. Real people, quick answers.

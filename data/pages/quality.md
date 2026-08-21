@@ -4,16 +4,12 @@ Most faith tees fail in the same two places: the blank feels cheap, and the prin
 
 ## The blank
 
-Every FlockThreads tee is printed on **Bella+Canvas 6400** — a soft, side-seamed women's relaxed tee in 100% Airlume combed ring-spun cotton (solid colors). Side-seamed means it holds its shape and doesn't twist in the wash. It feels like a shirt you already own and love, not a giveaway tee.
+Every FlockThreads tee is printed on **Bella+Canvas** — soft, side-seamed, and built to hold its shape. Side seams matter: they keep the shirt from twisting in the wash and give it a fitted, tailored drape instead of a boxy sack. Solid colors are 100% Airlume combed ring-spun cotton. The premium line is a triblend with a vintage, lived-in feel.
 
 ## The print
 
-We print left-chest, small and clean, using direct-to-garment printing tuned for each color. No heavy plastic feel, no cracking after a few washes.
+We print left-chest, small and clean — the way good apparel does it, not a giant graphic screaming across your chest. Prints are done on quality direct-to-garment equipment and checked before they ship.
 
-## Our promise
+## The promise
 
-- **Print-guaranteed.** Any misprint is reprinted free, no argument.
-- **Pre-shrunk.** What you order is what it stays.
-- **Wash-tested designs.** We don't list a design until it survives real wear.
-
-Buy one. Wash it ten times. That's the test we care about.
+If a print comes out wrong, we reprint it free. No arguing, no runaround. Quality is the whole reason we exist — so we stand behind it.

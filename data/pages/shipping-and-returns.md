@@ -2,23 +2,18 @@
 
 ## Shipping
 
-Each tee is made to order and printed just for you, then shipped from a regional facility to keep delivery fast and packaging low-waste.
+Our tees are made to order and printed just for you. Most orders print and ship within **2–5 business days**, then travel to you via standard carriers. You'll get tracking as soon as it ships.
 
-- **Production:** 2–5 business days to print your order.
-- **Delivery:** typically 3–7 business days after production (US). International times vary by destination.
-- You'll get tracking as soon as your order ships.
-
-## Our print guarantee
-
-If your shirt arrives with a printing defect, we reprint it free — just send a photo within 30 days. No return needed for a misprint.
+Planning a group order for an event? Order early — reach out and we'll make sure it lands before your date.
 
 ## Returns & exchanges
 
-Because every tee is made to order, we don't restock returns. But we want you in the right size:
+Because each shirt is printed to order, we don't restock returns — but we're not going to leave you with a shirt that doesn't work.
 
-- **Wrong size?** We'll help you exchange for a different size — reach out within 30 days.
-- **Something wrong on our end** (defect, wrong item)? We fix it free, every time.
+- **Wrong size?** We'll help you exchange it.
+- **Misprint or defect?** That's on us — we reprint it free, no hassle.
+- **Something else?** Message us. We're small, we're reachable, and we want you happy.
 
-## Questions
+## Our promise
 
-Email us any time. A real person answers.
+Print-guaranteed. If it's not right, we make it right.
