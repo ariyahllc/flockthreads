@@ -1,21 +1,22 @@
 # For Churches & Ministries
 
-Outfitting a group shouldn't take a dozen phone calls and two weeks of stress. We make it simple.
+Outfitting a group shouldn't mean a week of emails, three phone calls, and shirts that disappoint. We make church and ministry orders simple, and we make them look good.
 
-## How it works
+## Built for group orders
 
-1. **Tell us what you need.** Your design (or ours), colors, sizes, and your deadline.
-2. **We handle the rest.** One clear quote, one point of contact, quality blanks and prints.
-3. **You collect once.** The group leader places one order — no chasing everyone for payment through us.
+- **One design, every size.** Pick a design, we handle the size run.
+- **Add your logo.** Small back-neck or sleeve logo on request.
+- **Volume pricing.** The more you order, the better the per-shirt price.
+- **One invoice.** A group leader pays once — no chasing everyone for cash.
 
-Perfect for VBS, mission trips, youth camp, worship teams, retreats, and fundraisers.
+## Perfect for
 
-## Why churches choose us
+Women's ministry and MOPS groups, Vacation Bible School, mission trips, youth camp, worship teams, and anniversary or fundraiser tees.
 
-- **Quality that lasts the whole season.** Soft, side-seamed blanks and prints that survive real wear.
-- **A give-back option.** Add a small amount per shirt that comes back to your ministry — the buyer covers it, your margin is untouched.
-- **Plan-ahead friendly.** Church events run on long runways. We help you order early and stress less.
+## The give-back
 
-## Start your group order
+Running a fundraiser? We can add a set amount per shirt that goes straight back to your ministry — your people buy a shirt they love, and your cause gets funded. Your cost stays the same.
 
-Head to our contact page with your event, rough quantity, and date, and we'll get you a quote. Real people, quick answers.
+## Start an order
+
+Email us at hello@flockthreads.com with your design idea, rough quantity, and event date. We'll send a mockup and a quote — usually same day.

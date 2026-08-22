@@ -1,15 +1,19 @@
 # Why Our Quality Is Different
 
-Most faith tees fail in the same two places: the blank feels cheap, and the print cracks. We fixed both before we sold a single shirt.
+Most faith tees fail in the same place: the print. It looks fine in the listing, then cracks or fades after a few washes. We built FlockThreads to fix exactly that.
 
 ## The blank
 
-Every FlockThreads tee is printed on **Bella+Canvas** — soft, side-seamed, and built to hold its shape. Side seams matter: they keep the shirt from twisting in the wash and give it a fitted, tailored drape instead of a boxy sack. Solid colors are 100% Airlume combed ring-spun cotton. The premium line is a triblend with a vintage, lived-in feel.
+Every FlockThreads tee is printed on **Bella+Canvas** — soft, **side-seamed** blanks that hold their shape instead of twisting in the wash. Solid colors are 100% Airlume combed and ring-spun cotton. They feel good on day one and on wash fifty.
 
 ## The print
 
-We print left-chest, small and clean — the way good apparel does it, not a giant graphic screaming across your chest. Prints are done on quality direct-to-garment equipment and checked before they ship.
+We print left-chest with direct-to-garment ink tuned for each fabric color, so the design stays crisp and the hand stays soft. No heavy plastic feel, no cracking.
 
-## The promise
+## Our promise
 
-If a print comes out wrong, we reprint it free. No arguing, no runaround. Quality is the whole reason we exist — so we stand behind it.
+If a print arrives wrong, we reprint it free. No arguing, no runaround. Quality is the whole reason we exist — we're not going to cut corners on it.
+
+## Sizing you can trust
+
+Every product page has a real size chart with body measurements, plus a plain-English fit note. Order the right size the first time.

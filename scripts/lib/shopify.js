@@ -79,13 +79,13 @@ export async function upsertPage({ handle, title, body }) {
   if (existing) {
     await gql(
       `mutation($id:ID!,$page:PageUpdateInput!){ pageUpdate(id:$id, page:$page){ userErrors{ field message } } }`,
-      { id: existing.id, page: { title, body } }
+      { id: existing.id, page: { title, body, isPublished: true } }
     );
     return { handle, action: "updated" };
   }
   await gql(
     `mutation($page:PageCreateInput!){ pageCreate(page:$page){ userErrors{ field message } } }`,
-    { page: { handle, title, body } }
+    { page: { handle, title, body, isPublished: true } }
   );
   return { handle, action: "created" };
 }
