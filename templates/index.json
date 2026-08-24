@@ -658,13 +658,12 @@
           "best-sellers",
           "women",
           "men",
-          "bundles",
           "for-churches",
           "espanol"
         ],
         "layout_type": "grid",
         "columns": 3,
-        "max_collections": 6,
+        "max_collections": 5,
         "section_width": "page-width",
         "padding-block-start": 24,
         "padding-block-end": 24
