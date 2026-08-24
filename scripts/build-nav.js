@@ -1,43 +1,36 @@
+// Rebuilds the main menu: drops Catalog, adds category structure (bluvap-style).
 import { gql } from "./lib/shopify.js";
 
-// 1. Faith collection (smart, tag=faith) — all 5 tees.
-async function ensureFaithCollection() {
-  const q = await gql(`query{ collections(first:20){ nodes{ id handle } } }`);
-  if (q.collections.nodes.find(c => c.handle === "faith")) { console.log("  collection 'faith' exists"); return; }
-  const r = await gql(`mutation($input:CollectionInput!){ collectionCreate(input:$input){ collection{ handle } userErrors{ field message } } }`,
-    { input: { title: "Faith", handle: "faith", descriptionHtml: "<p>Tasteful faith tees, printed to last.</p>",
-      ruleSet: { appliedDisjunctively: false, rules: [{ column: "TAG", relation: "EQUALS", condition: "faith" }] } } });
-  console.log("  collection created:", r.collectionCreate.collection?.handle);
+const ITEMS = [
+  { title: "Best Sellers", type: "COLLECTION",   handle: "best-sellers" },
+  { title: "Women",        type: "COLLECTION",   handle: "women" },
+  { title: "Men",          type: "COLLECTION",   handle: "men" },
+  { title: "Bundles",      type: "COLLECTION",   handle: "bundles" },
+  { title: "For Churches", type: "PAGE",         handle: "for-churches" },
+  { title: "About",        type: "PAGE",         handle: "about" },
+];
+
+const d = await gql(`{ menus(first:10){ nodes{ id handle title } } }`);
+const main = d.menus.nodes.find(m => m.handle === "main-menu") || d.menus.nodes[0];
+console.log("menu:", main.handle, main.id);
+
+// Resolve destinations
+const items = [];
+for (const it of ITEMS) {
+  if (it.type === "COLLECTION") {
+    const r = await gql(`query($q:String!){ collections(first:1, query:$q){ nodes{ id } } }`, { q:`handle:${it.handle}` });
+    const id = r.collections.nodes[0]?.id;
+    if (!id) { console.log(`  missing collection ${it.handle}, skip`); continue; }
+    items.push({ title: it.title, type: "COLLECTION", resourceId: id });
+  } else {
+    const r = await gql(`query($q:String!){ pages(first:1, query:$q){ nodes{ id } } }`, { q:`handle:${it.handle}` });
+    const id = r.pages.nodes[0]?.id;
+    if (!id) { console.log(`  missing page ${it.handle}, skip`); continue; }
+    items.push({ title: it.title, type: "PAGE", resourceId: id });
+  }
 }
 
-async function menuByHandle(h) {
-  const q = await gql(`query($h:String!){ menus(first:10, query:$h){ nodes{ id handle } } }`, { h });
-  return q.menus.nodes.find(m => m.handle === h);
-}
-async function setMenu(handle, title, items) {
-  const m = await menuByHandle(handle);
-  if (!m) { console.log(`  menu '${handle}' not found, skip`); return; }
-  const r = await gql(`mutation($id:ID!,$title:String!,$handle:String!,$items:[MenuItemUpdateInput!]!){
-    menuUpdate(id:$id, title:$title, handle:$handle, items:$items){ userErrors{ field message } } }`,
-    { id: m.id, title, handle, items });
-  const err = r.menuUpdate.userErrors;
-  console.log(`  menu '${handle}':`, err.length ? JSON.stringify(err) : "updated");
-}
-
-await ensureFaithCollection();
-// Menus need write_online_store_navigation (app lacks it). Done via admin UI instead.
-// Kept for reference; wrapped so the collection step never fails on scope.
-try {
-await setMenu("main-menu", "Main menu", [
-  { title: "Home", type: "FRONTPAGE", url: "/" },
-  { title: "Shop", type: "HTTP", url: "/collections/faith" },
-  { title: "For Churches", type: "HTTP", url: "/pages/for-churches" },
-  { title: "About", type: "HTTP", url: "/pages/about" },
-]);
-await setMenu("footer", "Footer menu", [
-  { title: "Quality", type: "HTTP", url: "/pages/quality" },
-  { title: "Shipping & Returns", type: "HTTP", url: "/pages/shipping-returns" },
-  { title: "For Churches", type: "HTTP", url: "/pages/for-churches" },
-]);
-} catch (e) { console.log("  menus skipped (needs write_online_store_navigation; set in admin UI):", e.message); }
-console.log("Done.");
+const res = await gql(`mutation($id:ID!,$title:String!,$handle:String!,$items:[MenuItemUpdateInput!]!){
+  menuUpdate(id:$id, title:$title, handle:$handle, items:$items){ menu{ items{ title } } userErrors{ field message } }
+}`, { id: main.id, title: main.title, handle: main.handle, items });
+console.log("nav:", res.menuUpdate.menu.items.map(i=>i.title).join(" | "));

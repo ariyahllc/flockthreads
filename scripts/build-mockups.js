@@ -6,6 +6,7 @@
 //   node --env-file=.env scripts/build-mockups.js only=amen-again
 //   node --env-file=.env scripts/build-mockups.js all
 import { readFile, writeFile } from "node:fs/promises";
+import { dataFileUrl } from "./lib/datafile.js";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { gql } from "./lib/shopify.js";
@@ -16,7 +17,7 @@ const args = process.argv.slice(2);
 const ALL = args.includes("all");
 const ONLY = (args.find((a) => a.startsWith("only=")) || "").split("=")[1];
 
-const data = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+const data = JSON.parse(await readFile(dataFileUrl(), "utf8"));
 const { defaults } = data;
 const PLACE = defaults.printful_placement;
 const colorName = (cw) => defaults.printful_color_map?.[cw.slug] || cw.label;
@@ -26,9 +27,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let CATALOG_ID;
 async function catalogId() {
   if (CATALOG_ID) return CATALOG_ID;
+  if (defaults.catalog_product_id) { CATALOG_ID = defaults.catalog_product_id; return CATALOG_ID; }
   const products = await pf("/products");
   const n = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-  CATALOG_ID = products.find((p) => n(p.model).includes("6400") || n(p.title).includes("6400")).id;
+  const model = defaults.blank && defaults.blank.match(/\d{4}/) ? defaults.blank.match(/\d{4}/)[0] : "6400";
+  CATALOG_ID = products.find((p) => n(p.model).includes(model) || n(p.title).includes(model)).id;
   return CATALOG_ID;
 }
 

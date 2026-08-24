@@ -8,6 +8,7 @@
 // PRINTFUL_TOKEN must be a Manual Order / API store token (Shopify-connected stores
 // reject API order creation, same as product creation).
 import { readFile } from "node:fs/promises";
+import { dataFileUrl } from "./lib/datafile.js";
 import { gql } from "./lib/shopify.js";
 import { pf } from "./lib/printful.js";
 
@@ -16,7 +17,7 @@ const CONFIRM = args.includes("confirm");
 const TRACK = args.includes("track");
 
 // Left-chest placement (position box) shared by every order item.
-const { defaults } = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+const { defaults } = JSON.parse(await readFile(dataFileUrl(), "utf8"));
 const PLACE = defaults.printful_placement;
 
 // --- Shopify helpers ---

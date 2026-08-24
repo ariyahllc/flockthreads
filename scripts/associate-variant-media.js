@@ -4,13 +4,14 @@
 //   node --env-file=.env scripts/associate-variant-media.js        # first product
 //   node --env-file=.env scripts/associate-variant-media.js all
 import { readFile } from "node:fs/promises";
+import { dataFileUrl } from "./lib/datafile.js";
 import { gql } from "./lib/shopify.js";
 
 const args = process.argv.slice(2);
 const ALL = args.includes("all");
 const ONLY = (args.find((a) => a.startsWith("only=")) || "").split("=")[1];
 
-const data = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+const data = JSON.parse(await readFile(dataFileUrl(), "utf8"));
 
 async function main() {
   let targets = data.products;

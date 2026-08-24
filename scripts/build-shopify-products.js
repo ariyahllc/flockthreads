@@ -10,6 +10,7 @@
 //   node --env-file=.env scripts/build-shopify-products.js only=amen-again
 //   node --env-file=.env scripts/build-shopify-products.js all
 import { readFile } from "node:fs/promises";
+import { dataFileUrl } from "./lib/datafile.js";
 import { gql } from "./lib/shopify.js";
 import { uploadImage } from "./lib/shopify-files.js";
 import { productDescription } from "./lib/description.js";
@@ -25,7 +26,7 @@ async function productIdByHandle(handle) {
 }
 
 async function main() {
-  const data = JSON.parse(await readFile(new URL("../data/products.json", import.meta.url), "utf8"));
+  const data = JSON.parse(await readFile(dataFileUrl(), "utf8"));
   const { defaults } = data;
   const price = defaults.price.toFixed(2);
   const colorMap = defaults.printful_color_map || {};

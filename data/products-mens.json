@@ -1,0 +1,175 @@
+{
+  "_comment": "Men's/unisex line — same MD27 art on Bella+Canvas 3001 unisex staple (catalog id 71), left-chest DTG. Colors map 1:1 to the design swatches (3001 has Heather Dust/Olive natively).",
+  "defaults": {
+    "line": "faith-md27-mens",
+    "blank": "Bella+Canvas 3001",
+    "catalog_product_id": 71,
+    "placement": "left-chest",
+    "price": 26.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "printful_color_map": {
+      "heatherdust": "Heather Dust",
+      "vintagewhite": "Vintage White",
+      "heatherolive": "Heather Olive",
+      "black": "Black",
+      "softpink": "Soft Cream"
+    },
+    "printful_placement": {
+      "placement": "front",
+      "area_width": 1500,
+      "area_height": 1800,
+      "width": 430,
+      "height": 430,
+      "top": 300,
+      "left": 760
+    }
+  },
+  "products": [
+    {
+      "handle": "called-to-this-mens",
+      "title": "Called To This — Men's Faith Tee",
+      "role": "Hero",
+      "verse": null,
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_01_called_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_01_called_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/MD27_01_called_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "softpink",
+          "label": "Soft Pink",
+          "print_file": "business-os/design/out/print/MD27_01_called_softpink_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "softpink:S": 4151,
+        "softpink:M": 4152,
+        "softpink:L": 4153,
+        "softpink:XL": 4154,
+        "softpink:2XL": 4155
+      }
+    },
+    {
+      "handle": "fuerza-y-dignidad-mens",
+      "title": "Fuerza y Dignidad — Camiseta de Fe",
+      "role": "Differentiator — Spanish (RVR1960), never discount",
+      "verse": "PROV. 31:25",
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/MD27_03_fuerza_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    },
+    {
+      "handle": "amen-again-mens",
+      "title": "Amén, Again — Men's Faith Tee",
+      "role": "Test — humor",
+      "verse": null,
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/MD27_04_amen_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/MD27_04_amen_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/MD27_04_amen_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/MD27_04_amen_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    }
+  ]
+}

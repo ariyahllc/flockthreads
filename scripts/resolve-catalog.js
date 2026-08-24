@@ -2,27 +2,32 @@
 // fills printful_variant_map (colorway:size -> variant_id) in data/products.json.
 // Run: node --env-file=.env scripts/resolve-catalog.js
 import { readFile, writeFile } from "node:fs/promises";
+import { dataFileUrl } from "./lib/datafile.js";
 import { pf } from "./lib/printful.js";
 
-const BLANK_MATCH = "6400"; // Bella+Canvas 6400 women's relaxed tee
 const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
-async function findCatalogProductId() {
+// Blank comes from the data file: explicit catalog_product_id wins, else the
+// 4-digit model number in `blank` (6400 women's, 3001 unisex, ...).
+async function findCatalogProductId(defaults) {
+  if (defaults.catalog_product_id) {
+    const d = await pf(`/products/${defaults.catalog_product_id}`);
+    return d.product || { id: defaults.catalog_product_id, title: defaults.blank };
+  }
+  const match = (defaults.blank || "").match(/\d{4}/)?.[0] || "6400";
   const products = await pf("/products");
-  const hit = products.find(
-    (p) => norm(p.model).includes(BLANK_MATCH) || norm(p.title).includes(BLANK_MATCH)
-  );
-  if (!hit) throw new Error(`No catalog product matching "${BLANK_MATCH}". Check blank name.`);
+  const hit = products.find((p) => norm(p.model).includes(match) || norm(p.title).includes(match));
+  if (!hit) throw new Error(`No catalog product matching "${match}". Check blank name.`);
   return hit;
 }
 
 async function main() {
-  const file = new URL("../data/products.json", import.meta.url);
+  const file = dataFileUrl();
   const data = JSON.parse(await readFile(file, "utf8"));
   const sizes = data.defaults.sizes;
 
   const colorMap = data.defaults.printful_color_map || {};
-  const cat = await findCatalogProductId();
+  const cat = await findCatalogProductId(data.defaults);
   console.log(`Catalog blank: [${cat.id}] ${cat.title}`);
   const detail = await pf(`/products/${cat.id}`);
   const variants = detail.variants || [];
