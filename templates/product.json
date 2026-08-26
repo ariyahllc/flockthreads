@@ -298,13 +298,88 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "verse_eyebrow": {
+              "type": "text",
+              "name": "Verse eyebrow",
+              "settings": {
+                "text": "<p>{{ product.metafields.custom.verse.value }}</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.62rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "church_note": {
+              "type": "text",
+              "name": "Church note",
+              "settings": {
+                "text": "<p>Ordering for a church or team? <a href=\"/pages/for-churches\">Wholesale starts at 24 pieces &mdash; $21 each.</a></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.78rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "size_link": {
+              "type": "text",
+              "name": "Size guide link",
+              "settings": {
+                "text": "<p><a href=\"/pages/size-fit\">Find my size</a></p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.68rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             }
           },
           "block_order": [
+            "verse_eyebrow",
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "size_link",
             "buy_buttons_eYQEYi",
+            "church_note",
             "text_aEtTtq"
           ]
         }
