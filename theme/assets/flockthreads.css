@@ -479,3 +479,60 @@ a[class*="logo"],[class*="header"] [class*="logo"]{
   .ft-fit-grid{grid-template-columns:1fr;}
   .ft-tips{grid-template-columns:1fr;}
 }
+
+/* ---------- Churches B2B ---------- */
+.ft-h2--flush{margin-top:0;}
+.ft-two{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ft-line);margin-bottom:3rem;}
+.ft-two-col{padding:clamp(1.4rem,3vw,2.2rem);background:var(--ft-vintage);}
+.ft-two-col + .ft-two-col{border-left:1px solid var(--ft-line);}
+.ft-two-col h3{font-family:var(--ft-serif);font-weight:400;font-size:1.2rem;margin:0 0 1rem;}
+.ft-dash{list-style:none;padding:0;margin:0 0 1.3rem;}
+.ft-dash li{
+  font-family:var(--ft-sans);font-weight:300;font-size:.8rem;line-height:1.6;
+  padding-left:1.1rem;position:relative;margin-bottom:.5rem;
+}
+.ft-dash li::before{content:"—";position:absolute;left:0;color:var(--ft-muted);}
+
+.ft-tier{display:grid;grid-template-columns:1.3fr 1fr;gap:0;margin-bottom:3rem;}
+.ft-tier-table{padding:clamp(1.4rem,3vw,2.2rem);background:var(--ft-vintage);border:1px solid var(--ft-line);border-right:0;}
+.ft-estimate{background:var(--ft-charcoal);color:var(--ft-vintage);padding:clamp(1.4rem,3vw,2.2rem);}
+.ft-estimate input[type=range]{width:100%;appearance:none;height:2px;background:rgba(241,237,228,.3);outline:none;margin:.2rem 0 1rem;}
+.ft-estimate input[type=range]::-webkit-slider-thumb{appearance:none;width:15px;height:15px;border-radius:50%;background:var(--ft-vintage);cursor:pointer;}
+.ft-fit-label--light{color:rgba(241,237,228,.65);}
+.ft-estimate .ft-fit-meta div{border-bottom:1px solid rgba(241,237,228,.14);padding-bottom:.45rem;}
+.ft-estimate-total{font-family:var(--ft-serif);font-size:clamp(2rem,4vw,2.8rem);margin:.2rem 0 .4rem;}
+.ft-estimate-note{font-family:var(--ft-sans);font-size:.72rem;font-weight:300;opacity:.7;margin:0 0 1.4rem;}
+.ft-check{display:flex;gap:.55rem;align-items:center;font-family:var(--ft-sans);font-size:.76rem;font-weight:300;}
+.ft-check input{width:14px;height:14px;}
+
+.ft-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin:1.4rem 0 3.4rem;}
+.ft-step{border-top:1px solid var(--ft-charcoal);padding-top:1rem;}
+.ft-step span{font-family:var(--ft-sans);font-size:.62rem;letter-spacing:.16em;color:var(--ft-muted);}
+.ft-step h3{font-family:var(--ft-serif);font-weight:400;font-size:1.05rem;margin:.55rem 0 .4rem;}
+.ft-step p{font-family:var(--ft-sans);font-weight:300;font-size:.76rem;line-height:1.6;margin:0;}
+
+.ft-account{display:grid;grid-template-columns:1fr 1.2fr;border:1px solid var(--ft-line);}
+.ft-account-copy{padding:clamp(1.4rem,3vw,2.4rem);background:var(--ft-bone);display:flex;flex-direction:column;justify-content:center;}
+.ft-account-copy p{font-family:var(--ft-sans);font-weight:300;font-size:.84rem;line-height:1.7;max-width:42ch;}
+.ft-account-form{padding:clamp(1.4rem,3vw,2.4rem);background:var(--ft-vintage);}
+.ft-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.ft-account-form input[type=text],.ft-account-form input[type=email],
+.ft-account-form input[type=tel],.ft-account-form textarea{
+  width:100%;padding:.85rem .9rem;font-size:.82rem;
+  background:var(--ft-bone);border:1px solid var(--ft-line);
+}
+.ft-account-form textarea{margin-top:1rem;resize:vertical;}
+.ft-seg--form{margin-top:.5rem;}
+.ft-seg--form label{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  font-family:var(--ft-sans);font-size:.72rem;padding:.85em .5em;
+  border:1px solid var(--ft-line);cursor:pointer;background:var(--ft-bone);
+}
+.ft-btn--block{display:block;width:100%;text-align:center;margin-top:1.1rem;border:0;cursor:pointer;}
+@media (max-width:849px){
+  .ft-two,.ft-tier,.ft-account{grid-template-columns:1fr;}
+  .ft-two-col + .ft-two-col{border-left:0;border-top:1px solid var(--ft-line);}
+  .ft-tier-table{border-right:1px solid var(--ft-line);}
+  .ft-steps{grid-template-columns:1fr 1fr;}
+  .ft-field-grid{grid-template-columns:1fr;}
+}
