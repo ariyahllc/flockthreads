@@ -15,13 +15,19 @@ export const SIZE_CHART_HTML = `
   </tbody>
 </table>`.trim();
 
-export function productDescription(p) {
+export function productDescription(p, defaults = {}) {
   const tagline = `${p.title}${p.verse ? ` — ${p.verse}` : ""}`;
+  const blank = defaults.blank || "Bella+Canvas 6400";
+  const womens = /6400/.test(blank);
+  const cut = womens ? "women's relaxed tee" : "unisex tee";
+  const fitLine = womens
+    ? "Relaxed women's cut, true to size — size down for a closer fit. For reference, someone 5'8\" with a 36\" bust wears M."
+    : "Relaxed unisex cut, true to size. For reference, someone 5'10\" and 175 lb wears L.";
   return [
     `<p>${tagline}</p>`,
-    `<p>Printed left-chest on a soft, side-seamed Bella+Canvas 6400 women's relaxed tee. 100% Airlume combed ring-spun cotton (solid colors). Pre-shrunk, holds its shape and print wash after wash.</p>`,
+    `<p>Printed left-chest on a soft, side-seamed ${blank} ${cut}. 100% Airlume combed ring-spun cotton (solid colors). Pre-shrunk, holds its shape and print wash after wash.</p>`,
     // Win #2: fit + model reference — kills size doubt.
-    `<p><strong>Fit:</strong> Relaxed women's cut, true to size — size down for a closer fit. For reference, someone 5'8" with a 36" bust wears M.</p>`,
+    `<p><strong>Fit:</strong> ${fitLine}</p>`,
     // Win #3: risk remover.
     `<p><strong>Our promise:</strong> Print-guaranteed — any misprint reprinted free. Easy size exchanges.</p>`,
     // Win #1: size chart (popup placement handled at theme level; always present here).

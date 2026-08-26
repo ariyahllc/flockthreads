@@ -1,0 +1,136 @@
+{
+  "_source": "business-os/reports/faith-apparel-market-gap-2026-08.md \u2014 demand-backed themes",
+  "capsule": "FM01",
+  "canvas": {
+    "px": 1200,
+    "dpi": 300,
+    "safeAreaInches": 4
+  },
+  "inks": {
+    "charcoal": {
+      "hex": "#2B2B2B",
+      "label": "Deep Charcoal"
+    },
+    "bone": {
+      "hex": "#EDE7DC",
+      "label": "Bone"
+    }
+  },
+  "_garmentPreviewOnly": "Approximate Bella+Canvas swatch hexes. For contact-sheet review only \u2014 never used in print files.",
+  "garments": {
+    "heatherdust": {
+      "hex": "#C7BCAE",
+      "ink": "charcoal",
+      "label": "Heather Dust"
+    },
+    "vintagewhite": {
+      "hex": "#F1EDE4",
+      "ink": "charcoal",
+      "label": "Vintage White"
+    },
+    "heatherolive": {
+      "hex": "#5F6650",
+      "ink": "bone",
+      "label": "Heather Olive"
+    },
+    "black": {
+      "hex": "#1C1C1C",
+      "ink": "bone",
+      "label": "Black"
+    },
+    "softpink": {
+      "hex": "#E3C5C2",
+      "ink": "charcoal",
+      "label": "Soft Pink"
+    }
+  },
+  "typography": {
+    "family": "Spectral",
+    "weightFile": "Spectral-Medium.ttf",
+    "_licenseNote": "OFL stand-in for the brief's paid picks (Untitled Serif / Freight Text Pro / Tiempos Text / GT Sectra). Swap before commercial print; those need a $50-300 extended merch license.",
+    "leading": 1.08,
+    "capsuleBodyPx": null,
+    "_capsuleBodyNote": "Normalised mode: one body size for the whole capsule so the pieces read as a family. null = auto (smallest width-based size, so no design overruns its specced width). Set a number to override; widths then float and are capped by maxWidthInches.",
+    "maxWidthInches": 3.6,
+    "refSizeRatio": 0.4,
+    "refMinPx": 76,
+    "refWeightFile": "Spectral-SemiBold.ttf",
+    "_refWeightNote": "Reference line is set heavier (SemiBold) and larger than the body. At the original 0.3 ratio in Medium it rendered 0.96pt \u2014 under the brief 1.5pt DTG minimum \u2014 and would have broken up on heather blends. refMinPx is an ABSOLUTE floor, not a ratio: once the floor binds, the ref no longer scales with the body, and on the shorter Spanish line it dominated the glyph population and pinned the design at 1.44pt. 76px clears every design at 1.68pt.",
+    "refLetterSpacingEm": 0.16,
+    "refGapEm": 0.85
+  },
+  "designs": [
+    {
+      "id": "01",
+      "slug": "bestill",
+      "name": "Be Still",
+      "lines": [
+        "be still",
+        "and know"
+      ],
+      "ref": "PSALM 46:10",
+      "widthInches": 3.5,
+      "role": "Core \u2014 highest recurring search demand",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "black"
+      ]
+    },
+    {
+      "id": "02",
+      "slug": "shepherd",
+      "name": "The Lord Is My Shepherd",
+      "lines": [
+        "the lord is",
+        "my shepherd"
+      ],
+      "ref": "PSALM 23:1",
+      "widthInches": 3.5,
+      "role": "Core \u2014 evergreen scripture",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "black"
+      ]
+    },
+    {
+      "id": "03",
+      "slug": "faithoverfear",
+      "name": "Faith Over Fear",
+      "lines": [
+        "faith",
+        "over fear"
+      ],
+      "ref": "2 TIM. 1:7",
+      "widthInches": 3.5,
+      "role": "Hero \u2014 cited on Reddit as the acceptable subtle tee",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "black"
+      ]
+    },
+    {
+      "id": "04",
+      "slug": "lilies",
+      "name": "Consider the Lilies",
+      "lines": [
+        "consider",
+        "the lilies"
+      ],
+      "ref": "MATT. 6:28",
+      "widthInches": 3.5,
+      "role": "Botanical scripture theme, set as type (renderer is type-only)",
+      "colorways": [
+        "heatherdust",
+        "vintagewhite",
+        "heatherolive",
+        "black"
+      ]
+    }
+  ]
+}

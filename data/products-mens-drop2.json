@@ -1,0 +1,235 @@
+{
+  "_comment": "FM01 men's drop 2 \u2014 four demand-backed scripture themes from the market gap analysis (business-os/reports/faith-apparel-market-gap-2026-08.md). Bella+Canvas 3001 unisex, left-chest, no logo on garment (kept clean by owner's call).",
+  "defaults": {
+    "line": "faith-fm01-mens",
+    "blank": "Bella+Canvas 3001",
+    "catalog_product_id": 71,
+    "placement": "left-chest",
+    "price": 26.99,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "printful_color_map": {
+      "heatherdust": "Heather Dust",
+      "vintagewhite": "Vintage White",
+      "heatherolive": "Heather Olive",
+      "black": "Black",
+      "softpink": "Soft Cream"
+    },
+    "printful_placement": {
+      "placement": "front",
+      "area_width": 1500,
+      "area_height": 1800,
+      "width": 430,
+      "height": 430,
+      "top": 300,
+      "left": 760
+    }
+  },
+  "products": [
+    {
+      "handle": "be-still-mens",
+      "title": "Be Still \u2014 Psalm 46:10 Tee",
+      "role": "Core \u2014 highest recurring search demand",
+      "verse": "PSALM 46:10",
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/FM01_01_bestill_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/FM01_01_bestill_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/FM01_01_bestill_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/FM01_01_bestill_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    },
+    {
+      "handle": "the-lord-is-my-shepherd-mens",
+      "title": "The Lord Is My Shepherd \u2014 Psalm 23 Tee",
+      "role": "Core \u2014 evergreen scripture",
+      "verse": "PSALM 23:1",
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/FM01_02_shepherd_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/FM01_02_shepherd_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/FM01_02_shepherd_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/FM01_02_shepherd_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    },
+    {
+      "handle": "faith-over-fear-mens",
+      "title": "Faith Over Fear Tee",
+      "role": "Hero \u2014 the subtle tee buyers actually name",
+      "verse": "2 TIM. 1:7",
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/FM01_03_faithoverfear_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/FM01_03_faithoverfear_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/FM01_03_faithoverfear_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/FM01_03_faithoverfear_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    },
+    {
+      "handle": "consider-the-lilies-mens",
+      "title": "Consider the Lilies \u2014 Matthew 6:28 Tee",
+      "role": "Botanical scripture theme",
+      "verse": "MATT. 6:28",
+      "colorways": [
+        {
+          "slug": "heatherdust",
+          "label": "Heather Dust",
+          "print_file": "business-os/design/out/print/FM01_04_lilies_heatherdust_leftchest.png"
+        },
+        {
+          "slug": "vintagewhite",
+          "label": "Vintage White",
+          "print_file": "business-os/design/out/print/FM01_04_lilies_vintagewhite_leftchest.png"
+        },
+        {
+          "slug": "heatherolive",
+          "label": "Heather Olive",
+          "print_file": "business-os/design/out/print/FM01_04_lilies_heatherolive_leftchest.png"
+        },
+        {
+          "slug": "black",
+          "label": "Black",
+          "print_file": "business-os/design/out/print/FM01_04_lilies_black_leftchest.png"
+        }
+      ],
+      "printful_variant_map": {
+        "heatherdust:S": 10360,
+        "heatherdust:M": 10361,
+        "heatherdust:L": 10362,
+        "heatherdust:XL": 10363,
+        "heatherdust:2XL": 10364,
+        "vintagewhite:S": 14714,
+        "vintagewhite:M": 14715,
+        "vintagewhite:L": 14716,
+        "vintagewhite:XL": 14717,
+        "vintagewhite:2XL": 14718,
+        "heatherolive:S": 21302,
+        "heatherolive:M": 21303,
+        "heatherolive:L": 21304,
+        "heatherolive:XL": 21305,
+        "heatherolive:2XL": 21306,
+        "black:S": 4016,
+        "black:M": 4017,
+        "black:L": 4018,
+        "black:XL": 4019,
+        "black:2XL": 4020
+      }
+    }
+  ]
+}

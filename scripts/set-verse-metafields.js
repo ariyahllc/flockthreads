@@ -18,7 +18,10 @@ const handles = new Set(data.products.map((p) => p.handle));
 for (const h of [...handles]) {
   // men's variants share the base design's reference
   const base = h.replace(/-mens$/, "");
-  const verse = VERSE[base];
+  // The catalog file is the source of truth; VERSE is a fallback for the
+  // original drop, which predates the per-product `verse` field.
+  const fromData = data.products.find((p) => p.handle === h)?.verse;
+  const verse = fromData || VERSE[base];
   if (!verse) { console.log(`  ${h}: no verse, skip`); continue; }
   const d = await gql(`query($q:String!){ products(first:1, query:$q){ nodes{ id } } }`, { q: `handle:${h}` });
   const id = d.products.nodes[0]?.id;

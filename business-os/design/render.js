@@ -16,7 +16,9 @@ const path = require('path')
 const { createCanvas, GlobalFonts } = require('@napi-rs/canvas')
 
 const DIR = __dirname
-const SPEC = JSON.parse(fs.readFileSync(path.join(DIR, 'designs.json'), 'utf8'))
+const SPEC_ARG = process.argv.find((a) => a.startsWith('--spec='))
+const SPEC_FILE = SPEC_ARG ? SPEC_ARG.split('=')[1] : 'designs.json'
+const SPEC = JSON.parse(fs.readFileSync(path.join(DIR, SPEC_FILE), 'utf8'))
 const OUT = path.join(DIR, 'out')
 const PRINT_DIR = path.join(OUT, 'print')
 
