@@ -1,4 +1,6 @@
-# Shipping & Returns
+---
+title: Shipping & Returns
+---
 
 ## Shipping
 

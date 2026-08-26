@@ -1,4 +1,6 @@
-# Our Story
+---
+title: Our Story
+---
 
 FlockThreads started with a bad t-shirt.
 

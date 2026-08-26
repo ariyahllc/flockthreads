@@ -1,4 +1,6 @@
-# For Churches & Ministries
+---
+title: For Churches & Ministries
+---
 
 Outfitting a group shouldn't mean a week of emails, three phone calls, and shirts that disappoint. We make church and ministry orders simple, and we make them look good.
 

@@ -1,4 +1,6 @@
-# Why Our Quality Is Different
+---
+title: Why Our Quality Is Different
+---
 
 Most faith tees fail in the same place: the print. It looks fine in the listing, then cracks or fades after a few washes. We built FlockThreads to fix exactly that.
 

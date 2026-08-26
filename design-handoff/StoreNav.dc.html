@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="width: 100%; background: #EDE7DC;">
+  <div style="background: #5F6650; color: #F1EDE4; font-family: 'Jost', system-ui, sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; text-align: center; padding: 12px 0;">Free shipping over $75 &nbsp;&middot;&nbsp; Church wholesale from 24 pieces</div>
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 72px; border-bottom: 1px solid rgba(43,43,43,0.13);">
+    <a href="#" style="display: flex; align-items: center; gap: 13px; text-decoration: none; white-space: nowrap;">
+      <svg width="32" height="25" viewBox="0 0 112 86" fill="none" style="display: block; flex: none;">
+        <path d="M80 26 L94 16 L108 26" stroke="#5F6650" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M42 46 L58 34 L74 46" stroke="#2B2B2B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M4 66 L20 54 L36 66" stroke="#5F6650" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; letter-spacing: 0.3em; text-transform: uppercase; color: #2B2B2B;">Flockthreads</span>
+    </a>
+    <nav style="display: flex; align-items: flex-start; gap: 40px;">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="4">
+        <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Jost', system-ui, sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="color: #5F6650">
+          <span style="white-space: nowrap;">{{ l.label }}</span>
+          <sc-if value="{{ l.isActive }}" hint-placeholder-val="{{ true }}">
+            <span style="display: block; width: 100%; height: 1.5px; background: #5F6650;"></span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 26px; font-family: 'Jost', system-ui, sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B;">
+      <a href="#" style="color: #2B2B2B; text-decoration: none;" style-hover="color: #5F6650">Search</a>
+      <a href="#" style="color: #2B2B2B; text-decoration: none;" style-hover="color: #5F6650">Account</a>
+      <a href="#" style="display: flex; align-items: center; gap: 8px; color: #2B2B2B; text-decoration: none;" style-hover="color: #5F6650">
+        <span>Cart</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 21px; height: 21px; border-radius: 11px; background: #2B2B2B; color: #F1EDE4; font-size: 11px; letter-spacing: 0;">{{ count }}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:132},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;Men&quot;,&quot;Women&quot;,&quot;Unisex&quot;,&quot;Churches&quot;],&quot;default&quot;:&quot;Men&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cartCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? "";
+    return {
+      count: this.props.cartCount ?? 2,
+      links: ["Men", "Women", "Unisex", "Churches"].map(label => ({ label, isActive: label === active })),
+    };
+  }
+}
+</script>
+</body>
+</html>
