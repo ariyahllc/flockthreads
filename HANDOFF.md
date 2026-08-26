@@ -67,6 +67,46 @@ Left-chest placement is solved and stored in `data/products.json`
   bust/waist), fit + model reference line, print guarantee.
 - Store is still **password-protected** (not public).
 
+## Design system (FlockThreads Store spec)
+The store now follows `FlockThreads Store.html` (Claude Design, 9-screen build spec).
+
+- **Type:** EB Garamond (display) + Jost (UI). Loaded from Google Fonts in
+  `theme/assets/flockthreads.css`; Horizon's `--font-*--family` vars are
+  re-declared on `*` because Horizon redefines them on descendant scopes.
+- **Palette:** Bone `#EDE7DC` page, Vintage White `#F1EDE4` surfaces,
+  Olive `#5F6650` accents/announcement, Charcoal `#2B2B2B` text/footer.
+  Square corners throughout (no rounded cards).
+- **All spec styling lives in one file:** `theme/assets/flockthreads.css`,
+  injected in `layout/theme.liquid` after `color-palette`.
+- **Scoping gotcha:** Horizon suffixes block wrappers with the block id
+  (`text-block--<hash>__<block_id>`). Target those, not bare tags — a generic
+  `text-block p` rule silently restyled product titles.
+
+### Screens built
+| Spec screen | Where |
+|---|---|
+| 01 Home | `templates/index.json` — hero, fit strip, product row, fabric editorial, churches band |
+| 02 Collection | `templates/collection.json` — cards carry the verse line |
+| 03 Product | `templates/product.json` — verse eyebrow, square swatches, Find my size, church note |
+| 04 Cart | `templates/cart.json` + wholesale nudge |
+| 05 Checkout | Shopify-hosted; inherits brand colours |
+| 06 Churches B2B | `templates/page.for-churches.json` — tier table + live estimator + account form |
+| 07 Fit finder | `templates/page.size-fit.json` — height/weight/fit → size, real Bella 3001 measurements |
+| 08 Search | Horizon search, styled; colour/fit tags added so colour search works |
+| 09 Order status | `templates/page.track-order.json` — stage explanations, links to real account orders |
+
+### Deliberate deviations from the spec (and why)
+- **Price stays $26.99**, not $38 — we kept the current Bella product (owner's call).
+- **Fabric copy rewritten**: spec claims "6.5 oz garment-dyed"; ours is Bella
+  Airlume 4.2 oz, so the copy says what is actually true.
+- **"Printed in North Carolina" removed** → "Made to order". Printful routing is
+  not guaranteed, so the claim would not be verifiable.
+- **Wholesale tiers rebased** on our economics ($21 / $19 / $17 from 24 / 100 / 250)
+  instead of the spec's $16 ladder, which assumed a $38 retail product.
+- **No crewneck** — not in the catalog, so the crewneck column was dropped.
+- **"Unisex" nav** points at the full catalog: we have two real fits (women's 6400,
+  unisex 3001), not the spec's three.
+
 ## Open items
 1. **Bundles is empty** but in the nav. Plan: couples/2-pack at $45.98
    (= $8 off two) via native Shopify automatic discount, no app.
@@ -80,6 +120,13 @@ Left-chest placement is solved and stored in `data/products.json`
 5. **Split-pay group ordering deferred** — not buildable off-the-shelf on Shopify.
    Launch model is leader-pays-lump-sum.
 6. **No real photography** — all images are Printful-generated mockups.
+7. **VERIFY: the announcement bar claims "Free shipping over $75."** That copy came
+   from the design spec — confirm the store's actual shipping rates match it, or
+   change the wording. Do not ship a shipping promise the settings don't honour.
+8. **Third fit is not real.** Nav lists Men / Women / Unisex but only two blanks
+   exist. Add a true men's blank or collapse the nav.
+9. **Mobile not visually verified** — responsive CSS is in place (breakpoints at
+   749/849px) but was not confirmed on a real device viewport.
 
 ## Research-backed next moves
 1. Publish trust signals (free, highest ROI): name the blank, guarantee above fold,
