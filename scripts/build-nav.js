@@ -1,13 +1,12 @@
-// Rebuilds the main menu: drops Catalog, adds category structure (bluvap-style).
+// Rebuilds the main menu to match the FlockThreads Store design spec:
+// Men | Women | Unisex | Churches
 import { gql } from "./lib/shopify.js";
 
 const ITEMS = [
-  { title: "Best Sellers", type: "COLLECTION",   handle: "best-sellers" },
-  { title: "Women",        type: "COLLECTION",   handle: "women" },
-  { title: "Men",          type: "COLLECTION",   handle: "men" },
-  { title: "Bundles",      type: "COLLECTION",   handle: "bundles" },
-  { title: "For Churches", type: "PAGE",         handle: "for-churches" },
-  { title: "About",        type: "PAGE",         handle: "about" },
+  { title: "Men",      type: "COLLECTION", handle: "men" },
+  { title: "Women",    type: "COLLECTION", handle: "women" },
+  { title: "Unisex",   type: "COLLECTION", handle: "faith" },
+  { title: "Churches", type: "PAGE",       handle: "for-churches" },
 ];
 
 const d = await gql(`{ menus(first:10){ nodes{ id handle title } } }`);
