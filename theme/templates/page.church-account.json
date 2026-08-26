@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "\n<div class=\"ft-page\">\n  <div class=\"ft-account\" id=\"ft-account\" style=\"border:1px solid var(--ft-line)\">\n    <div class=\"ft-account-copy\">\n      <h1 class=\"ft-h2 ft-h2--flush\">Request a church account</h1>\n      <p>One form, once. We verify your organisation, switch on tier pricing and\n      tax-exempt checkout, and you order like anyone else &mdash; just at your rate.</p>\n      <ul class=\"ft-dash\">\n        <li>Approved in one business day</li>\n        <li>Net 30 available after your first order</li>\n        <li>Multiple staff on one account</li>\n        <li id=\"tax\">Tax-exempt checkout once your EIN is verified</li>\n      </ul>\n      <a class=\"ft-link\" href=\"/pages/for-churches\">See wholesale pricing</a>\n    </div>\n    <div class=\"ft-account-form\">\n      {% form 'contact' %}\n        {% if form.posted_successfully? %}\n          <p class=\"ft-note\">Thank you \u2014 we&rsquo;ve got it. Expect a reply within one business day.</p>\n        {% endif %}\n        <div class=\"ft-field-grid\">\n          <input type=\"text\"  name=\"contact[organisation]\" placeholder=\"Church or organisation\" required>\n          <input type=\"text\"  name=\"contact[name]\"         placeholder=\"Your name\" required>\n          <input type=\"email\" name=\"contact[email]\"        placeholder=\"Work email\" required>\n          <input type=\"tel\"   name=\"contact[phone]\"        placeholder=\"Phone\">\n          <input type=\"text\"  name=\"contact[congregation_size]\" placeholder=\"Congregation size\">\n          <input type=\"text\"  name=\"contact[ein]\"          placeholder=\"EIN (for tax exemption)\">\n        </div>\n        <span class=\"ft-fit-label\" style=\"margin-top:1.2rem\">What do you need?</span>\n        <div class=\"ft-seg ft-seg--form\">\n          <label><input type=\"radio\" name=\"contact[need]\" value=\"Blanks\" checked> Blanks</label>\n          <label><input type=\"radio\" name=\"contact[need]\" value=\"Printing\"> Printing</label>\n          <label><input type=\"radio\" name=\"contact[need]\" value=\"Both\"> Both</label>\n        </div>\n        <textarea name=\"contact[body]\" rows=\"4\" placeholder=\"Anything else? Dates, size runs, budget.\"></textarea>\n        <button type=\"submit\" class=\"ft-btn ft-btn--dark ft-btn--block\">Request account</button>\n      {% endform %}\n    </div>\n  </div>\n</div>\n",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

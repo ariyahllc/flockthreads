@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "\n<div class=\"ft-page\">\n  <div class=\"ft-page-head\">\n    <h1>Track an order</h1>\n    <p>Every order gets a tracking link by email the moment it ships. You can also\n    open it any time from your account.</p>\n  </div>\n\n  <div class=\"ft-track\">\n    <div class=\"ft-track-actions\">\n      <h3>Find your order</h3>\n      <ul class=\"ft-dash\">\n        <li>Signed in? Your orders and tracking live in your account.</li>\n        <li>Guest order? Use the tracking link in your shipping email.</li>\n        <li>Can&rsquo;t find it? Send us the order number and we&rsquo;ll dig it out.</li>\n      </ul>\n      <p class=\"ft-btnrow\">\n        <a class=\"ft-btn ft-btn--dark\" href=\"/account\">View my orders</a>\n        <a class=\"ft-btn ft-btn--ghost\" href=\"/pages/contact\">Ask us</a>\n      </p>\n    </div>\n\n    <div class=\"ft-track-stages\">\n      <h3>What the stages mean</h3>\n      <ol class=\"ft-stages\">\n        <li><span>01</span><strong>Order placed</strong><em>You get a confirmation email straight away.</em></li>\n        <li><span>02</span><strong>Printed &amp; packed</strong><em>Made to order, usually within 2&ndash;5 business days.</em></li>\n        <li><span>03</span><strong>In transit</strong><em>Tracking goes live and lands in your inbox.</em></li>\n        <li><span>04</span><strong>Delivered</strong><em>Typically 3&ndash;7 business days after it ships.</em></li>\n      </ol>\n    </div>\n  </div>\n\n  <div class=\"ft-note ft-note--wide\">\n    Wrong size? Exchanges are free for 30 days &mdash;\n    <a href=\"/pages/size-fit\">check the fit guide</a> first and we&rsquo;ll swap it.\n    Any misprint is reprinted free, no questions.\n  </div>\n</div>\n",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
