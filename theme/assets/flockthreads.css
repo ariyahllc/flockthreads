@@ -536,3 +536,46 @@ a[class*="logo"],[class*="header"] [class*="logo"]{
   .ft-steps{grid-template-columns:1fr 1fr;}
   .ft-field-grid{grid-template-columns:1fr;}
 }
+
+/* ---------- Product page (spec 03) ---------- */
+/* Verse eyebrow above the title */
+[class*="__verse_eyebrow"] p{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase!important;letter-spacing:.16em!important;
+  font-size:.62rem!important;color:var(--ft-muted)!important;margin:0 0 .55rem!important;
+}
+/* Church wholesale note bar */
+[class*="__church_note"]{
+  border-left:2px solid var(--ft-olive);
+  background:var(--ft-vintage);
+  padding:.85rem 1rem;margin-top:1rem;
+}
+[class*="__church_note"] p{
+  font-family:var(--ft-sans)!important;font-weight:300!important;
+  font-size:.78rem!important;margin:0!important;line-height:1.55;
+}
+[class*="__church_note"] a{color:var(--ft-charcoal);text-decoration:underline;}
+/* Find my size */
+[class*="__size_link"]{text-align:right;margin-top:-1.9rem;position:relative;z-index:2;}
+[class*="__size_link"] p{margin:0!important;}
+[class*="__size_link"] a{
+  font-family:var(--ft-sans)!important;text-transform:uppercase;letter-spacing:.14em;
+  font-size:.62rem!important;color:var(--ft-muted);text-decoration:none;
+  border-bottom:1px solid var(--ft-line);padding-bottom:.15em;
+}
+/* Square variant swatches, spec style */
+variant-picker button, .variant-option__button-label, [class*="variant"] label,
+[class*="variant"] button{border-radius:0!important;}
+.variant-option__button-label, [class*="variant"] label{
+  font-family:var(--ft-sans)!important;text-transform:uppercase;
+  letter-spacing:.12em;font-size:.66rem!important;
+}
+/* Product title + price to spec scale */
+.product-information h1, [class*="product-title"] h1{
+  font-family:var(--ft-serif)!important;font-weight:400!important;
+  font-size:clamp(1.7rem,3vw,2.3rem)!important;line-height:1.15;
+}
+/* Append the print placement after the verse, and hide the line entirely
+   for products with no scripture reference (metafield empty -> <p> empty). */
+[class*="__verse_eyebrow"] p:not(:empty)::after{content:" · Left chest";}
+[class*="__verse_eyebrow"] p:empty{display:none;}

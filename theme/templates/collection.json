@@ -154,7 +154,7 @@
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
-                "font": "var(--font-body--family)",
+                "font": "var(--font-heading--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
@@ -190,11 +190,36 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "verse_line": {
+              "type": "text",
+              "name": "Verse reference",
+              "settings": {
+                "text": "<p>{{ closest.product.metafields.custom.verse.value }}</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "0.6rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             }
           },
           "block_order": [
             "card-gallery",
             "product_title_4nY4eT",
+            "verse_line",
             "price_EzJzMm"
           ]
         }
