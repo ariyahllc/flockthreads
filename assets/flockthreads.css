@@ -1,0 +1,377 @@
+/* ==========================================================================
+   FlockThreads design system — from "FlockThreads Store.html" build spec.
+   Palette: Bone / Vintage White / Olive / Soft Pink / Charcoal
+   Type: EB Garamond (display) + Jost (UI)
+   Loaded after Horizon's own variables so these win.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap');
+
+:root{
+  /* Brand palette */
+  --ft-bone:#EDE7DC;
+  --ft-vintage:#F1EDE4;
+  --ft-surface:#E7E0D3;
+  --ft-olive:#5F6650;
+  --ft-pink:#E3C5C2;
+  --ft-charcoal:#2B2B2B;
+  --ft-muted:#8A8375;
+  --ft-line:rgba(43,43,43,.14);
+
+  --ft-serif:'EB Garamond', Georgia, serif;
+  --ft-sans:'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Map Horizon's type vars onto the brand */
+  --font-h1--family:var(--ft-serif)!important;
+  --font-h2--family:var(--ft-serif)!important;
+  --font-h3--family:var(--ft-serif)!important;
+  --font-h4--family:var(--ft-serif)!important;
+  --font-h5--family:var(--ft-serif)!important;
+  --font-h6--family:var(--ft-serif)!important;
+  --font-heading--family:var(--ft-serif)!important;
+  --font-accent--family:var(--ft-serif)!important;
+  --font-body--family:var(--ft-sans)!important;
+  --font-paragraph--family:var(--ft-sans)!important;
+  --font-subheading--family:var(--ft-sans)!important;
+  --font-body--weight:300!important;
+
+  /* Sharp corners — the spec has no rounded cards */
+  --border-radius-sm:0!important;
+  --style-border-radius-buttons-primary:0!important;
+  --style-border-radius-buttons-secondary:0!important;
+}
+
+/* ---------- Page canvas ---------- */
+body{
+  background:var(--ft-bone);
+  color:var(--ft-charcoal);
+  font-family:var(--ft-sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5,h6{font-family:var(--ft-serif);font-weight:400;letter-spacing:-.01em;}
+
+/* Kill rounded corners globally (spec is square) */
+.card, .product-card, .button, button, input, select, textarea,
+[class*="border-radius"], [class*="rounded"]{border-radius:0!important;}
+
+/* ---------- Announcement bar: olive, letterspaced caps ---------- */
+.announcement-bar, .header-announcements, [class*="announcement"]{
+  background:var(--ft-olive)!important;
+  color:var(--ft-vintage)!important;
+}
+.announcement-bar *, .header-announcements *, [class*="announcement"] *{
+  font-family:var(--ft-sans)!important;
+  font-size:.66rem!important;
+  font-weight:400!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+  color:var(--ft-vintage)!important;
+}
+
+/* ---------- Header / wordmark / nav ---------- */
+.header, header.header{
+  background:var(--ft-vintage)!important;
+  border-bottom:1px solid var(--ft-line);
+}
+.header__logo, .header__heading, .logo{
+  font-family:var(--ft-serif)!important;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-size:1.15rem;
+  font-weight:400;
+}
+.header__menu a, .menu-list a, nav a, .header a{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:.68rem;
+  font-weight:400;
+  color:var(--ft-charcoal);
+}
+.header__menu a:hover, nav a:hover{color:var(--ft-olive);}
+
+/* ---------- Buttons ---------- */
+.button, button.button, a.button{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.68rem;
+  font-weight:400;
+  border-radius:0!important;
+  padding:1.05em 2.4em;
+}
+.button--primary, .button-primary, [class*="button--primary"]{
+  background:var(--ft-charcoal)!important;
+  color:var(--ft-vintage)!important;
+  border:1px solid var(--ft-charcoal)!important;
+}
+.button--secondary, .button-secondary{
+  background:transparent!important;
+  color:var(--ft-charcoal)!important;
+  border:1px solid var(--ft-charcoal)!important;
+}
+
+/* ---------- Hero ---------- */
+.hero h1, .hero h2, [class*="hero"] h1{
+  font-family:var(--ft-serif)!important;
+  font-size:clamp(2.4rem,5.2vw,4.4rem);
+  line-height:1.04;
+  letter-spacing:-.015em;
+}
+[class*="hero"] p{
+  /* font-family intentionally inherited: Horizon sets serif on the headline
+     block and sans on the subcopy block via .text-block. Forcing it here
+     flattened the headline to Jost. */
+  font-weight:300;
+  letter-spacing:.01em;
+  color:var(--ft-charcoal);
+}
+
+/* ---------- Section headings + eyebrow ---------- */
+.section-header h2, .section__heading, .product-list h2{
+  font-family:var(--ft-serif)!important;
+  font-size:clamp(1.6rem,2.6vw,2.15rem);
+  font-weight:400;
+}
+.ft-eyebrow{
+  font-family:var(--ft-sans);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:.63rem;
+  color:var(--ft-muted);
+  display:block;
+  margin-bottom:.65rem;
+}
+
+/* ---------- Product cards ---------- */
+.product-card, .card--product, [class*="product-card"]{
+  background:transparent!important;
+  border:0!important;
+}
+.product-card__title, .product-title, [class*="product-card"] a[class*="title"]{
+  font-family:var(--ft-serif)!important;
+  font-size:1.02rem!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.product-card .price, .price, [class*="price"]{
+  font-family:var(--ft-sans)!important;
+  font-size:.82rem!important;
+  font-weight:400!important;
+  letter-spacing:.02em;
+}
+/* Verse reference line under product name */
+.ft-verse{
+  font-family:var(--ft-sans);
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.6rem;
+  color:var(--ft-muted);
+  display:block;
+  margin-top:.28rem;
+}
+/* Colour chip badge on card image */
+.ft-chip{
+  position:absolute;top:.7rem;left:.7rem;z-index:2;
+  background:var(--ft-vintage);
+  font-family:var(--ft-sans);
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:.56rem;
+  padding:.38em .7em;
+  color:var(--ft-charcoal);
+}
+
+/* ---------- Fit strip (Men / Women / Unisex) ---------- */
+.ft-fitstrip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--ft-line);border-bottom:1px solid var(--ft-line);
+  background:var(--ft-vintage);
+}
+.ft-fitstrip > a{
+  padding:1.8rem 2rem;text-decoration:none;color:var(--ft-charcoal);
+  border-right:1px solid var(--ft-line);
+}
+.ft-fitstrip > a:last-child{border-right:0;}
+.ft-fitstrip h3{font-family:var(--ft-serif);font-size:1.15rem;margin:0 0 .3rem;}
+.ft-fitstrip p{font-family:var(--ft-sans);font-size:.72rem;color:var(--ft-muted);margin:0;letter-spacing:.02em;}
+@media (max-width:749px){.ft-fitstrip{grid-template-columns:1fr;}
+  .ft-fitstrip > a{border-right:0;border-bottom:1px solid var(--ft-line);}}
+
+/* ---------- Editorial / fabric block ---------- */
+.ft-editorial{background:var(--ft-vintage);}
+.ft-editorial h2{font-family:var(--ft-serif);font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.18;font-weight:400;}
+.ft-editorial p{font-family:var(--ft-sans);font-weight:300;font-size:.86rem;line-height:1.7;color:var(--ft-charcoal);}
+
+/* ---------- Churches band ---------- */
+.ft-churches{background:var(--ft-surface);}
+.ft-churches h2{font-family:var(--ft-serif);font-weight:400;}
+
+/* ---------- Footer: charcoal ---------- */
+.footer, footer.footer, #footer-group .footer{
+  background:var(--ft-charcoal)!important;
+  color:var(--ft-vintage)!important;
+}
+.footer *, footer.footer *{color:var(--ft-vintage)!important;}
+.footer a{font-family:var(--ft-sans)!important;font-size:.76rem;font-weight:300;letter-spacing:.02em;text-decoration:none;opacity:.85;}
+.footer a:hover{opacity:1;}
+.footer h3, .footer h4, .footer .footer__heading{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase!important;
+  letter-spacing:.17em!important;
+  font-size:.62rem!important;
+  font-weight:400!important;
+  opacity:.6;
+}
+
+/* ---------- Forms ---------- */
+input,select,textarea{
+  font-family:var(--ft-sans)!important;font-weight:300;
+  background:var(--ft-vintage);border:1px solid var(--ft-line);border-radius:0!important;
+}
+label{font-family:var(--ft-sans)!important;font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:var(--ft-muted);}
+
+/* ---------- Utility ---------- */
+.ft-rule{height:1px;background:var(--ft-line);border:0;margin:0;}
+.ft-note{
+  border-left:2px solid var(--ft-olive);
+  background:var(--ft-vintage);
+  padding:.9rem 1.1rem;
+  font-family:var(--ft-sans);font-size:.78rem;font-weight:300;
+}
+
+/* ---------- Homepage editorial + churches bands ---------- */
+.ft-editorial-wrap,.ft-churches-wrap{
+  display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
+}
+.ft-editorial-media,.ft-churches-media{
+  background:var(--ft-surface);min-height:420px;
+  background-size:cover;background-position:center;
+}
+.ft-editorial-copy,.ft-churches-copy{
+  padding:clamp(2rem,5vw,4.5rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.ft-editorial-copy h2,.ft-churches-copy h2{
+  font-family:var(--ft-serif);font-weight:400;
+  font-size:clamp(1.45rem,2.8vw,2rem);line-height:1.22;margin:0 0 1rem;
+}
+.ft-editorial-copy p,.ft-churches-copy p{
+  font-family:var(--ft-sans);font-weight:300;font-size:.86rem;
+  line-height:1.75;margin:0 0 .9rem;max-width:46ch;
+}
+.ft-churches-wrap{background:var(--ft-surface);}
+.ft-link{
+  font-family:var(--ft-sans);font-size:.72rem;text-transform:uppercase;
+  letter-spacing:.15em;color:var(--ft-charcoal);text-decoration:none;
+  border-bottom:1px solid var(--ft-charcoal);padding-bottom:.2em;
+}
+.ft-btnrow{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.6rem;}
+.ft-btn{
+  display:inline-block;font-family:var(--ft-sans);font-size:.66rem;
+  text-transform:uppercase;letter-spacing:.16em;text-decoration:none;
+  padding:1.05em 2.1em;border:1px solid var(--ft-charcoal);
+}
+.ft-btn--dark{background:var(--ft-charcoal);color:var(--ft-vintage);}
+.ft-btn--ghost{background:transparent;color:var(--ft-charcoal);}
+@media (max-width:749px){
+  .ft-editorial-wrap,.ft-churches-wrap{grid-template-columns:1fr;}
+  .ft-editorial-media,.ft-churches-media{min-height:240px;}
+}
+
+/* ---------- Font-variable enforcement ----------------------------------
+   Horizon redefines --font-*--family on descendant scopes, which beats a
+   :root override inside that subtree. Re-declaring on * makes the brand
+   fonts win everywhere, including section/block inline styles that read
+   var(--font-heading--family). ---------------------------------------- */
+*{
+  --font-h1--family:var(--ft-serif)!important;
+  --font-h2--family:var(--ft-serif)!important;
+  --font-h3--family:var(--ft-serif)!important;
+  --font-h4--family:var(--ft-serif)!important;
+  --font-h5--family:var(--ft-serif)!important;
+  --font-h6--family:var(--ft-serif)!important;
+  --font-heading--family:var(--ft-serif)!important;
+  --font-accent--family:var(--ft-serif)!important;
+  --font-display--family:var(--ft-serif)!important;
+  --font-body--family:var(--ft-sans)!important;
+  --font-paragraph--family:var(--ft-sans)!important;
+  --font-subheading--family:var(--ft-sans)!important;
+}
+/* Wordmark stays serif + letterspaced */
+.header__logo,.header__heading,.header__heading-link,.logo,
+a[class*="logo"],[class*="header"] [class*="logo"]{
+  font-family:var(--ft-serif)!important;
+  letter-spacing:.22em!important;
+  text-transform:uppercase!important;
+  font-weight:400!important;
+}
+/* Hero subcopy */
+.ft-sub{
+  font-family:var(--ft-sans)!important;
+  font-weight:300!important;
+  font-size:.95rem!important;
+  line-height:1.65;
+  letter-spacing:.01em;
+  color:var(--ft-charcoal);
+  max-width:34ch;margin:0 auto;
+}
+
+/* Hero subcopy (rich-text can't carry a class, so target the hero paragraph) */
+[class*="hero"] p, .hero p{
+  font-family:inherit;
+  line-height:1.65;
+  letter-spacing:.01em;
+  max-width:36ch;margin-inline:auto;
+}
+/* Headline paragraph must stay full width, not clamped like the subcopy */
+[class*="hero"] .text-block p{max-width:none;}
+
+/* ---------- Product-list header: eyebrow + serif heading ---------- */
+[class*="product-list"] [class*="text"] p:first-child,
+.product-list__header p:first-child{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:.62rem;
+  color:var(--ft-muted);
+  margin:0 0 .45rem;
+  font-weight:400;
+}
+[class*="product-list"] h3{
+  font-family:var(--ft-serif)!important;
+  font-size:clamp(1.5rem,2.6vw,2.05rem)!important;
+  font-weight:400!important;
+  margin:0;
+  letter-spacing:-.01em;
+}
+/* "View all" link, spec style */
+[class*="product-list"] a[class*="link"]{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase;letter-spacing:.15em;font-size:.63rem;
+  border-bottom:1px solid var(--ft-charcoal);padding-bottom:.2em;text-decoration:none;
+}
+
+/* ---------- Product card: serif title, verse reference, tight rhythm ----------
+   Horizon suffixes each block's wrapper class with its block id
+   (text-block--<hash>__<block_id>), so scope by that rather than by tag —
+   a bare "text-block p" rule also swallowed the product title. */
+[class*="__product_title_"], [class*="__product_title_"] p,
+[class*="product-card"] h3{
+  font-family:var(--ft-serif)!important;
+  font-size:1rem!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  color:var(--ft-charcoal);
+}
+[class*="__verse_line"], [class*="__verse_line"] p{
+  font-family:var(--ft-sans)!important;
+  text-transform:uppercase!important;
+  letter-spacing:.15em!important;
+  font-size:.6rem!important;
+  color:var(--ft-muted)!important;
+  margin:.2rem 0 0!important;
+}
+[class*="__verse_line"] p:empty{display:none;}
