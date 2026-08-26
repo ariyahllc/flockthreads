@@ -21,9 +21,13 @@ fs.mkdirSync(OUT, { recursive: true });
 const AREA_W = 1500, AREA_H = 1800;
 // Existing left-chest box, matching data/products.json printful_placement.
 const ART = { w: 430, h: 430, x: 760, y: 300 };
-// Mark, low-centre. 330px ≈ 2.2" wide — small enough to stay tasteful,
-// big enough to read as a brand mark from across a room.
-const MARK = { w: 330, bottomPad: 26 };
+// Mark placement:
+//   "under-chest" — small mark tucked beneath the verse, sharing its optical
+//                   centre. Reads as one considered lockup.
+//   "low-front"   — mark at the bottom edge of the print area (waist height).
+// Both are inside the SAME front placement, so both cost the same: nothing.
+const MODE = process.env.MARK_MODE || "under-chest";
+const MARK = { underChest: { w: 104, gap: 34 }, lowFront: { w: 330, bottomPad: 26 } };
 
 // Ink per garment, mirroring designs.json: dark ink on light cloth, bone on dark.
 const INK = {
@@ -56,6 +60,25 @@ function drawMark(ctx, x, y, w, ink) {
   ctx.restore();
 }
 
+// Bounding box of non-transparent pixels inside a region — lets the mark sit a
+// fixed optical gap under the type instead of under the padded canvas edge.
+function contentBounds(ctx, x, y, w, h) {
+  const { data } = ctx.getImageData(x, y, w, h);
+  let minX = w, minY = h, maxX = -1, maxY = -1;
+  for (let py = 0; py < h; py++) {
+    for (let px = 0; px < w; px++) {
+      if (data[(py * w + px) * 4 + 3] > 12) {
+        if (px < minX) minX = px;
+        if (px > maxX) maxX = px;
+        if (py < minY) minY = py;
+        if (py > maxY) maxY = py;
+      }
+    }
+  }
+  if (maxX < 0) return null;
+  return { x: x + minX, y: y + minY, w: maxX - minX + 1, h: maxY - minY + 1 };
+}
+
 function inkFor(file) {
   const hit = Object.keys(INK).find((k) => file.toLowerCase().includes(k));
   return INK[hit] || "#2B2B2B";
@@ -72,9 +95,20 @@ async function main() {
     const art = await loadImage(path.join(srcDir, file));
     ctx.drawImage(art, ART.x, ART.y, ART.w, ART.h);
 
-    // 2. Mark, centred low on the front — visible to anyone facing the wearer.
-    const mw = MARK.w, mh = mw * (86 / 112);
-    drawMark(ctx, (AREA_W - mw) / 2, AREA_H - MARK.bottomPad - mh, mw, inkFor(file));
+    // 2. Mark. Position is measured off the real artwork, not guessed: the
+    //    source PNGs are padded canvases, so the visible text sits somewhere
+    //    inside the 430x430 box. Find its true bounds first.
+    const ink = inkFor(file);
+    if (MODE === "low-front") {
+      const mw = MARK.lowFront.w, mh = mw * (86 / 112);
+      drawMark(ctx, (AREA_W - mw) / 2, AREA_H - MARK.lowFront.bottomPad - mh, mw, ink);
+    } else {
+      const box = contentBounds(ctx, ART.x, ART.y, ART.w, ART.h);
+      const mw = MARK.underChest.w, mh = mw * (86 / 112);
+      const cx = box ? box.x + box.w / 2 : ART.x + ART.w / 2;
+      const top = (box ? box.y + box.h : ART.y + ART.h) + MARK.underChest.gap;
+      drawMark(ctx, cx - mw / 2, top, mw, ink);
+    }
 
     fs.writeFileSync(path.join(OUT, file), canvas.toBuffer("image/png"));
     console.log("  " + file);
