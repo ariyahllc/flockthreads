@@ -246,10 +246,19 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "ft_cart_note": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"ft-page\" style=\"padding-top:0\">\n  <div class=\"ft-note ft-note--wide\">\n    Buying 24 or more? <a href=\"/pages/for-churches\">Switch to wholesale pricing &rarr;</a>\n    Church and team orders start at $21 a piece.\n  </div>\n</div>",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "cart-section",
+    "ft_cart_note",
     "product_list_NNFgcy"
   ]
 }
