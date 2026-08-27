@@ -1,7 +1,7 @@
 // Shared product description + size chart, so build + updates stay identical.
 
 // Women's body measurements (inches), Hollister-style bust-led sizing, extended to 2XL.
-export const SIZE_CHART_HTML = `
+export const SIZE_CHART_WOMENS = `
 <h4>Size guide</h4>
 <p>Women's relaxed fit (Bella+Canvas 6400). Measure your body, not a shirt. Between sizes? Size up for a relaxed fit.</p>
 <table>
@@ -14,6 +14,25 @@ export const SIZE_CHART_HTML = `
     <tr><td>2XL</td><td>43–45</td><td>36–38</td></tr>
   </tbody>
 </table>`.trim();
+
+// Unisex sizing is chest-led, not bust/waist. Shipping the women's table on a
+// 3001 would send men a size too small, so each blank gets its own chart.
+export const SIZE_CHART_UNISEX = `
+<h4>Size guide</h4>
+<p>Unisex relaxed fit (Bella+Canvas 3001). Measure around the fullest part of your chest. Between sizes? Size up.</p>
+<table>
+  <thead><tr><th>Size</th><th>To fit chest (in)</th><th>Garment length (in)</th></tr></thead>
+  <tbody>
+    <tr><td>S</td><td>34\u201336</td><td>28</td></tr>
+    <tr><td>M</td><td>38\u201340</td><td>29</td></tr>
+    <tr><td>L</td><td>42\u201344</td><td>30</td></tr>
+    <tr><td>XL</td><td>46\u201348</td><td>31</td></tr>
+    <tr><td>2XL</td><td>50\u201352</td><td>32</td></tr>
+  </tbody>
+</table>`.trim();
+
+// Kept for callers that import the old name.
+export const SIZE_CHART_HTML = SIZE_CHART_WOMENS;
 
 export function productDescription(p, defaults = {}) {
   const tagline = `${p.title}${p.verse ? ` — ${p.verse}` : ""}`;
@@ -31,6 +50,6 @@ export function productDescription(p, defaults = {}) {
     // Win #3: risk remover.
     `<p><strong>Our promise:</strong> Print-guaranteed — any misprint reprinted free. Easy size exchanges.</p>`,
     // Win #1: size chart (popup placement handled at theme level; always present here).
-    SIZE_CHART_HTML,
+    womens ? SIZE_CHART_WOMENS : SIZE_CHART_UNISEX,
   ].join("\n");
 }
