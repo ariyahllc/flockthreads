@@ -1,11 +1,12 @@
 // Rebuilds the main menu to match the FlockThreads Store design spec:
-// Men | Women | Unisex | Churches
+// Men | Women | Unisex | Bundles | Churches
 import { gql } from "./lib/shopify.js";
 
 const ITEMS = [
   { title: "Men",      type: "COLLECTION", handle: "men" },
   { title: "Women",    type: "COLLECTION", handle: "women" },
   { title: "Unisex",   type: "COLLECTION", handle: "faith" },
+  { title: "Bundles",  type: "COLLECTION", handle: "bundles" },
   { title: "Churches", type: "PAGE",       handle: "for-churches" },
 ];
 

@@ -8,7 +8,13 @@ const COLLECTIONS = [
   { handle: "for-churches", title: "For Churches", descr: "Group orders for VBS, mission trips, camps, and ministry teams.", products: ["strength-and-dignity", "called-to-this"] },
   { handle: "espanol", title: "Español", descr: "Apparel de fe en español.", products: ["fuerza-y-dignidad", "fuerza-y-dignidad-mens"] },
   { handle: "men", title: "Men", descr: "Unisex tees with quiet left-chest type. Relaxed, true to size.", products: ["be-still-mens", "the-lord-is-my-shepherd-mens", "faith-over-fear-mens", "consider-the-lilies-mens", "called-to-this-mens", "fuerza-y-dignidad-mens", "amen-again-mens"] },
-  { handle: "bundles", title: "Bundles", descr: "Pairs and sets — mom and daughter, two colors, team packs.", products: [] },
+  // Bundles is not a separate catalogue: the offer is "any two tees, $8 off",
+  // so the collection holds every tee. Keeps one source of truth for the promo.
+  { handle: "bundles", title: "Bundles", descr: "Any two tees, $8 off. Mix designs, colours, and fits \u2014 mom and daughter, his and hers, or two for yourself. The discount applies automatically at checkout.", products: [
+      "called-to-this", "strength-and-dignity", "fuerza-y-dignidad", "amen-again", "her-children-rise",
+      "be-still-mens", "the-lord-is-my-shepherd-mens", "faith-over-fear-mens", "consider-the-lilies-mens",
+      "called-to-this-mens", "fuerza-y-dignidad-mens", "amen-again-mens",
+    ] },
 ];
 
 async function productId(handle) {

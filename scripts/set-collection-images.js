@@ -8,6 +8,7 @@ const PICK = {
   "men":          "called-to-this-mens",
   "for-churches": "strength-and-dignity",
   "espanol":      "fuerza-y-dignidad",
+  "bundles":      "her-children-rise",
 };
 
 for (const [coll, productHandle] of Object.entries(PICK)) {
