@@ -6,8 +6,8 @@ const COLLECTIONS = [
   { handle: "women", title: "Women", descr: "Soft, side-seamed women's tees with quiet left-chest type.", products: ["called-to-this", "strength-and-dignity", "fuerza-y-dignidad", "amen-again", "her-children-rise"] },
   { handle: "best-sellers", title: "Best Sellers", descr: "The pieces people keep coming back for.", products: ["called-to-this", "strength-and-dignity", "her-children-rise"] },
   { handle: "for-churches", title: "For Churches", descr: "Group orders for VBS, mission trips, camps, and ministry teams.", products: ["strength-and-dignity", "called-to-this"] },
-  { handle: "espanol", title: "Español", descr: "Apparel de fe en español.", products: ["fuerza-y-dignidad"] },
-  { handle: "men", title: "Men", descr: "Men's faith tees — coming soon.", products: [] },
+  { handle: "espanol", title: "Español", descr: "Apparel de fe en español.", products: ["fuerza-y-dignidad", "fuerza-y-dignidad-mens"] },
+  { handle: "men", title: "Men", descr: "Unisex tees with quiet left-chest type. Relaxed, true to size.", products: ["be-still-mens", "the-lord-is-my-shepherd-mens", "faith-over-fear-mens", "consider-the-lilies-mens", "called-to-this-mens", "fuerza-y-dignidad-mens", "amen-again-mens"] },
   { handle: "bundles", title: "Bundles", descr: "Pairs and sets — mom and daughter, two colors, team packs.", products: [] },
 ];
 
