@@ -1,5 +1,5 @@
 {
-  "_comment": "Men's/unisex line — same MD27 art on Bella+Canvas 3001 unisex staple (catalog id 71), left-chest DTG. Colors map 1:1 to the design swatches (3001 has Heather Dust/Olive natively).",
+  "_comment": "Men's/unisex line \u2014 same MD27 art on Bella+Canvas 3001 unisex staple (catalog id 71), left-chest DTG. Colors map 1:1 to the design swatches (3001 has Heather Dust/Olive natively).",
   "defaults": {
     "line": "faith-md27-mens",
     "blank": "Bella+Canvas 3001",
@@ -24,16 +24,17 @@
       "placement": "front",
       "area_width": 1500,
       "area_height": 1800,
-      "width": 430,
-      "height": 430,
-      "top": 300,
-      "left": 760
-    }
+      "width": 600,
+      "height": 600,
+      "top": 200,
+      "left": 825
+    },
+    "_placement_note": "Left-chest box inside the 6400/3001 front print area (1500x1800 @150dpi = 10x12in). Art canvases are 4in square, so the box must be 600px/4in or the design prints smaller than drawn. Verify on a mockup after any change."
   },
   "products": [
     {
       "handle": "called-to-this-mens",
-      "title": "Called To This — Men's Faith Tee",
+      "title": "Called To This \u2014 Men's Faith Tee",
       "role": "Hero",
       "verse": null,
       "colorways": [
@@ -83,8 +84,8 @@
     },
     {
       "handle": "fuerza-y-dignidad-mens",
-      "title": "Fuerza y Dignidad — Camiseta de Fe",
-      "role": "Differentiator — Spanish (RVR1960), never discount",
+      "title": "Fuerza y Dignidad \u2014 Camiseta de Fe",
+      "role": "Differentiator \u2014 Spanish (RVR1960), never discount",
       "verse": "PROV. 31:25",
       "colorways": [
         {
@@ -123,8 +124,8 @@
     },
     {
       "handle": "amen-again-mens",
-      "title": "Amén, Again — Men's Faith Tee",
-      "role": "Test — humor",
+      "title": "Am\u00e9n, Again \u2014 Men's Faith Tee",
+      "role": "Test \u2014 humor",
       "verse": null,
       "colorways": [
         {

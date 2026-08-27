@@ -1,5 +1,5 @@
 {
-  "_comment": "MD27 women's faith capsule (Mother's Day / Proverbs 31). Blank = Bella+Canvas 6400 (women's), left-chest DTG. Price $26.99 free-ship (decided in launch report 2026-07-14). Wash-test skipped — Printful is the pinned provider; prices anchored to Printful published pricing, re-verify at design lock. printful_variant_map filled at build via catalog lookup (needs PRINTFUL_TOKEN).",
+  "_comment": "MD27 women's faith capsule (Mother's Day / Proverbs 31). Blank = Bella+Canvas 6400 (women's), left-chest DTG. Price $26.99 free-ship (decided in launch report 2026-07-14). Wash-test skipped \u2014 Printful is the pinned provider; prices anchored to Printful published pricing, re-verify at design lock. printful_variant_map filled at build via catalog lookup (needs PRINTFUL_TOKEN).",
   "defaults": {
     "line": "faith-md27",
     "blank": "Bella+Canvas 6400",
@@ -20,21 +20,21 @@
       "black": "Black",
       "softpink": "Mauve"
     },
-    "_placement_note": "Left-chest box within the 6400 front print area (1500x1800). Verified via mockup 2026. Fine-tune against a physical sample.",
+    "_placement_note": "Left-chest box inside the 6400/3001 front print area (1500x1800 @150dpi = 10x12in). Art canvases are 4in square, so the box must be 600px/4in or the design prints smaller than drawn. Verify on a mockup after any change.",
     "printful_placement": {
       "placement": "front",
       "area_width": 1500,
       "area_height": 1800,
-      "width": 430,
-      "height": 430,
-      "top": 300,
-      "left": 760
+      "width": 600,
+      "height": 600,
+      "top": 200,
+      "left": 825
     }
   },
   "products": [
     {
       "handle": "called-to-this",
-      "title": "Called To This — Faith Tee",
+      "title": "Called To This \u2014 Faith Tee",
       "role": "Hero",
       "verse": null,
       "colorways": [
@@ -84,8 +84,8 @@
     },
     {
       "handle": "strength-and-dignity",
-      "title": "Strength & Dignity — Proverbs 31:25 Faith Tee",
-      "role": "Core — church group SKU",
+      "title": "Strength & Dignity \u2014 Proverbs 31:25 Faith Tee",
+      "role": "Core \u2014 church group SKU",
       "verse": "PROV. 31:25",
       "colorways": [
         {
@@ -124,8 +124,8 @@
     },
     {
       "handle": "fuerza-y-dignidad",
-      "title": "Fuerza y Dignidad — Proverbios 31:25 Faith Tee",
-      "role": "Differentiator — Spanish (RVR1960), never discount",
+      "title": "Fuerza y Dignidad \u2014 Proverbios 31:25 Faith Tee",
+      "role": "Differentiator \u2014 Spanish (RVR1960), never discount",
       "verse": "PROV. 31:25",
       "colorways": [
         {
@@ -164,8 +164,8 @@
     },
     {
       "handle": "amen-again",
-      "title": "Amén, Again — Faith Tee",
-      "role": "Test — humor",
+      "title": "Am\u00e9n, Again \u2014 Faith Tee",
+      "role": "Test \u2014 humor",
       "verse": null,
       "colorways": [
         {
@@ -214,8 +214,8 @@
     },
     {
       "handle": "her-children-rise",
-      "title": "Her Children Rise — Faith Tee",
-      "role": "Core — adult-child buyer",
+      "title": "Her Children Rise \u2014 Faith Tee",
+      "role": "Core \u2014 adult-child buyer",
       "verse": null,
       "colorways": [
         {

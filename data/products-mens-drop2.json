@@ -24,11 +24,12 @@
       "placement": "front",
       "area_width": 1500,
       "area_height": 1800,
-      "width": 430,
-      "height": 430,
-      "top": 300,
-      "left": 760
-    }
+      "width": 600,
+      "height": 600,
+      "top": 200,
+      "left": 825
+    },
+    "_placement_note": "Left-chest box inside the 6400/3001 front print area (1500x1800 @150dpi = 10x12in). Art canvases are 4in square, so the box must be 600px/4in or the design prints smaller than drawn. Verify on a mockup after any change."
   },
   "products": [
     {
