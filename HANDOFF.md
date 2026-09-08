@@ -108,10 +108,16 @@ The store now follows `FlockThreads Store.html` (Claude Design, 9-screen build s
   unisex 3001), not the spec's three.
 
 ## Open items
-1. **Bundles is empty** but in the nav. Plan: couples/2-pack at $45.98
-   (= $8 off two) via native Shopify automatic discount, no app.
-   **Art already exists**: `business-os/design/out/print/CPL_*` — his/hers pairs
-   (findeth / favour / foundfirst) in bone + charcoal.
+1. **Bundles is live.** Collection holds all 12 tees, and an automatic discount
+   "Any two tees, $8 off" (15% off the Bundles collection, minimum 2 items) is
+   Active. 15% was used because Shopify's value-type dropdown would not switch to
+   Fixed amount; on two $26.99 tees that is $8.10 off, so the pair is $45.88 vs
+   the $45.98 target. Note a percentage scales with cart size (4 tees = ~$16 off),
+   where a flat $8 would not.
+   Still unbuilt: a dedicated **His & Hers couples product**. Art already exists at
+   `business-os/design/out/print/CPL_*` (findeth / favour / foundfirst, bone +
+   charcoal). That needs sync-orders.js extended so one Shopify line item expands
+   into two Printful items with different art.
 2. **Men's products are DRAFT** — activate when ready.
 3. **No end-to-end test order yet.** Sequence: test-mode purchase →
    `node --env-file=.env scripts/sync-orders.js` → verify Printful draft →
