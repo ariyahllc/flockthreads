@@ -147,7 +147,7 @@ no confrontational messaging, no bare "Blessed" + cross, no possessive framing.
 
 ## Launch (2026-09-08)
 
-Store is **live** at https://rbamk2-r2.myshopify.com
+Store is **live** at https://flockthreads.com
 
 Three blockers were found and cleared, in this order:
 1. **Store address missing** — the business entity record already held it
@@ -158,10 +158,11 @@ Three blockers were found and cleared, in this order:
    while Shopify Payments is in test mode. Turned off; payouts were already
    configured to Shopify Balance.
 3. **Domain suspended** — flockthreads.com had no DNS at all because the ICANN
-   registrant email was never verified. Verification resent to
-   patra.dinesh@gmail.com; primary domain repointed to the myshopify URL so the
-   store resolves in the meantime. Once the email is confirmed, set
-   flockthreads.com back to Primary in Settings > Domains.
+   registrant email was never verified (Tucows is the registrar behind Shopify
+   domains). Verification completed via the link in patra.dinesh@gmail.com; the
+   domain reactivated and was set back to Primary. Shopify's admin badge lags a
+   few hours behind the registrar, so "Suspended" may still show there for a
+   while even though DNS and the storefront work.
 
 The launch control is NOT the Preferences toggle (that panel renders in a frame
 the browser extension cannot click). Use Online Store > the "Private" dropdown
