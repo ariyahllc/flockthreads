@@ -1,0 +1,94 @@
+{%- comment -%}
+  1% giving picker.
+
+  Writes the choice to a CART ATTRIBUTE so it lands on every order in admin
+  (Order > Additional details), whatever was bought.
+
+  Selection state is driven by JS reading /cart.js, not by a Liquid string
+  compare. Liquid comparison was silently failing on values containing an
+  apostrophe, which left the control showing the default -- and the default
+  stamp then wrote that default back over the customer's real choice.
+  Option values are also kept apostrophe-free for the same reason.
+
+  The 1% is FlockThreads' own money, not a customer donation: nothing is added
+  to the cart total and no funds are collected for the charity.
+{%- endcomment -%}
+<div class="ft-charity" data-ft-charity>
+  <div class="ft-charity__head">
+    <span class="ft-charity__badge">1%</span>
+    <div>
+      <p class="ft-charity__title">We give 1% of this order</p>
+      <p class="ft-charity__sub">Pick where it goes. It costs you nothing &mdash; it comes out of our margin, not your total.</p>
+    </div>
+  </div>
+  <label class="ft-charity__label" for="ft-charity-select">Send our 1% to</label>
+  <select id="ft-charity-select" class="ft-charity__select">
+    <option value="Compassion International">Compassion International &mdash; child sponsorship</option>
+    <option value="Samaritans Purse">Samaritan&rsquo;s Purse &mdash; disaster relief</option>
+    <option value="World Vision">World Vision &mdash; clean water &amp; children</option>
+    <option value="Convoy of Hope">Convoy of Hope &mdash; hunger relief</option>
+    <option value="The Salvation Army">The Salvation Army &mdash; local community aid</option>
+  </select>
+  <p class="ft-charity__fine" data-ft-charity-status>All five are Charity Navigator 4-star or ECFA-accredited. <a href="/pages/our-1-percent">How our 1% works</a></p>
+</div>
+
+<style>
+.ft-charity{border:1px solid #e2dbcd;background:#faf8f3;padding:20px 22px;margin:20px 0}
+.ft-charity__head{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.ft-charity__badge{flex:none;width:36px;height:36px;border-radius:50%;background:#5F6650;color:#F1EDE4;
+  display:grid;place-items:center;font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;letter-spacing:.04em}
+.ft-charity__title{font-family:'EB Garamond',Georgia,serif;font-size:18px;color:#2B2B2B;margin:0 0 3px}
+.ft-charity__sub{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;line-height:1.55;color:#6b665d;margin:0}
+.ft-charity__label{display:block;font-family:var(--ft-sans,'Jost',sans-serif);font-size:10px;text-transform:uppercase;
+  letter-spacing:.14em;color:#8a8377;margin-bottom:7px}
+.ft-charity__select{width:100%;box-sizing:border-box;border:1px solid #d9d2c4;background:#fff;padding:11px 12px;
+  font-family:'EB Garamond',Georgia,serif;font-size:15px;color:#2B2B2B;border-radius:0}
+.ft-charity__select:focus{outline:none;border-color:#5F6650}
+.ft-charity__fine{font-family:var(--ft-sans,'Jost',sans-serif);font-size:11px;color:#8a8377;margin:9px 0 0;line-height:1.5}
+.ft-charity__fine a{color:#5F6650}
+.ft-charity__fine.is-saved{color:#5F6650}
+</style>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-ft-charity]');
+  if(!root||root.dataset.bound)return;
+  root.dataset.bound='1';
+  var sel=root.querySelector('.ft-charity__select');
+  var status=root.querySelector('[data-ft-charity-status]');
+  var original=status?status.innerHTML:'';
+  if(!sel)return;
+
+  function save(value,announce){
+    return fetch('/cart/update.js',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({attributes:{Charity:value}})
+    }).then(function(r){
+      if(!r.ok)throw new Error('cart update failed');
+      if(announce&&status){
+        var label=sel.options[sel.selectedIndex].text.split(' — ')[0];
+        status.textContent='Saved. 1% of this order goes to '+label+'.';
+        status.classList.add('is-saved');
+        setTimeout(function(){status.innerHTML=original;status.classList.remove('is-saved');},4000);
+      }
+    }).catch(function(){
+      if(announce&&status)status.textContent='Could not save that just now. Please try again.';
+    });
+  }
+
+  // Read the real cart state, then either reflect the saved choice or stamp the
+  // default. Never write over a value the customer already picked.
+  fetch('/cart.js',{headers:{'Accept':'application/json'}})
+    .then(function(r){return r.json();})
+    .then(function(cart){
+      var saved=(cart.attributes&&cart.attributes.Charity)||'';
+      var known=false;
+      for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===saved){known=true;break;} }
+      if(known){ sel.value=saved; } else { save(sel.value,false); }
+    })
+    .catch(function(){});
+
+  sel.addEventListener('change',function(){ save(sel.value,true); });
+})();
+</script>

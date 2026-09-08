@@ -173,3 +173,34 @@ Three blockers were found and cleared, in this order:
 The launch control is NOT the Preferences toggle (that panel renders in a frame
 the browser extension cannot click). Use Online Store > the "Private" dropdown
 next to "Preview store" > Public > Launch store.
+
+## 1% giving (2026-09)
+
+Every order carries a `Charity` cart attribute, visible in admin under
+Order > Additional details. Five options, all Charity Navigator 4-star and/or
+ECFA-accredited: Compassion International, Samaritan's Purse, World Vision,
+Convoy of Hope, The Salvation Army. Default is Compassion International, stamped
+automatically so an order always carries a value even if untouched.
+
+Implementation: `snippets/ft-charity-picker.liquid`, rendered from
+`snippets/cart-summary.liquid` directly above the checkout button, so it appears
+on both the cart page and the cart drawer. Writes via `/cart/update.js`.
+Explainer page at `/pages/our-1-percent`.
+
+Two traps worth remembering:
+- Selection state is set by JS reading `/cart.js`, NOT a Liquid string compare.
+  Liquid comparison failed on values containing an apostrophe ("Samaritan's
+  Purse"), leaving the control on the default. Option values are apostrophe-free
+  for the same reason.
+- The default stamp only fires after confirming via `/cart.js` that no choice
+  exists. The first version stamped unconditionally and overwrote real choices.
+
+**Legal — not yet handled.** "1% of every order goes to charity" is a commercial
+co-venture / charitable sales promotion, regulated in 22+ states. Before
+promoting this beyond the store: get a written agreement with each charity,
+disclose the percentage in advertising, and check advance registration in
+Alabama, Hawaii, Illinois, Massachusetts, Maine and South Carolina. California
+(and Hawaii from 2026) also regulate online checkout charity flows as
+"charitable fundraising platforms" — the current design keeps the 1% as
+FlockThreads' own money rather than a customer donation, which is the safer
+side of that line, but it has not been reviewed by a lawyer.
