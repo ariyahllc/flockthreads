@@ -144,3 +144,25 @@ no confrontational messaging, no bare "Blessed" + cross, no possessive framing.
 - `business-os/reports/faith-apparel-market-gap-2026-08.md` — market gap analysis
 - `business-os/reports/faith-apparel-launch-2026-07-14.md` — pricing/margin model
 - `~/.gstack/projects/tshirt-business/dinesh-unknown-design-*.md` — design doc + review
+
+## Launch (2026-09-08)
+
+Store is **live** at https://rbamk2-r2.myshopify.com
+
+Three blockers were found and cleared, in this order:
+1. **Store address missing** — the business entity record already held it
+   (201 Windom Way, Georgetown, TX 78626); it had never been copied into
+   Settings > General > Store address. This is what kept the private-mode
+   toggle greyed out.
+2. **Payments stuck in test mode** — Shopify refuses to make a store public
+   while Shopify Payments is in test mode. Turned off; payouts were already
+   configured to Shopify Balance.
+3. **Domain suspended** — flockthreads.com had no DNS at all because the ICANN
+   registrant email was never verified. Verification resent to
+   patra.dinesh@gmail.com; primary domain repointed to the myshopify URL so the
+   store resolves in the meantime. Once the email is confirmed, set
+   flockthreads.com back to Primary in Settings > Domains.
+
+The launch control is NOT the Preferences toggle (that panel renders in a frame
+the browser extension cannot click). Use Online Store > the "Private" dropdown
+next to "Preview store" > Public > Launch store.
