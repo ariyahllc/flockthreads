@@ -250,7 +250,7 @@
     "ft_cart_note": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"ft-page\" style=\"padding-top:0\">\n  <div class=\"ft-note ft-note--wide\">\n    Buying 24 or more? <a href=\"/pages/for-churches\">Switch to wholesale pricing &rarr;</a>\n    Church and team orders start at $21 a piece.\n  </div>\n</div>",
+        "custom_liquid": "<div class=\"ft-page\" style=\"padding-top:0\">\n  <div class=\"ft-note ft-note--wide\">\n    Buying 24 or more? <a href=\"/pages/for-churches\">Switch to wholesale pricing &rarr;</a>\n    Church and team orders start at $21 a piece.\n  </div>\n</div>\n",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
