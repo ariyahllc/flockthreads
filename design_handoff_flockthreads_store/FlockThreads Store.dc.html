@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #E4DDD1; }
+  a { color: #5F6650; }
+  a:hover { color: #2B2B2B; }
+  input, select, textarea, button { font: inherit; color: inherit; }
+</style>
+</helmet>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 72px 60px 120px; background: #E4DDD1; font-family: 'Jost', system-ui, sans-serif;">
+
+  <div style="width: 1440px; display: flex; flex-direction: column; gap: 34px; padding-bottom: 20px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">Shopify storefront &mdash; build spec</div>
+        <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 62px; line-height: 1; letter-spacing: -0.01em; color: #2B2B2B;">FlockThreads</div>
+        <div style="max-width: 680px; font-weight: 300; font-size: 17px; line-height: 1.65; color: #57534A; text-wrap: pretty;">Nine screens at 1440&nbsp;px, in build order. Direct-to-consumer across Men, Women and Unisex, plus a Churches path that carries both wholesale blanks and custom printing. Written spec and Shopify mapping live in <a href="HANDOFF.md">HANDOFF.md</a>.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 22px 26px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.12);">
+        <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #5F6650;">Palette</div>
+        <div style="display: flex; gap: 10px;">
+          <div style="width: 46px; height: 46px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.14);"></div>
+          <div style="width: 46px; height: 46px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14);"></div>
+          <div style="width: 46px; height: 46px; background: #5F6650;"></div>
+          <div style="width: 46px; height: 46px; background: #E3C5C2;"></div>
+          <div style="width: 46px; height: 46px; background: #2B2B2B;"></div>
+        </div>
+        <div style="font-weight: 300; font-size: 11.5px; letter-spacing: 0.06em; color: #6E6A61;">Bone &middot; Vintage White &middot; Olive &middot; Pink &middot; Charcoal</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <a href="#s1" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">01 Home</a>
+      <a href="#s2" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">02 Collection</a>
+      <a href="#s3" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">03 Product</a>
+      <a href="#s4" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">04 Cart</a>
+      <a href="#s5" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">05 Checkout</a>
+      <a href="#s6" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">06 Churches B2B</a>
+      <a href="#s7" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">07 Fit finder</a>
+      <a href="#s8" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">08 Search</a>
+      <a href="#s9" style="padding: 10px 18px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; text-decoration: none;" style-hover="background: #5F6650; color: #F1EDE4; border-color: #5F6650">09 Order status</a>
+    </div>
+  </div>
+
+  <div id="s1" data-screen-label="01 Home" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>01 &mdash; Home</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">index.liquid</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="" hint-size="100%,132px"></dc-import>
+
+      <div style="position: relative; width: 1440px; height: 780px; overflow: hidden;">
+        <img src="flockthreads-hero-2400x1300.png" alt="" style="position: absolute; left: 50%; top: 50%; width: 1440px; height: 780px; transform: translate(-50%, -50%); object-fit: cover; display: block;">
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px;">
+          <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 92px; line-height: 1.04; letter-spacing: -0.015em; color: #2B2B2B; text-align: center;">Faith you&rsquo;ll actually wear.</h1>
+          <p style="margin: 0; max-width: 480px; font-weight: 300; font-size: 17px; line-height: 1.7; color: #4A463E; text-align: center; text-wrap: pretty;">Heavyweight cotton, quiet detailing, a verse where only you will find it.</p>
+          <a href="#s2" style="display: inline-flex; padding: 17px 42px; border: 1.5px solid #2B2B2B; color: #2B2B2B; text-decoration: none; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="background: #2B2B2B; color: #F1EDE4">Shop the collection</a>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <a href="#s2" style="display: flex; flex-direction: column; gap: 8px; padding: 34px 40px; border-right: 1px solid rgba(43,43,43,0.12); text-decoration: none;" style-hover="background: #F1EDE4">
+          <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; color: #2B2B2B;">Men</span>
+          <span style="font-weight: 300; font-size: 13.5px; letter-spacing: 0.04em; color: #6E6A61;">Boxier cut, 6.5&nbsp;oz cotton</span>
+        </a>
+        <a href="#s2" style="display: flex; flex-direction: column; gap: 8px; padding: 34px 40px; border-right: 1px solid rgba(43,43,43,0.12); text-decoration: none;" style-hover="background: #F1EDE4">
+          <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; color: #2B2B2B;">Women</span>
+          <span style="font-weight: 300; font-size: 13.5px; letter-spacing: 0.04em; color: #6E6A61;">Shaped body, softer hand</span>
+        </a>
+        <a href="#s2" style="display: flex; flex-direction: column; gap: 8px; padding: 34px 40px; text-decoration: none;" style-hover="background: #F1EDE4">
+          <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; color: #2B2B2B;">Unisex</span>
+          <span style="font-weight: 300; font-size: 13.5px; letter-spacing: 0.04em; color: #6E6A61;">Relaxed, true to size</span>
+        </a>
+      </div>
+
+      <div style="padding: 96px 72px 88px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">New this season</div>
+            <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 42px; line-height: 1.1; color: #2B2B2B;">Quiet pieces, worn often</h2>
+          </div>
+          <a href="#s2" style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4); padding-bottom: 4px;" style-hover="color: #2B2B2B; border-color: #2B2B2B">View all 24</a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;">
+          <sc-for list="{{ featured }}" as="p" hint-placeholder-count="4">
+            <a href="#s3" style="display: flex; flex-direction: column; gap: 16px; text-decoration: none;">
+              <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; background: {{ p.swatch }}; overflow: hidden;">
+                <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 30%, rgba(255,255,255,0.16), rgba(43,43,43,0.06));"></div>
+                <div style="position: absolute; left: 12px; top: 12px; padding: 5px 10px; background: rgba(255,253,248,0.86); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #57534A;">{{ p.colorway }}</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ p.name }}</div>
+                <div style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650; min-height: 13px;">{{ p.verse }}</div>
+                <div style="font-weight: 300; font-size: 14.5px; letter-spacing: 0.04em; color: #57534A;">{{ p.price }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.05fr 1fr; align-items: stretch; background: #F1EDE4; border-top: 1px solid rgba(43,43,43,0.12); border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="min-height: 520px;">
+          <image-slot id="ft-home-editorial" shape="rect" placeholder="Editorial photo &mdash; folded tees, warm daylight, linen surface"></image-slot>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 80px 72px;">
+          <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">The fabric</div>
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.18; color: #2B2B2B; text-wrap: pretty;">Garment-dyed, pre-shrunk, made to be a favourite by the third wash.</h2>
+          <p style="margin: 0; max-width: 440px; font-weight: 300; font-size: 16px; line-height: 1.75; color: #57534A; text-wrap: pretty;">6.5&nbsp;oz combed ring-spun cotton, side-seamed with a taped neck. Printed in small runs in North Carolina, so nothing sits in a warehouse losing its shape.</p>
+          <a href="#" style="align-self: flex-start; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B; text-decoration: none; border-bottom: 1px solid rgba(43,43,43,0.35); padding-bottom: 4px;" style-hover="color: #5F6650; border-color: #5F6650">How we make it</a>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 76px 72px; border-right: 1px solid rgba(43,43,43,0.12);">
+          <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">For churches</div>
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.16; color: #2B2B2B; text-wrap: pretty;">Outfit the whole team, or print your own design on our blanks.</h2>
+          <p style="margin: 0; max-width: 420px; font-weight: 300; font-size: 15.5px; line-height: 1.7; color: #57534A; text-wrap: pretty;">Tiered wholesale from 24 pieces, tax-exempt ordering, and a size-run picker built for a volunteer list rather than a shopping cart.</p>
+          <div style="display: flex; gap: 14px; margin-top: 6px;">
+            <a href="#s6" style="display: inline-flex; padding: 15px 32px; background: #2B2B2B; color: #F1EDE4; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="background: #5F6650">Church pricing</a>
+            <a href="#s6" style="display: inline-flex; padding: 15px 32px; border: 1px solid rgba(43,43,43,0.4); color: #2B2B2B; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="border-color: #2B2B2B">Custom printing</a>
+          </div>
+        </div>
+        <div style="min-height: 460px;">
+          <image-slot id="ft-home-church" shape="rect" placeholder="Church volunteers in matching tees &mdash; candid, warm, no faces needed"></image-slot>
+        </div>
+      </div>
+
+      <div style="background: #2B2B2B; padding: 72px 72px 44px;">
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 52px; border-bottom: 1px solid rgba(241,237,228,0.16);">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: #F1EDE4;">Flockthreads</div>
+            <p style="margin: 0; max-width: 300px; font-weight: 300; font-size: 14px; line-height: 1.7; color: rgba(241,237,228,0.62);">Quietly made apparel for people who&rsquo;d rather show it than say it.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #A9AF98;">Shop</div>
+            <a href="#s2" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Men</a>
+            <a href="#s2" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Women</a>
+            <a href="#s2" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Unisex</a>
+            <a href="#s7" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Size &amp; fit</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #A9AF98;">Churches</div>
+            <a href="#s6" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Wholesale blanks</a>
+            <a href="#s6" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Custom printing</a>
+            <a href="#s6" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Request an account</a>
+            <a href="#s6" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Tax-exempt orders</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #A9AF98;">Help</div>
+            <a href="#s9" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Track an order</a>
+            <a href="#" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Returns</a>
+            <a href="#" style="font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.78); text-decoration: none;" style-hover="color: #F1EDE4">Contact</a>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 28px; font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: rgba(241,237,228,0.45);">
+          <span>&copy; 2026 FlockThreads</span>
+          <span>Printed in North Carolina</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s2" data-screen-label="02 Collection" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>02 &mdash; Collection</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">collection.liquid &mdash; Men</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="Men" hint-size="100%,132px"></dc-import>
+
+      <div style="display: flex; flex-direction: column; gap: 18px; padding: 56px 72px 40px; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="font-weight: 300; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8477;">Home &nbsp;/&nbsp; Men</div>
+        <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 54px; line-height: 1.05; color: #2B2B2B;">Men&rsquo;s tees &amp; crewnecks</h1>
+        <p style="margin: 0; max-width: 560px; font-weight: 300; font-size: 15.5px; line-height: 1.7; color: #57534A; text-wrap: pretty;">A boxier body with a slightly wider shoulder. If you&rsquo;re between sizes, take the smaller one &mdash; these are cut generously on purpose.</p>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 72px; background: #F1EDE4; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+            <button style="padding: 11px 20px; background: transparent; border: 1px solid rgba(43,43,43,0.22); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;" style-hover="border-color: #2B2B2B">{{ f }}</button>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; gap: 26px;">
+          <span style="font-weight: 300; font-size: 13px; letter-spacing: 0.06em; color: #6E6A61;">24 pieces</span>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B;">
+            <span style="color: #8A8477;">Sort</span>
+            <span>Newest</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 48px 72px 72px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px;">
+          <sc-for list="{{ collection }}" as="p" hint-placeholder-count="6">
+            <a href="#s3" style="display: flex; flex-direction: column; gap: 18px; text-decoration: none;">
+              <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; background: {{ p.swatch }}; overflow: hidden;">
+                <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 28%, rgba(255,255,255,0.18), rgba(43,43,43,0.07));"></div>
+                <div style="position: absolute; left: 14px; top: 14px; padding: 6px 11px; background: rgba(255,253,248,0.88); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #57534A;">{{ p.colorway }}</div>
+                <sc-if value="{{ p.lowStock }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; right: 14px; top: 14px; padding: 6px 11px; background: #5F6650; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #F1EDE4;">Low stock</div>
+                </sc-if>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 24px; color: #2B2B2B;">{{ p.name }}</span>
+                  <span style="font-weight: 300; font-size: 15px; letter-spacing: 0.04em; color: #57534A;">{{ p.price }}</span>
+                </div>
+                <div style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650; min-height: 13px;">{{ p.verse }}</div>
+                <div style="font-weight: 300; font-size: 13px; letter-spacing: 0.04em; color: #8A8477;">{{ p.sizes }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 64px;">
+          <button style="padding: 17px 44px; background: transparent; border: 1.5px solid #2B2B2B; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;" style-hover="background: #2B2B2B; color: #F1EDE4">Load 18 more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s3" data-screen-label="03 Product" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>03 &mdash; Product</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">product.liquid &mdash; live swatch &amp; size state</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="Men" hint-size="100%,132px"></dc-import>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 48px 36px 48px 72px;">
+          <div style="width: 100%; aspect-ratio: 4 / 5;">
+            <image-slot id="ft-pdp-main" shape="rect" placeholder="Still Waters Tee &mdash; front, flat-lay or on-body from behind"></image-slot>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+            <div style="aspect-ratio: 1 / 1;"><image-slot id="ft-pdp-2" shape="rect" placeholder="Back"></image-slot></div>
+            <div style="aspect-ratio: 1 / 1;"><image-slot id="ft-pdp-3" shape="rect" placeholder="Neck detail"></image-slot></div>
+            <div style="aspect-ratio: 1 / 1;"><image-slot id="ft-pdp-4" shape="rect" placeholder="Fabric close-up"></image-slot></div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 30px; padding: 60px 72px 60px 36px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;">Psalm 23:2 &nbsp;&middot;&nbsp; inside hem</div>
+            <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 50px; line-height: 1.05; letter-spacing: -0.01em; color: #2B2B2B;">Still Waters Tee</h1>
+            <div style="display: flex; align-items: baseline; gap: 14px;">
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 28px; color: #2B2B2B;">$38</span>
+              <span style="font-weight: 300; font-size: 13px; letter-spacing: 0.06em; color: #8A8477;">or 4 payments of $9.50</span>
+            </div>
+          </div>
+
+          <p style="margin: 0; font-weight: 300; font-size: 15.5px; line-height: 1.75; color: #57534A; text-wrap: pretty;">Garment-dyed 6.5&nbsp;oz cotton with a relaxed body and a taped neck that holds its shape. The verse is printed small on the inside hem &mdash; you&rsquo;ll know it&rsquo;s there, nobody else has to.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: baseline; gap: 10px; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B;">
+              <span>Colour</span><span style="font-weight: 300; letter-spacing: 0.04em; text-transform: none; font-size: 14px; color: #6E6A61;">{{ color }}</span>
+            </div>
+            <div style="display: flex; gap: 14px;">
+              <sc-for list="{{ colors }}" as="c" hint-placeholder-count="5">
+                <button onClick="{{ c.pick }}" style="position: relative; width: 46px; height: 46px; padding: 0; background: {{ c.hex }}; border: 1px solid rgba(43,43,43,0.2); cursor: pointer;">
+                  <sc-if value="{{ c.isSel }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; left: -6px; top: -6px; right: -6px; bottom: -6px; border: 1.5px solid #2B2B2B;"></span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between;">
+              <div style="display: flex; align-items: baseline; gap: 10px; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B;">
+                <span>Size</span><span style="font-weight: 300; letter-spacing: 0.04em; text-transform: none; font-size: 14px; color: #6E6A61;">{{ size }}</span>
+              </div>
+              <a href="#s7" style="font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4); padding-bottom: 3px;" style-hover="color: #2B2B2B; border-color: #2B2B2B">Find my size</a>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="position: relative; min-width: 62px; padding: 15px 10px; background: transparent; border: 1px solid rgba(43,43,43,0.22); font-size: 13px; letter-spacing: 0.1em; color: #2B2B2B; cursor: pointer;" style-hover="border-color: #2B2B2B">
+                  <span>{{ s.label }}</span>
+                  <sc-if value="{{ s.isSel }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; left: -1px; top: -1px; right: -1px; bottom: -1px; border: 1.5px solid #2B2B2B; background: rgba(43,43,43,0.05);"></span>
+                  </sc-if>
+                  <sc-if value="{{ s.out }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: rgba(43,43,43,0.35);"></span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: stretch; gap: 14px;">
+            <div style="display: flex; align-items: center; border: 1px solid rgba(43,43,43,0.22);">
+              <button onClick="{{ dec }}" style="width: 48px; height: 56px; background: transparent; border: none; font-size: 18px; color: #2B2B2B; cursor: pointer;">&minus;</button>
+              <span style="min-width: 34px; text-align: center; font-size: 15px; color: #2B2B2B;">{{ qty }}</span>
+              <button onClick="{{ inc }}" style="width: 48px; height: 56px; background: transparent; border: none; font-size: 18px; color: #2B2B2B; cursor: pointer;">+</button>
+            </div>
+            <button style="flex: 1; height: 56px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;" style-hover="background: #5F6650">Add to cart &mdash; {{ lineTotal }}</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: #F1EDE4; border-left: 2px solid #5F6650;">
+            <span style="font-weight: 300; font-size: 14px; line-height: 1.6; color: #57534A;">Ordering for a church or team? <a href="#s6" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">Wholesale starts at 24 pieces</a> &mdash; $16 each.</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(43,43,43,0.14);">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #2B2B2B;"><span>Fabric &amp; care</span><span style="color: #8A8477;">&minus;</span></div>
+            <p style="margin: 0; padding: 0 0 22px; max-width: 480px; font-weight: 300; font-size: 14.5px; line-height: 1.75; color: #57534A; border-bottom: 1px solid rgba(43,43,43,0.14);">100% combed ring-spun cotton, 6.5&nbsp;oz. Garment-dyed and pre-shrunk. Machine wash cold, tumble low, no bleach.</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #2B2B2B;"><span>Fit notes</span><span style="color: #8A8477;">+</span></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(43,43,43,0.14); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #2B2B2B;"><span>Shipping &amp; returns</span><span style="color: #8A8477;">+</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 76px 72px 88px; border-top: 1px solid rgba(43,43,43,0.12);">
+        <h2 style="margin: 0 0 36px; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 34px; color: #2B2B2B;">Wears well with</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+          <sc-for list="{{ related }}" as="p" hint-placeholder-count="3">
+            <a href="#s3" style="display: flex; gap: 20px; align-items: center; padding: 20px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.1); text-decoration: none;">
+              <div style="width: 96px; height: 120px; flex: none; background: {{ p.swatch }}; border: 1px solid rgba(43,43,43,0.12);"></div>
+              <div style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ p.name }}</span>
+                <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650; min-height: 13px;">{{ p.verse }}</span>
+                <span style="font-weight: 300; font-size: 14px; color: #57534A;">{{ p.price }}</span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s4" data-screen-label="04 Cart" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>04 &mdash; Cart drawer</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">cart-drawer section, open state</span></div>
+    <div style="position: relative; width: 1440px; height: 860px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <div style="filter: blur(1px); opacity: 0.5;">
+        <dc-import name="StoreNav" active="Men" hint-size="100%,132px"></dc-import>
+        <div style="padding: 48px 72px;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+            <sc-for list="{{ collection }}" as="p" hint-placeholder-count="3">
+              <div style="width: 100%; aspect-ratio: 4 / 5; background: {{ p.swatch }};"></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; inset: 0; background: rgba(43,43,43,0.34);"></div>
+
+      <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 470px; display: flex; flex-direction: column; background: #F1EDE4; box-shadow: -30px 0 70px rgba(43,43,43,0.22);">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 28px 32px; border-bottom: 1px solid rgba(43,43,43,0.14);">
+          <div style="display: flex; align-items: baseline; gap: 12px;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; color: #2B2B2B;">Your cart</span>
+            <span style="font-weight: 300; font-size: 13px; color: #8A8477;">2 items</span>
+          </div>
+          <button style="background: transparent; border: none; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E6A61; cursor: pointer;">Close</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; padding: 16px 32px; background: rgba(95,102,80,0.1); border-bottom: 1px solid rgba(43,43,43,0.1);">
+          <span style="font-weight: 300; font-size: 13px; line-height: 1.55; color: #4A463E;">$29 from free shipping &mdash; <a href="#s2" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">keep looking</a></span>
+        </div>
+
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0; overflow: hidden;">
+          <sc-for list="{{ cart }}" as="i" hint-placeholder-count="2">
+            <div style="display: flex; gap: 18px; padding: 26px 32px; border-bottom: 1px solid rgba(43,43,43,0.12);">
+              <div style="width: 92px; height: 116px; flex: none; background: {{ i.swatch }}; border: 1px solid rgba(43,43,43,0.12);"></div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+                  <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 20px; color: #2B2B2B;">{{ i.name }}</span>
+                  <span style="font-weight: 300; font-size: 14px; color: #2B2B2B;">{{ i.total }}</span>
+                </div>
+                <span style="font-weight: 300; font-size: 12.5px; letter-spacing: 0.06em; color: #6E6A61;">{{ i.variant }}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
+                  <div style="display: flex; align-items: center; border: 1px solid rgba(43,43,43,0.2);">
+                    <span style="width: 32px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #6E6A61;">&minus;</span>
+                    <span style="min-width: 26px; text-align: center; font-size: 13px; color: #2B2B2B;">{{ i.qty }}</span>
+                    <span style="width: 32px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #6E6A61;">+</span>
+                  </div>
+                  <button style="background: transparent; border: none; font-weight: 300; font-size: 12px; letter-spacing: 0.06em; color: #8A8477; text-decoration: underline; cursor: pointer;">Remove</button>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 18px; padding: 26px 32px 30px; border-top: 1px solid rgba(43,43,43,0.14); background: #EDE7DC;">
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6E6A61;">
+            <span>Subtotal</span><span style="font-family: 'EB Garamond', Georgia, serif; font-size: 24px; letter-spacing: 0; text-transform: none; color: #2B2B2B;">$116</span>
+          </div>
+          <p style="margin: 0; font-weight: 300; font-size: 12.5px; line-height: 1.6; color: #8A8477;">Taxes and shipping calculated at checkout.</p>
+          <a href="#s5" style="display: flex; align-items: center; justify-content: center; height: 56px; background: #2B2B2B; color: #F1EDE4; text-decoration: none; font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase;" style-hover="background: #5F6650">Checkout</a>
+          <a href="#s6" style="text-align: center; font-weight: 300; font-size: 13px; color: #5F6650; text-decoration: none;" style-hover="color: #2B2B2B">Buying 24 or more? Switch to wholesale &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s5" data-screen-label="05 Checkout" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>05 &mdash; Checkout</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">checkout branding &mdash; Shopify-hosted</span></div>
+    <div style="width: 1440px; background: #F7F4ED; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <div style="display: flex; align-items: center; justify-content: center; padding: 30px 0; border-bottom: 1px solid rgba(43,43,43,0.12); background: #EDE7DC;">
+        <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 22px; letter-spacing: 0.3em; text-transform: uppercase; color: #2B2B2B;">Flockthreads</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 0.78fr;">
+        <div style="display: flex; flex-direction: column; gap: 38px; padding: 56px 64px 80px;">
+          <div style="display: flex; gap: 12px; align-items: center; font-weight: 300; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8477;">
+            <span style="color: #2B2B2B;">Information</span><span>&rarr;</span><span>Shipping</span><span>&rarr;</span><span>Payment</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Express checkout</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <button style="height: 52px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;">Shop Pay</button>
+                <button style="height: 52px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.2); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Wallet</button>
+                <button style="height: 52px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.2); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Pay later</button>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; margin: 6px 0;">
+                <span style="flex: 1; height: 1px; background: rgba(43,43,43,0.14);"></span>
+                <span style="font-weight: 300; font-size: 12px; letter-spacing: 0.1em; color: #8A8477;">or pay another way</span>
+                <span style="flex: 1; height: 1px; background: rgba(43,43,43,0.14);"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between;">
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 26px; color: #2B2B2B;">Contact</span>
+              <span style="font-weight: 300; font-size: 13px; color: #6E6A61;">Have an account? <a href="#" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">Log in</a></span>
+            </div>
+            <input type="email" placeholder="Email" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 300; font-size: 13.5px; color: #57534A;"><input type="checkbox" style="width: 17px; height: 17px; accent-color: #5F6650;"><span>Email me about new drops (about once a month)</span></label>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 26px; color: #2B2B2B;">Delivery</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <input type="text" placeholder="First name" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+              <input type="text" placeholder="Last name" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            </div>
+            <input type="text" placeholder="Address" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <input type="text" placeholder="Apartment, suite, etc. (optional)" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; gap: 14px;">
+              <input type="text" placeholder="City" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+              <input type="text" placeholder="State" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+              <input type="text" placeholder="ZIP" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 26px; color: #2B2B2B;">Shipping method</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; background: #FFFDF8; border: 1.5px solid #5F6650;">
+              <span style="display: flex; align-items: center; gap: 14px; font-weight: 300; font-size: 15px; color: #2B2B2B;"><span style="width: 15px; height: 15px; border-radius: 50%; border: 4px solid #5F6650;"></span>Standard &mdash; 4 to 6 business days</span>
+              <span style="font-size: 15px; color: #2B2B2B;">Free</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.18);">
+              <span style="display: flex; align-items: center; gap: 14px; font-weight: 300; font-size: 15px; color: #57534A;"><span style="width: 15px; height: 15px; border-radius: 50%; border: 1px solid rgba(43,43,43,0.35);"></span>Express &mdash; 2 business days</span>
+              <span style="font-size: 15px; color: #2B2B2B;">$14</span>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 12px;">
+            <a href="#s4" style="font-weight: 300; font-size: 13.5px; color: #5F6650; text-decoration: none;" style-hover="color: #2B2B2B">&larr; Return to cart</a>
+            <button style="padding: 20px 44px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;" style-hover="background: #5F6650">Continue to payment</button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px; padding: 56px 64px 80px 44px; background: #EDE7DC; border-left: 1px solid rgba(43,43,43,0.12);">
+          <sc-for list="{{ cart }}" as="i" hint-placeholder-count="2">
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <div style="position: relative; width: 74px; height: 92px; flex: none; background: {{ i.swatch }}; border: 1px solid rgba(43,43,43,0.14);">
+                <span style="position: absolute; right: -8px; top: -8px; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 11px; background: #5F6650; color: #F1EDE4; font-size: 11px;">{{ i.qty }}</span>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 19px; color: #2B2B2B;">{{ i.name }}</span>
+                <span style="font-weight: 300; font-size: 12.5px; color: #6E6A61;">{{ i.variant }}</span>
+              </div>
+              <span style="font-weight: 300; font-size: 14.5px; color: #2B2B2B;">{{ i.total }}</span>
+            </div>
+          </sc-for>
+
+          <div style="display: flex; gap: 10px; padding-top: 8px;">
+            <input type="text" placeholder="Discount code" style="flex: 1; height: 50px; padding: 0 16px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 14px; color: #2B2B2B;">
+            <button style="padding: 0 22px; background: transparent; border: 1px solid rgba(43,43,43,0.28); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Apply</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid rgba(43,43,43,0.14); font-weight: 300; font-size: 14.5px; color: #57534A;">
+            <div style="display: flex; justify-content: space-between;"><span>Subtotal</span><span style="color: #2B2B2B;">$116.00</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Shipping</span><span style="color: #2B2B2B;">Free</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Estimated tax</span><span style="color: #2B2B2B;">$8.12</span></div>
+          </div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 1px solid rgba(43,43,43,0.14);">
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E6A61;">Total</span>
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 32px; color: #2B2B2B;">$124.12</span>
+          </div>
+          <div style="padding: 16px 18px; background: #F1EDE4; border-left: 2px solid #5F6650; font-weight: 300; font-size: 12.5px; line-height: 1.65; color: #57534A;">Church or nonprofit? <a href="#s6" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">Apply for tax-exempt checkout</a> and prices drop automatically.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s6" data-screen-label="06 Churches B2B" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>06 &mdash; Churches</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">page.churches.liquid &mdash; live tier calculator</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="Churches" hint-size="100%,132px"></dc-import>
+
+      <div style="display: grid; grid-template-columns: 1.1fr 1fr; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 84px 60px 84px 72px;">
+          <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">Wholesale &amp; custom printing</div>
+          <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 60px; line-height: 1.04; letter-spacing: -0.015em; color: #2B2B2B; text-wrap: pretty;">Merch your congregation will keep wearing.</h1>
+          <p style="margin: 0; max-width: 460px; font-weight: 300; font-size: 16.5px; line-height: 1.72; color: #57534A; text-wrap: pretty;">Buy our blanks at wholesale, or send us your design and we&rsquo;ll print it on them. Same cotton either way, tax-exempt ordering, and a size-run picker made for a volunteer roster.</p>
+          <div style="display: flex; gap: 14px; margin-top: 4px;">
+            <a href="#b2b-tiers" style="display: inline-flex; padding: 17px 36px; background: #2B2B2B; color: #F1EDE4; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="background: #5F6650">See tier pricing</a>
+            <a href="#b2b-apply" style="display: inline-flex; padding: 17px 36px; border: 1.5px solid #2B2B2B; color: #2B2B2B; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="background: #2B2B2B; color: #F1EDE4">Request an account</a>
+          </div>
+        </div>
+        <div style="min-height: 540px;">
+          <image-slot id="ft-b2b-hero" shape="rect" placeholder="Stack of folded blanks in bone, olive and charcoal &mdash; warm light"></image-slot>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; flex-direction: column; gap: 20px; padding: 60px 56px; border-right: 1px solid rgba(43,43,43,0.12);">
+          <div style="display: inline-flex; align-self: flex-start; padding: 7px 14px; background: #5F6650; color: #F1EDE4; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;">Path one</div>
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.12; color: #2B2B2B;">Wholesale blanks</h2>
+          <p style="margin: 0; font-weight: 300; font-size: 15.5px; line-height: 1.72; color: #57534A; text-wrap: pretty;">Undecorated tees and crewnecks in all five colourways, from 24 pieces. Order once, reorder in two clicks from your dashboard.</p>
+          <div style="display: flex; flex-direction: column; gap: 11px; margin-top: 4px;">
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>From $16 per tee, $34 per crewneck</span></div>
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>Mixed size runs, no per-size minimum</span></div>
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>Ships in 3 to 5 business days</span></div>
+          </div>
+          <a href="#b2b-tiers" style="align-self: flex-start; margin-top: 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B; text-decoration: none; border-bottom: 1px solid rgba(43,43,43,0.35); padding-bottom: 4px;" style-hover="color: #5F6650; border-color: #5F6650">Browse the blanks catalog</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px; padding: 60px 56px; background: #F1EDE4;">
+          <div style="display: inline-flex; align-self: flex-start; padding: 7px 14px; background: #2B2B2B; color: #F1EDE4; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;">Path two</div>
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.12; color: #2B2B2B;">Custom printing</h2>
+          <p style="margin: 0; font-weight: 300; font-size: 15.5px; line-height: 1.72; color: #57534A; text-wrap: pretty;">Upload your logo, retreat artwork or series graphic. We send a digital proof within two business days and print once you approve it.</p>
+          <div style="display: flex; flex-direction: column; gap: 11px; margin-top: 4px;">
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>Printing from $6 per piece, one placement</span></div>
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>Free artwork clean-up on first order</span></div>
+            <div style="display: flex; gap: 12px; font-weight: 300; font-size: 14.5px; color: #4A463E;"><span style="color: #5F6650;">&mdash;</span><span>Proof in 2 days, delivery in 10 to 14</span></div>
+          </div>
+          <a href="#b2b-apply" style="align-self: flex-start; margin-top: 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #2B2B2B; text-decoration: none; border-bottom: 1px solid rgba(43,43,43,0.35); padding-bottom: 4px;" style-hover="color: #5F6650; border-color: #5F6650">Start a custom order</a>
+        </div>
+      </div>
+
+      <div id="b2b-tiers" style="display: grid; grid-template-columns: 1fr 0.85fr; gap: 0; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; flex-direction: column; gap: 28px; padding: 76px 56px 76px 72px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5F6650;">Tier pricing</div>
+            <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.1; color: #2B2B2B;">The more you order, the lower it goes</h2>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 14px 0; border-bottom: 1px solid rgba(43,43,43,0.2); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E6A61;">
+              <span>Quantity</span><span>Tee</span><span>Crewneck</span><span>Print add-on</span>
+            </div>
+            <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="4">
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(43,43,43,0.12);">
+                <span style="font-weight: 300; font-size: 15px; color: #2B2B2B;">{{ t.range }}</span>
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ t.tee }}</span>
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ t.crew }}</span>
+                <span style="font-weight: 300; font-size: 15px; color: #5F6650;">{{ t.print }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin: 0; font-weight: 300; font-size: 13px; line-height: 1.65; color: #8A8477;">Retail is $38 per tee and $78 per crewneck. Tiers apply automatically once your church account is approved &mdash; no codes to remember.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px; padding: 76px 72px 76px 56px; background: #2B2B2B;">
+          <div style="font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #A9AF98;">Estimate your order</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-weight: 300; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(241,237,228,0.6);">Product</span>
+            <div style="display: flex; gap: 10px;">
+              <sc-for list="{{ bStyles }}" as="b" hint-placeholder-count="2">
+                <button onClick="{{ b.pick }}" style="position: relative; flex: 1; padding: 15px 12px; background: transparent; border: 1px solid rgba(241,237,228,0.28); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #F1EDE4; cursor: pointer;">
+                  <span>{{ b.label }}</span>
+                  <sc-if value="{{ b.isSel }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; left: -1px; top: -1px; right: -1px; bottom: -1px; border: 1.5px solid #A9AF98; background: rgba(169,175,152,0.16);"></span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between;">
+              <span style="font-weight: 300; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(241,237,228,0.6);">Quantity</span>
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 26px; color: #F1EDE4;">{{ bQty }}</span>
+            </div>
+            <input type="range" min="24" max="400" step="4" value="{{ bQty }}" onChange="{{ setQty }}" onInput="{{ setQty }}" style="width: 100%; accent-color: #A9AF98;">
+            <div style="display: flex; justify-content: space-between; font-weight: 300; font-size: 11.5px; color: rgba(241,237,228,0.45);"><span>24</span><span>400</span></div>
+          </div>
+          <label style="display: flex; align-items: center; gap: 12px; font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.82);">
+            <input type="checkbox" checked="{{ bPrint }}" onChange="{{ togglePrint }}" style="width: 17px; height: 17px; accent-color: #A9AF98;">
+            <span>Add custom printing, one placement</span>
+          </label>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0 0; border-top: 1px solid rgba(241,237,228,0.18);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.7);"><span>Your tier</span><span style="color: #F1EDE4;">{{ bTier }}</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; font-weight: 300; font-size: 14px; color: rgba(241,237,228,0.7);"><span>Per piece</span><span style="font-family: 'EB Garamond', Georgia, serif; font-size: 24px; color: #F1EDE4;">{{ bUnit }}</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 12px; border-top: 1px solid rgba(241,237,228,0.18);">
+              <span style="font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(241,237,228,0.6);">Estimated total</span>
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 40px; color: #F1EDE4;">{{ bTotal }}</span>
+            </div>
+            <div style="font-weight: 300; font-size: 12.5px; line-height: 1.6; color: #A9AF98;">{{ bSaving }}</div>
+          </div>
+          <a href="#b2b-apply" style="display: flex; align-items: center; justify-content: center; height: 54px; background: #F1EDE4; color: #2B2B2B; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="background: #A9AF98">Request this quote</a>
+        </div>
+      </div>
+
+      <div style="padding: 76px 72px; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <h2 style="margin: 0 0 44px; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 38px; color: #2B2B2B;">How a church order runs</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 22px; border-top: 2px solid #5F6650;">
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 15px; letter-spacing: 0.14em; color: #5F6650;">{{ s.n }}</span>
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 25px; line-height: 1.2; color: #2B2B2B;">{{ s.title }}</span>
+              <span style="font-weight: 300; font-size: 14.5px; line-height: 1.7; color: #57534A;">{{ s.body }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="b2b-apply" style="display: grid; grid-template-columns: 0.9fr 1.1fr;">
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 76px 56px 76px 72px; background: #F1EDE4;">
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.1; color: #2B2B2B; text-wrap: pretty;">Request a church account</h2>
+          <p style="margin: 0; font-weight: 300; font-size: 15.5px; line-height: 1.72; color: #57534A; text-wrap: pretty;">One form, once. We verify your organisation, switch on tier pricing and tax-exempt checkout, and you order like anyone else &mdash; just at your rate.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px; font-weight: 300; font-size: 14px; color: #4A463E;">
+            <div style="display: flex; gap: 12px;"><span style="color: #5F6650;">&mdash;</span><span>Approved in one business day</span></div>
+            <div style="display: flex; gap: 12px;"><span style="color: #5F6650;">&mdash;</span><span>Net 30 available after your first order</span></div>
+            <div style="display: flex; gap: 12px;"><span style="color: #5F6650;">&mdash;</span><span>Multiple staff on one account</span></div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px; padding: 76px 72px 84px 56px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <input type="text" placeholder="Church or organisation" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <input type="text" placeholder="Your name" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <input type="email" placeholder="Work email" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <input type="tel" placeholder="Phone" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <input type="text" placeholder="Congregation size" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+            <input type="text" placeholder="EIN (for tax exemption)" style="height: 54px; padding: 0 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; color: #2B2B2B;">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #5F6650;">What do you need?</span>
+            <div style="display: flex; gap: 10px;">
+              <button style="flex: 1; padding: 15px 12px; background: transparent; border: 1.5px solid #2B2B2B; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Blanks</button>
+              <button style="flex: 1; padding: 15px 12px; background: transparent; border: 1px solid rgba(43,43,43,0.22); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Printing</button>
+              <button style="flex: 1; padding: 15px 12px; background: transparent; border: 1px solid rgba(43,43,43,0.22); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;">Both</button>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; height: 96px; border: 1px dashed rgba(43,43,43,0.3); background: #F7F4ED; font-weight: 300; font-size: 13.5px; color: #6E6A61;">
+            <span>Drop artwork here &mdash; AI, EPS, PDF or PNG at 300&nbsp;dpi</span>
+          </div>
+          <textarea placeholder="Anything else? Dates, size runs, budget." style="height: 96px; padding: 16px 18px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.2); font-weight: 300; font-size: 15px; line-height: 1.6; color: #2B2B2B; resize: none;"></textarea>
+          <button style="height: 58px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;" style-hover="background: #5F6650">Request account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s7" data-screen-label="07 Fit finder" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>07 &mdash; Size &amp; fit</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">page.size-guide.liquid &mdash; live recommendation</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="" hint-size="100%,132px"></dc-import>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 56px 72px 40px;">
+        <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.05; color: #2B2B2B;">Find your size</h1>
+        <p style="margin: 0; max-width: 560px; font-weight: 300; font-size: 15.5px; line-height: 1.7; color: #57534A; text-wrap: pretty;">Three answers and we&rsquo;ll tell you what most people your shape end up keeping. No account, no measuring tape required.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 0.72fr; gap: 0; border-top: 1px solid rgba(43,43,43,0.12); border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; flex-direction: column; gap: 34px; padding: 52px 56px 60px 72px;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between;">
+              <span style="font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">01 &mdash; Height</span>
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 24px; color: #2B2B2B;">{{ ffHeightLabel }}</span>
+            </div>
+            <input type="range" min="58" max="82" step="1" value="{{ ffH }}" onChange="{{ setFfH }}" onInput="{{ setFfH }}" style="width: 100%; accent-color: #5F6650;">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between;">
+              <span style="font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">02 &mdash; Weight</span>
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 24px; color: #2B2B2B;">{{ ffWeightLabel }}</span>
+            </div>
+            <input type="range" min="90" max="300" step="5" value="{{ ffW }}" onChange="{{ setFfW }}" onInput="{{ setFfW }}" style="width: 100%; accent-color: #5F6650;">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <span style="font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">03 &mdash; How do you like a tee to sit?</span>
+            <div style="display: flex; gap: 12px;">
+              <sc-for list="{{ ffFits }}" as="f" hint-placeholder-count="3">
+                <button onClick="{{ f.pick }}" style="position: relative; flex: 1; padding: 18px 14px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.2); font-size: 13px; letter-spacing: 0.04em; color: #2B2B2B; cursor: pointer;">
+                  <span>{{ f.label }}</span>
+                  <sc-if value="{{ f.isSel }}" hint-placeholder-val="{{ false }}">
+                    <span style="position: absolute; left: -1px; top: -1px; right: -1px; bottom: -1px; border: 1.5px solid #2B2B2B; background: rgba(43,43,43,0.05);"></span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: 52px 72px 60px 56px; background: #5F6650;">
+          <div style="font-size: 11.5px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(241,237,228,0.7);">We&rsquo;d put you in</div>
+          <div style="font-family: 'EB Garamond', Georgia, serif; font-size: 108px; line-height: 0.95; color: #F1EDE4;">{{ ffSize }}</div>
+          <div style="font-weight: 300; font-size: 15.5px; line-height: 1.7; color: rgba(241,237,228,0.88); text-wrap: pretty;">{{ ffNote }}</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 20px; border-top: 1px solid rgba(241,237,228,0.24); font-weight: 300; font-size: 13.5px; color: rgba(241,237,228,0.7);">
+            <div style="display: flex; justify-content: space-between;"><span>Chest, laid flat</span><span style="color: #F1EDE4;">{{ ffChest }}</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Body length</span><span style="color: #F1EDE4;">{{ ffLength }}</span></div>
+          </div>
+          <a href="#s3" style="display: flex; align-items: center; justify-content: center; height: 54px; margin-top: 10px; background: #F1EDE4; color: #2B2B2B; text-decoration: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;" style-hover="background: #EDE7DC">Shop {{ ffSize }}</a>
+        </div>
+      </div>
+
+      <div style="padding: 68px 72px 76px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px;">
+          <h2 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 34px; color: #2B2B2B;">Measurements, in inches</h2>
+          <span style="font-weight: 300; font-size: 13px; color: #8A8477;">Garment laid flat &middot; unisex tee</span>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 14px 0; border-bottom: 1px solid rgba(43,43,43,0.22); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E6A61;">
+            <span>Size</span><span>Chest</span><span>Length</span><span>Shoulder</span><span>Sleeve</span>
+          </div>
+          <sc-for list="{{ measures }}" as="m" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; align-items: center; padding: 17px 0; border-bottom: 1px solid rgba(43,43,43,0.12); font-weight: 300; font-size: 15px; color: #57534A;">
+              <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 20px; color: #2B2B2B;">{{ m.size }}</span>
+              <span>{{ m.chest }}</span><span>{{ m.length }}</span><span>{{ m.shoulder }}</span><span>{{ m.sleeve }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;">
+          <div style="display: flex; flex-direction: column; gap: 11px; padding: 26px; background: #F1EDE4;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">Between sizes?</span>
+            <span style="font-weight: 300; font-size: 14px; line-height: 1.7; color: #57534A;">Take the smaller one. The body is cut generously and drops about half an inch after the first wash.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 11px; padding: 26px; background: #F1EDE4;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">Women&rsquo;s cut</span>
+            <span style="font-weight: 300; font-size: 14px; line-height: 1.7; color: #57534A;">Shaped through the waist and about an inch shorter. Same chest measurements otherwise.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 11px; padding: 26px; background: #F1EDE4;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">Church size runs</span>
+            <span style="font-weight: 300; font-size: 14px; line-height: 1.7; color: #57534A;">For 40 people, a good default is 4 S, 12 M, 14 L, 8 XL, 2 XXL. <a href="#s6" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">Use the run picker</a>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s8" data-screen-label="08 Search" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>08 &mdash; Search results</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">search.liquid &mdash; faceted</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="" hint-size="100%,132px"></dc-import>
+
+      <div style="display: flex; align-items: center; gap: 20px; padding: 34px 72px; background: #F1EDE4; border-bottom: 1px solid rgba(43,43,43,0.12);">
+        <input type="text" value="olive" style="flex: 1; height: 60px; padding: 0 22px; background: #FFFDF8; border: 1px solid rgba(43,43,43,0.22); font-family: 'EB Garamond', Georgia, serif; font-size: 22px; color: #2B2B2B;">
+        <button style="height: 60px; padding: 0 34px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;">Search</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 268px 1fr; gap: 0;">
+        <div style="display: flex; flex-direction: column; gap: 34px; padding: 44px 36px 60px 72px; border-right: 1px solid rgba(43,43,43,0.12);">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Category</span>
+            <label style="display: flex; align-items: center; gap: 11px; font-weight: 300; font-size: 14.5px; color: #2B2B2B;"><input type="checkbox" checked="checked" style="width: 16px; height: 16px; accent-color: #5F6650;"><span>Tees (7)</span></label>
+            <label style="display: flex; align-items: center; gap: 11px; font-weight: 300; font-size: 14.5px; color: #57534A;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #5F6650;"><span>Crewnecks (3)</span></label>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Fit</span>
+            <label style="display: flex; align-items: center; gap: 11px; font-weight: 300; font-size: 14.5px; color: #57534A;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #5F6650;"><span>Men</span></label>
+            <label style="display: flex; align-items: center; gap: 11px; font-weight: 300; font-size: 14.5px; color: #57534A;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #5F6650;"><span>Women</span></label>
+            <label style="display: flex; align-items: center; gap: 11px; font-weight: 300; font-size: 14.5px; color: #2B2B2B;"><input type="checkbox" checked="checked" style="width: 16px; height: 16px; accent-color: #5F6650;"><span>Unisex</span></label>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Colour</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <div style="width: 34px; height: 34px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.2);"></div>
+              <div style="width: 34px; height: 34px; background: #F1EDE4; border: 1px solid rgba(43,43,43,0.2);"></div>
+              <div style="position: relative; width: 34px; height: 34px; background: #5F6650;"><span style="position: absolute; left: -5px; top: -5px; right: -5px; bottom: -5px; border: 1.5px solid #2B2B2B;"></span></div>
+              <div style="width: 34px; height: 34px; background: #E3C5C2; border: 1px solid rgba(43,43,43,0.2);"></div>
+              <div style="width: 34px; height: 34px; background: #2B2B2B;"></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Size in stock</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ sizeChips }}" as="s" hint-placeholder-count="6">
+                <span style="padding: 9px 13px; border: 1px solid rgba(43,43,43,0.22); font-size: 12px; color: #2B2B2B;">{{ s }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <button style="align-self: flex-start; background: transparent; border: none; padding: 0; font-weight: 300; font-size: 13px; color: #8A8477; text-decoration: underline; cursor: pointer;">Clear all</button>
+        </div>
+
+        <div style="padding: 44px 72px 76px 44px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px;">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 30px; color: #2B2B2B;">4 results for &ldquo;olive&rdquo;</span>
+            <span style="font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B;">Sort &mdash; Relevance</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 36px;">
+            <span style="display: inline-flex; align-items: center; gap: 10px; padding: 9px 15px; background: #5F6650; color: #F1EDE4; font-size: 11.5px; letter-spacing: 0.1em;">Colour: Olive <span>&times;</span></span>
+            <span style="display: inline-flex; align-items: center; gap: 10px; padding: 9px 15px; background: #5F6650; color: #F1EDE4; font-size: 11.5px; letter-spacing: 0.1em;">Tees <span>&times;</span></span>
+            <span style="display: inline-flex; align-items: center; gap: 10px; padding: 9px 15px; background: #5F6650; color: #F1EDE4; font-size: 11.5px; letter-spacing: 0.1em;">Unisex <span>&times;</span></span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 28px;">
+            <sc-for list="{{ results }}" as="p" hint-placeholder-count="4">
+              <a href="#s3" style="display: flex; flex-direction: column; gap: 16px; text-decoration: none;">
+                <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; background: {{ p.swatch }}; overflow: hidden;">
+                  <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 28%, rgba(255,255,255,0.18), rgba(43,43,43,0.07));"></div>
+                  <div style="position: absolute; left: 12px; top: 12px; padding: 5px 10px; background: rgba(255,253,248,0.86); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #57534A;">{{ p.colorway }}</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+                    <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ p.name }}</span>
+                    <span style="font-weight: 300; font-size: 14px; color: #57534A;">{{ p.price }}</span>
+                  </div>
+                  <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650; min-height: 13px;">{{ p.verse }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 52px; padding: 22px 26px; background: #F1EDE4; border-left: 2px solid #5F6650;">
+            <span style="font-weight: 300; font-size: 14.5px; line-height: 1.65; color: #57534A;">Looking for olive in bulk for a team? <a href="#s6" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">Church wholesale from $16 a piece</a>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="s9" data-screen-label="09 Order status" style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #5F6650;"><span>09 &mdash; Order status</span><span style="font-weight: 300; letter-spacing: 0.08em; text-transform: none; font-size: 13px; color: #8A8477;">order-status &mdash; customer account</span></div>
+    <div style="width: 1440px; background: #EDE7DC; border: 1px solid rgba(43,43,43,0.12); overflow: hidden; box-shadow: 0 24px 56px rgba(90,78,58,0.10);">
+      <dc-import name="StoreNav" active="" hint-size="100%,132px"></dc-import>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 56px 72px 36px;">
+        <div style="font-weight: 300; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8477;">Account &nbsp;/&nbsp; Orders &nbsp;/&nbsp; #FT-40812</div>
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
+          <h1 style="margin: 0; font-family: 'EB Garamond', Georgia, serif; font-weight: 400; font-size: 50px; line-height: 1.05; color: #2B2B2B;">On its way to you</h1>
+          <span style="font-weight: 300; font-size: 14.5px; color: #57534A;">Estimated delivery <span style="color: #2B2B2B;">Tuesday 26 August</span></span>
+        </div>
+      </div>
+
+      <div style="padding: 20px 72px 56px;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;">
+          <sc-for list="{{ track }}" as="t" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="position: relative; height: 3px; background: rgba(43,43,43,0.14);">
+                <sc-if value="{{ t.done }}" hint-placeholder-val="{{ true }}">
+                  <span style="position: absolute; inset: 0; background: #5F6650;"></span>
+                </sc-if>
+                <span style="position: absolute; left: 0; top: -5.5px; width: 14px; height: 14px; border-radius: 50%; background: #EDE7DC; border: 3px solid rgba(43,43,43,0.2);"></span>
+                <sc-if value="{{ t.done }}" hint-placeholder-val="{{ true }}">
+                  <span style="position: absolute; left: 0; top: -5.5px; width: 14px; height: 14px; border-radius: 50%; background: #5F6650; border: 3px solid #5F6650;"></span>
+                </sc-if>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 5px; padding-right: 24px;">
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ t.label }}</span>
+                <span style="font-weight: 300; font-size: 13.5px; color: #6E6A61;">{{ t.date }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 0.72fr; gap: 0; border-top: 1px solid rgba(43,43,43,0.12);">
+        <div style="display: flex; flex-direction: column; gap: 0; padding: 48px 56px 60px 72px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid rgba(43,43,43,0.16);">
+            <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 27px; color: #2B2B2B;">2 items</span>
+            <span style="font-weight: 300; font-size: 13px; letter-spacing: 0.06em; color: #8A8477;">Tracking 1Z&nbsp;998&nbsp;A1&nbsp;0392</span>
+          </div>
+          <sc-for list="{{ cart }}" as="i" hint-placeholder-count="2">
+            <div style="display: flex; gap: 20px; align-items: center; padding: 24px 0; border-bottom: 1px solid rgba(43,43,43,0.11);">
+              <div style="width: 88px; height: 110px; flex: none; background: {{ i.swatch }}; border: 1px solid rgba(43,43,43,0.12);"></div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-family: 'EB Garamond', Georgia, serif; font-size: 21px; color: #2B2B2B;">{{ i.name }}</span>
+                <span style="font-weight: 300; font-size: 13px; color: #6E6A61;">{{ i.variant }} &nbsp;&middot;&nbsp; Qty {{ i.qty }}</span>
+              </div>
+              <div style="display: flex; gap: 12px;">
+                <button style="padding: 12px 20px; background: transparent; border: 1px solid rgba(43,43,43,0.24); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;" style-hover="border-color: #2B2B2B">Buy again</button>
+                <button style="padding: 12px 20px; background: transparent; border: 1px solid rgba(43,43,43,0.24); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #2B2B2B; cursor: pointer;" style-hover="border-color: #2B2B2B">Return</button>
+              </div>
+            </div>
+          </sc-for>
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 32px; padding: 22px 26px; background: #F1EDE4; border-left: 2px solid #5F6650;">
+            <span style="font-weight: 300; font-size: 14.5px; line-height: 1.65; color: #57534A;">Wrong size? Exchanges are free for 30 days &mdash; <a href="#s7" style="color: #5F6650; text-decoration: none; border-bottom: 1px solid rgba(95,102,80,0.4);">check the fit guide</a> first and we&rsquo;ll swap it.</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 26px; padding: 48px 72px 60px 44px; background: #F1EDE4; border-left: 1px solid rgba(43,43,43,0.12);">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Shipping to</span>
+            <span style="font-weight: 300; font-size: 14.5px; line-height: 1.7; color: #2B2B2B;">Jordan Ellis<br>418 Ridgeway Ave<br>Asheville, NC 28801</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid rgba(43,43,43,0.14);">
+            <span style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6650;">Payment</span>
+            <span style="font-weight: 300; font-size: 14.5px; color: #2B2B2B;">Card ending 4417</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 11px; padding-top: 22px; border-top: 1px solid rgba(43,43,43,0.14); font-weight: 300; font-size: 14.5px; color: #57534A;">
+            <div style="display: flex; justify-content: space-between;"><span>Subtotal</span><span style="color: #2B2B2B;">$116.00</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Shipping</span><span style="color: #2B2B2B;">Free</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>Tax</span><span style="color: #2B2B2B;">$8.12</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 14px; margin-top: 6px; border-top: 1px solid rgba(43,43,43,0.14);"><span style="font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E6A61;">Total</span><span style="font-family: 'EB Garamond', Georgia, serif; font-size: 30px; color: #2B2B2B;">$124.12</span></div>
+          </div>
+          <button style="height: 54px; background: #2B2B2B; border: none; color: #F1EDE4; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;" style-hover="background: #5F6650">Track with carrier</button>
+          <a href="#" style="text-align: center; font-weight: 300; font-size: 13.5px; color: #5F6650; text-decoration: none;" style-hover="color: #2B2B2B">Need help with this order?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {
+    color: "Bone", size: "M", qty: 1,
+    ffH: 70, ffW: 175, ffFit: "True to size",
+    bQty: 48, bStyle: "Tee", bPrint: true,
+  };
+
+  catalog = [
+    { name: "Still Waters Tee", verse: "Psalm 23:2", price: "$38", colorway: "Bone", swatch: "#EDE7DC", sizes: "XS \u2013 XXL", lowStock: false },
+    { name: "Salt & Light Tee", verse: "Matthew 5:14", price: "$38", colorway: "Vintage White", swatch: "#F1EDE4", sizes: "XS \u2013 XXL", lowStock: false },
+    { name: "Olive Grove Tee", verse: "", price: "$38", colorway: "Heather Olive", swatch: "#5F6650", sizes: "S \u2013 XL", lowStock: true },
+    { name: "Vine Crewneck", verse: "John 15:5", price: "$78", colorway: "Bone", swatch: "#E7E0D3", sizes: "S \u2013 XXL", lowStock: false },
+    { name: "Morning Mercy Tee", verse: "Lamentations 3:23", price: "$38", colorway: "Soft Pink", swatch: "#E3C5C2", sizes: "XS \u2013 XL", lowStock: false },
+    { name: "Anchor Tee", verse: "Hebrews 6:19", price: "$38", colorway: "Charcoal", swatch: "#2B2B2B", sizes: "XS \u2013 XXL", lowStock: false },
+    { name: "Cedar Crewneck", verse: "Psalm 92:12", price: "$78", colorway: "Heather Olive", swatch: "#5F6650", sizes: "S \u2013 XXL", lowStock: false },
+    { name: "Threshold Tee", verse: "", price: "$36", colorway: "Vintage White", swatch: "#F1EDE4", sizes: "XS \u2013 XXL", lowStock: false },
+  ];
+
+  fitTable = {
+    XS: { chest: "18", length: "27", shoulder: "16.5", sleeve: "7.5" },
+    S: { chest: "19.5", length: "28", shoulder: "17.5", sleeve: "8" },
+    M: { chest: "21", length: "29", shoulder: "18.5", sleeve: "8.5" },
+    L: { chest: "23", length: "30", shoulder: "20", sleeve: "9" },
+    XL: { chest: "25", length: "31", shoulder: "21.5", sleeve: "9.5" },
+    XXL: { chest: "27", length: "32", shoulder: "23", sleeve: "10" },
+  };
+
+  recommend() {
+    const { ffH, ffW, ffFit } = this.state;
+    const bmi = (ffW * 703) / (ffH * ffH);
+    const order = ["XS", "S", "M", "L", "XL", "XXL"];
+    let i = bmi < 19 ? 1 : bmi < 23 ? 2 : bmi < 27 ? 3 : bmi < 32 ? 4 : 5;
+    if (ffH >= 75) i += 1;
+    if (ffH <= 64) i -= 1;
+    if (ffFit === "Roomy") i += 1;
+    if (ffFit === "Close") i -= 1;
+    return order[Math.max(0, Math.min(5, i))];
+  }
+
+  renderVals() {
+    const st = this.state;
+    const price = 38;
+    const rec = this.recommend();
+    const m = this.fitTable[rec];
+
+    const unit = st.bStyle === "Tee"
+      ? (st.bQty >= 250 ? 12 : st.bQty >= 100 ? 14 : 16)
+      : (st.bQty >= 250 ? 26 : st.bQty >= 100 ? 30 : 34);
+    const printAdd = st.bPrint ? (st.bQty >= 250 ? 4 : st.bQty >= 100 ? 5 : 6) : 0;
+    const per = unit + printAdd;
+    const retail = st.bStyle === "Tee" ? 38 : 78;
+    const saved = (retail - per) * st.bQty;
+
+    return {
+      featured: this.catalog.slice(0, 4),
+      collection: this.catalog.slice(0, 6),
+      related: this.catalog.slice(3, 6),
+      results: [this.catalog[2], this.catalog[6], this.catalog[0], this.catalog[7]],
+      filters: ["Fit", "Colour", "Size", "Price", "In stock"],
+      sizeChips: ["XS", "S", "M", "L", "XL", "XXL"],
+
+      color: st.color,
+      size: st.size,
+      qty: st.qty,
+      lineTotal: "$" + price * st.qty,
+      colors: [
+        { name: "Bone", hex: "#EDE7DC" },
+        { name: "Vintage White", hex: "#F1EDE4" },
+        { name: "Heather Olive", hex: "#5F6650" },
+        { name: "Soft Pink", hex: "#E3C5C2" },
+        { name: "Charcoal", hex: "#2B2B2B" },
+      ].map(c => ({ ...c, isSel: c.name === st.color, pick: () => this.setState({ color: c.name }) })),
+      sizes: ["XS", "S", "M", "L", "XL", "XXL"].map(label => ({
+        label, isSel: label === st.size, out: label === "XS",
+        pick: () => { if (label !== "XS") this.setState({ size: label }); },
+      })),
+      inc: () => this.setState(s => ({ qty: Math.min(12, s.qty + 1) })),
+      dec: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+
+      cart: [
+        { name: "Still Waters Tee", variant: "Bone \u00b7 Medium", qty: 1, total: "$38", swatch: "#EDE7DC" },
+        { name: "Cedar Crewneck", variant: "Heather Olive \u00b7 Large", qty: 1, total: "$78", swatch: "#5F6650" },
+      ],
+
+      tiers: [
+        { range: "1 \u2013 23", tee: "$38", crew: "$78", print: "Retail" },
+        { range: "24 \u2013 99", tee: "$16", crew: "$34", print: "+$6" },
+        { range: "100 \u2013 249", tee: "$14", crew: "$30", print: "+$5" },
+        { range: "250 +", tee: "$12", crew: "$26", print: "+$4" },
+      ],
+      steps: [
+        { n: "01", title: "Request an account", body: "One form with your EIN. Approved within a business day." },
+        { n: "02", title: "Pick blanks or send art", body: "Browse wholesale blanks, or upload a design for us to print." },
+        { n: "03", title: "Approve the proof", body: "Digital proof in two days. Nothing prints until you say so." },
+        { n: "04", title: "Reorder in two clicks", body: "Your size run is saved. Repeat it any time from the dashboard." },
+      ],
+      bQty: st.bQty,
+      bPrint: st.bPrint,
+      bTier: st.bQty >= 250 ? "250 +" : st.bQty >= 100 ? "100 \u2013 249" : "24 \u2013 99",
+      bUnit: "$" + per,
+      bTotal: "$" + (per * st.bQty).toLocaleString("en-US"),
+      bSaving: "About $" + saved.toLocaleString("en-US") + " below retail on " + st.bQty + " pieces.",
+      bStyles: ["Tee", "Crewneck"].map(label => ({
+        label, isSel: label === st.bStyle, pick: () => this.setState({ bStyle: label }),
+      })),
+      setQty: e => this.setState({ bQty: Number(e.target.value) }),
+      togglePrint: e => this.setState({ bPrint: e.target.checked }),
+
+      ffH: st.ffH,
+      ffW: st.ffW,
+      ffHeightLabel: Math.floor(st.ffH / 12) + "\u2032 " + (st.ffH % 12) + "\u2033",
+      ffWeightLabel: st.ffW + " lb",
+      ffFits: ["Close", "True to size", "Roomy"].map(label => ({
+        label, isSel: label === st.ffFit, pick: () => this.setState({ ffFit: label }),
+      })),
+      ffSize: rec,
+      ffNote: st.ffFit === "Roomy"
+        ? "Sized up one for the drape you asked for \u2014 the shoulder will sit just past the joint."
+        : st.ffFit === "Close"
+          ? "Sized down one so it follows the body. Expect a shorter sleeve."
+          : "This is where most people your build land, and stay after a wash or two.",
+      ffChest: m.chest + "\u2033",
+      ffLength: m.length + "\u2033",
+      setFfH: e => this.setState({ ffH: Number(e.target.value) }),
+      setFfW: e => this.setState({ ffW: Number(e.target.value) }),
+      measures: ["XS", "S", "M", "L", "XL", "XXL"].map(size => ({ size, ...this.fitTable[size] })),
+
+      track: [
+        { label: "Order placed", date: "18 August", done: true },
+        { label: "Printed & packed", date: "20 August", done: true },
+        { label: "In transit", date: "22 August", done: true },
+        { label: "Delivered", date: "Est. 26 August", done: false },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

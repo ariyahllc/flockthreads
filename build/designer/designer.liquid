@@ -1,0 +1,372 @@
+{%- assign cp = all_products['custom-church-tee'] -%}
+<div class="ftd">
+  <header class="ftd-head">
+    <p class="ftd-eyebrow">For churches</p>
+    <h1>Design your church tee</h1>
+    <p class="ftd-sub">Add your logo and wording, see it on the shirt, and send it to us. We email a proof before anything is printed. Minimum 24 pieces.</p>
+  </header>
+
+  <div class="ftd-grid">
+    <!-- ============ PREVIEW ============ -->
+    <div class="ftd-preview">
+      <div class="ftd-shirt" id="ftShirt">
+        <div class="ftd-body">
+          <div class="ftd-collar"></div>
+          <div class="ftd-artbox" id="ftArtbox"><canvas id="ftCanvas"></canvas></div>
+        </div>
+      </div>
+      <p class="ftd-note" id="ftNote">Left chest · 3.5 in wide</p>
+    </div>
+
+    <!-- ============ CONTROLS ============ -->
+    <div class="ftd-controls">
+
+      <section class="ftd-step">
+        <h2><span>1</span> Your logo</h2>
+        <label class="ftd-drop" id="ftDrop">
+          <input type="file" id="ftLogo" accept="image/png,image/jpeg,image/svg+xml" hidden>
+          <span id="ftDropText">Upload a PNG, JPG or SVG. A transparent PNG prints best.</span>
+        </label>
+        <button type="button" class="ftd-link" id="ftClearLogo" hidden>Remove logo</button>
+      </section>
+
+      <section class="ftd-step">
+        <h2><span>2</span> Wording</h2>
+        <input class="ftd-input" id="ftL1" maxlength="28" placeholder="Church or ministry name">
+        <input class="ftd-input" id="ftL2" maxlength="28" placeholder="Event, e.g. VBS 2027">
+        <input class="ftd-input" id="ftL3" maxlength="28" placeholder="Verse reference (optional)">
+      </section>
+
+      <section class="ftd-step">
+        <h2><span>3</span> Layout</h2>
+        <div class="ftd-chips" id="ftLayout">
+          <button type="button" data-v="logo-top" class="on">Logo above text</button>
+          <button type="button" data-v="text-only">Text only</button>
+          <button type="button" data-v="logo-only">Logo only</button>
+        </div>
+        <div class="ftd-chips" id="ftPlace">
+          <button type="button" data-v="chest" class="on">Left chest</button>
+          <button type="button" data-v="center">Center front</button>
+        </div>
+      </section>
+
+      <section class="ftd-step">
+        <h2><span>4</span> Shirt colour</h2>
+        <div class="ftd-swatches" id="ftColors"></div>
+      </section>
+
+      <section class="ftd-step">
+        <h2><span>5</span> Sizes</h2>
+        <p class="ftd-hint">Enter how many of each. Minimum 24 total.</p>
+        <div class="ftd-sizes" id="ftSizes"></div>
+        <p class="ftd-total"><span id="ftTotal">0</span> pieces
+          <span class="ftd-price" id="ftPrice"></span></p>
+        <p class="ftd-warn" id="ftWarn" hidden>Add at least 24 pieces to continue.</p>
+      </section>
+
+      {%- if cp -%}
+      <form method="post" action="/cart/add" enctype="multipart/form-data" id="ftForm" class="ftd-submit">
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="id" id="ftVariant" value="{{ cp.variants.first.id }}">
+        <input type="hidden" name="quantity" id="ftQty" value="24">
+        <input type="file" name="properties[Print file]" id="ftPrintFile" hidden>
+        <input type="file" name="properties[Original logo]" id="ftLogoFile" hidden>
+        <input type="hidden" name="properties[Size breakdown]" id="ftSpecSizes">
+        <input type="hidden" name="properties[Wording]" id="ftSpecText">
+        <input type="hidden" name="properties[Layout]" id="ftSpecLayout">
+        <button type="submit" class="ftd-cta" id="ftCta">Send my design</button>
+        <p class="ftd-fine">We email a proof within one business day. Nothing prints until you approve it.</p>
+      </form>
+      <button type="button" class="ftd-link" id="ftDownload">Download the proof</button>
+      {%- else -%}
+      <p class="ftd-warn">Custom ordering is being set up. Email us and we will take it from there.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+.ftd{max-width:1180px;margin:0 auto;padding:56px 24px 96px}
+.ftd-head{max-width:620px;margin-bottom:44px}
+.ftd-eyebrow{font-family:var(--ft-sans,'Jost',sans-serif);text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#5F6650;margin:0 0 12px}
+.ftd h1{font-family:'EB Garamond',Georgia,serif;font-size:clamp(30px,4vw,44px);font-weight:400;margin:0 0 14px;color:#2B2B2B}
+.ftd-sub{font-family:var(--ft-sans,'Jost',sans-serif);font-size:15px;line-height:1.6;color:#5a564f;margin:0}
+.ftd-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:56px;align-items:start}
+@media(max-width:900px){.ftd-grid{grid-template-columns:1fr;gap:36px}}
+
+.ftd-preview{position:sticky;top:24px}
+@media(max-width:900px){.ftd-preview{position:static}}
+.ftd-shirt{background:#F1EDE4;border:1px solid #e2dbcd;border-radius:2px;padding:36px;display:flex;justify-content:center}
+.ftd-body{position:relative;width:100%;max-width:420px;aspect-ratio:1/1.16;background:#C7BCAE;border-radius:10px 10px 4px 4px;transition:background .18s ease;
+  box-shadow:inset 0 -30px 60px rgba(0,0,0,.06)}
+.ftd-collar{position:absolute;left:50%;top:0;transform:translateX(-50%);width:30%;height:8%;
+  background:#F1EDE4;border-radius:0 0 50% 50%/0 0 100% 100%;transition:background .18s ease}
+.ftd-artbox{position:absolute;display:flex;align-items:center;justify-content:center}
+.ftd-artbox canvas{max-width:100%;max-height:100%;display:block}
+.ftd-note{font-family:var(--ft-sans,'Jost',sans-serif);text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#8a8377;text-align:center;margin:14px 0 0}
+
+.ftd-step{border-top:1px solid #e2dbcd;padding:24px 0}
+.ftd-step:first-child{border-top:0;padding-top:0}
+.ftd-step h2{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;text-transform:uppercase;letter-spacing:.14em;
+  color:#2B2B2B;margin:0 0 14px;display:flex;align-items:center;gap:10px;font-weight:500}
+.ftd-step h2 span{width:20px;height:20px;border-radius:50%;background:#5F6650;color:#F1EDE4;
+  display:grid;place-items:center;font-size:10px;letter-spacing:0}
+.ftd-hint{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#8a8377;margin:-6px 0 12px}
+
+.ftd-drop{display:block;border:1px dashed #c4bcab;background:#faf8f3;padding:22px 18px;text-align:center;cursor:pointer;
+  font-family:var(--ft-sans,'Jost',sans-serif);font-size:13px;color:#6b665d;transition:border-color .18s,background .18s}
+.ftd-drop:hover{border-color:#5F6650;background:#f5f2ea}
+.ftd-drop.has{border-style:solid;border-color:#5F6650;color:#2B2B2B}
+
+.ftd-input{width:100%;box-sizing:border-box;border:1px solid #d9d2c4;background:#fff;padding:11px 13px;margin-bottom:9px;
+  font-family:'EB Garamond',Georgia,serif;font-size:16px;color:#2B2B2B;border-radius:0}
+.ftd-input:focus{outline:none;border-color:#5F6650}
+
+.ftd-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.ftd-chips button{font-family:var(--ft-sans,'Jost',sans-serif);font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+  padding:9px 14px;border:1px solid #d9d2c4;background:#fff;color:#5a564f;cursor:pointer;transition:all .18s ease}
+.ftd-chips button:hover{border-color:#5F6650}
+.ftd-chips button.on{background:#2B2B2B;border-color:#2B2B2B;color:#F1EDE4}
+
+.ftd-swatches{display:flex;gap:12px;flex-wrap:wrap}
+.ftd-swatches button{width:42px;height:42px;border-radius:50%;border:1px solid #cfc7b7;cursor:pointer;padding:0;
+  position:relative;transition:transform .18s ease}
+.ftd-swatches button.on{box-shadow:0 0 0 2px #fff,0 0 0 3px #2B2B2B}
+.ftd-swatches button:hover{transform:scale(1.06)}
+
+.ftd-sizes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ftd-sizes label{display:flex;flex-direction:column;gap:5px;font-family:var(--ft-sans,'Jost',sans-serif);
+  font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#8a8377;text-align:center}
+.ftd-sizes input{width:100%;box-sizing:border-box;border:1px solid #d9d2c4;padding:9px 4px;text-align:center;
+  font-family:var(--ft-sans,'Jost',sans-serif);font-size:15px;color:#2B2B2B;border-radius:0}
+.ftd-sizes input:focus{outline:none;border-color:#5F6650}
+.ftd-total{font-family:var(--ft-sans,'Jost',sans-serif);font-size:13px;color:#2B2B2B;margin:14px 0 0;
+  display:flex;justify-content:space-between;align-items:baseline}
+.ftd-price{font-family:'EB Garamond',Georgia,serif;font-size:19px}
+.ftd-warn{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#a8442e;margin:10px 0 0}
+
+.ftd-submit{margin-top:26px}
+.ftd-cta{width:100%;background:#2B2B2B;color:#F1EDE4;border:0;padding:16px;cursor:pointer;
+  font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;text-transform:uppercase;letter-spacing:.16em;
+  transition:background .18s ease}
+.ftd-cta:hover{background:#5F6650}
+.ftd-cta:disabled{opacity:.4;cursor:not-allowed}
+.ftd-fine{font-family:var(--ft-sans,'Jost',sans-serif);font-size:11px;color:#8a8377;text-align:center;margin:12px 0 0;line-height:1.5}
+.ftd-link{background:none;border:0;padding:10px 0 0;cursor:pointer;font-family:var(--ft-sans,'Jost',sans-serif);
+  font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#5F6650;text-decoration:underline;width:100%}
+</style>
+
+<script>
+(function(){
+  // Print file is generated at 300 DPI over Printful's 10x12in front area.
+  var DPI=300, AREA_W=10*DPI, AREA_H=12*DPI;
+  var COLORS=[
+    {name:'Heather Dust', hex:'#C7BCAE', ink:'#2B2B2B'},
+    {name:'Vintage White',hex:'#F1EDE4', ink:'#2B2B2B'},
+    {name:'Heather Olive',hex:'#5F6650', ink:'#EDE7DC'},
+    {name:'Black',        hex:'#1C1C1C', ink:'#EDE7DC'}
+  ];
+  var SIZES=['S','M','L','XL','2XL'], MIN=24, PRICE=21.99;
+
+  var state={logo:null,logoFile:null,l1:'',l2:'',l3:'',layout:'logo-top',place:'chest',color:0,qty:{}};
+  SIZES.forEach(function(s){state.qty[s]=0;});
+
+  var $=function(id){return document.getElementById(id);};
+  var canvas=$('ftCanvas'), ctx=canvas.getContext('2d');
+
+  // ---- colour swatches ----
+  COLORS.forEach(function(c,i){
+    var b=document.createElement('button');
+    b.style.background=c.hex; b.title=c.name; b.setAttribute('aria-label',c.name);
+    if(i===0) b.className='on';
+    b.onclick=function(){state.color=i;
+      [].forEach.call($('ftColors').children,function(x){x.className='';});
+      b.className='on'; paint();};
+    $('ftColors').appendChild(b);
+  });
+
+  // ---- size inputs ----
+  SIZES.forEach(function(s){
+    var l=document.createElement('label'); l.textContent=s;
+    var i=document.createElement('input');
+    i.type='number'; i.min='0'; i.value='0'; i.inputMode='numeric';
+    i.oninput=function(){state.qty[s]=parseInt(i.value||'0',10)||0; totals();};
+    l.appendChild(i); $('ftSizes').appendChild(l);
+  });
+
+  function totals(){
+    var n=SIZES.reduce(function(a,s){return a+state.qty[s];},0);
+    $('ftTotal').textContent=n;
+    $('ftPrice').textContent=n?('$'+(n*PRICE).toFixed(2)):'';
+    var ok=n>=MIN;
+    $('ftWarn').hidden=ok||n===0;
+    if($('ftCta')) $('ftCta').disabled=!ok;
+    if($('ftQty')) $('ftQty').value=Math.max(n,MIN);
+    return n;
+  }
+
+  // ---- chips ----
+  function chips(wrap,key){
+    [].forEach.call($(wrap).children,function(b){
+      b.onclick=function(){
+        state[key]=b.dataset.v;
+        [].forEach.call($(wrap).children,function(x){x.className='';});
+        b.className='on'; paint();
+      };
+    });
+  }
+  chips('ftLayout','layout'); chips('ftPlace','place');
+
+  // ---- text ----
+  ['l1','l2','l3'].forEach(function(k,i){
+    $('ftL'+(i+1)).oninput=function(e){state[k]=e.target.value; paint();};
+  });
+
+  // ---- logo ----
+  $('ftLogo').onchange=function(e){
+    var f=e.target.files[0]; if(!f) return;
+    state.logoFile=f;
+    var r=new FileReader();
+    r.onload=function(){
+      var img=new Image();
+      img.onload=function(){state.logo=img; paint();};
+      img.src=r.result;
+    };
+    r.readAsDataURL(f);
+    $('ftDrop').classList.add('has');
+    $('ftDropText').textContent=f.name;
+    $('ftClearLogo').hidden=false;
+  };
+  $('ftClearLogo').onclick=function(){
+    state.logo=null; state.logoFile=null; $('ftLogo').value='';
+    $('ftDrop').classList.remove('has');
+    $('ftDropText').textContent='Upload a PNG, JPG or SVG. A transparent PNG prints best.';
+    $('ftClearLogo').hidden=true; paint();
+  };
+
+  // ---- render the print file, then mirror it into the preview ----
+  function paint(){
+    var C=COLORS[state.color];
+    var chest = state.place==='chest';
+    // Print width: 3.5in left chest, 9in centre front.
+    var wIn = chest?3.5:9;
+    var W=Math.round(wIn*DPI);
+
+    var lines=[];
+    if(state.layout!=='logo-only'){
+      if(state.l1) lines.push({t:state.l1, size:chest?0.30:0.68, w:500});
+      if(state.l2) lines.push({t:state.l2, size:chest?0.26:0.58, w:400});
+      if(state.l3) lines.push({t:state.l3, size:chest?0.13:0.26, w:400, track:0.16, up:true});
+    }
+    var showLogo = state.logo && state.layout!=='text-only';
+
+    // measure
+    var pad=0.12*DPI, y=0, logoH=0;
+    if(showLogo){
+      var lw=W*(chest?0.55:0.42);
+      logoH=lw*(state.logo.height/state.logo.width);
+      y+=logoH+(lines.length?pad:0);
+    }
+    var lineH=[];
+    lines.forEach(function(l,i){
+      var h=l.size*DPI*1.22; lineH.push(h); y+=h; if(i<lines.length-1) y+=0.04*DPI;
+    });
+    var H=Math.max(Math.round(y),10);
+
+    canvas.width=W; canvas.height=H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=C.ink;
+    ctx.textAlign='center'; ctx.textBaseline='top';
+
+    var cy=0;
+    if(showLogo){
+      var lw2=W*(chest?0.55:0.42);
+      var lh2=lw2*(state.logo.height/state.logo.width);
+      ctx.drawImage(state.logo,(W-lw2)/2,0,lw2,lh2);
+      cy=lh2+(lines.length?pad:0);
+    }
+    lines.forEach(function(l,i){
+      var px=l.size*DPI;
+      ctx.font=l.w+' '+px+"px 'EB Garamond', Georgia, serif";
+      var txt=l.up?l.t.toUpperCase():l.t;
+      if(l.track){
+        // letter-spaced small caps for the verse reference
+        var sp=l.track*px, tw=0;
+        for(var j=0;j<txt.length;j++) tw+=ctx.measureText(txt[j]).width+sp;
+        tw-=sp;
+        var x=(W-tw)/2;
+        ctx.textAlign='left';
+        for(var k=0;k<txt.length;k++){ctx.fillText(txt[k],x,cy);x+=ctx.measureText(txt[k]).width+sp;}
+        ctx.textAlign='center';
+      } else {
+        ctx.fillText(txt,W/2,cy);
+      }
+      cy+=lineH[i]+0.04*DPI;
+    });
+
+    // preview positioning: mirror real placement on the garment
+    var body=document.querySelector('.ftd-body');
+    body.style.background=C.hex;
+    document.querySelector('.ftd-collar').style.background='#F1EDE4';
+    var box=$('ftArtbox');
+    var pct=(wIn/10)*100; // print area is 10in wide
+    if(chest){
+      box.style.width=pct*0.62+'%'; box.style.left='52%'; box.style.top='19%';
+      box.style.height='auto';
+    } else {
+      box.style.width=pct*0.62+'%'; box.style.left='50%';
+      box.style.transform='translateX(-50%)'; box.style.top='24%';
+      box.style.height='auto';
+    }
+    if(chest) box.style.transform='none';
+    $('ftNote').textContent = chest ? 'Left chest · 3.5 in wide' : 'Center front · 9 in wide';
+  }
+
+  // fonts must be ready or canvas falls back to a default serif
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(paint); } else { paint(); }
+  totals();
+
+  // ---- download proof ----
+  var dl=$('ftDownload');
+  if(dl) dl.onclick=function(){
+    canvas.toBlob(function(b){
+      var a=document.createElement('a');
+      a.href=URL.createObjectURL(b); a.download='flockthreads-proof.png'; a.click();
+      URL.revokeObjectURL(a.href);
+    },'image/png');
+  };
+
+  // ---- submit: attach the generated print file to the cart line ----
+  var form=$('ftForm');
+  if(form) form.addEventListener('submit',function(e){
+    var n=totals();
+    if(n<MIN){e.preventDefault();return;}
+    if(form.dataset.ready==='1') return; // second pass, let it through
+
+    e.preventDefault();
+    var C=COLORS[state.color];
+    // pick the variant matching the chosen colour
+    var opts={{ cp.variants | map: 'title' | json }};
+    var ids={{ cp.variants | map: 'id' | json }};
+    var idx=opts.indexOf(C.name); if(idx<0) idx=0;
+    $('ftVariant').value=ids[idx];
+
+    $('ftSpecSizes').value=SIZES.map(function(s){return s+':'+state.qty[s];}).filter(function(x){return !/:0$/.test(x);}).join('  ');
+    $('ftSpecText').value=[state.l1,state.l2,state.l3].filter(Boolean).join(' / ')||'(logo only)';
+    $('ftSpecLayout').value=state.layout+' · '+state.place+' · '+C.name;
+
+    canvas.toBlob(function(blob){
+      var dt=new DataTransfer();
+      dt.items.add(new File([blob],'print-file.png',{type:'image/png'}));
+      $('ftPrintFile').files=dt.files;
+      if(state.logoFile){
+        var dt2=new DataTransfer(); dt2.items.add(state.logoFile);
+        $('ftLogoFile').files=dt2.files;
+      }
+      form.dataset.ready='1';
+      form.submit();
+    },'image/png');
+  });
+})();
+</script>

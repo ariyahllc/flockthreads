@@ -1,5 +1,5 @@
 // Rebuilds the main menu to match the FlockThreads Store design spec:
-// Men | Women | Unisex | Bundles | Churches
+// Men | Women | Unisex | Bundles | Churches | Design Yours
 import { gql } from "./lib/shopify.js";
 
 const ITEMS = [
@@ -8,6 +8,7 @@ const ITEMS = [
   { title: "Unisex",   type: "COLLECTION", handle: "faith" },
   { title: "Bundles",  type: "COLLECTION", handle: "bundles" },
   { title: "Churches", type: "PAGE",       handle: "for-churches" },
+  { title: "Design Yours", type: "PAGE",  handle: "design-your-tee" },
 ];
 
 const d = await gql(`{ menus(first:10){ nodes{ id handle title } } }`);
