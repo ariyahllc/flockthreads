@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "description": "Store-as-code for FlockThreads: Shopify + POD, built programmatically.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "check": "node --env-file=.env scripts/check.js",
     "build:store": "node --env-file=.env scripts/build-store.js",
     "build:pod": "node --env-file=.env scripts/build-pod.js",
-    "build:all": "npm run build:pod && npm run build:store"
+    "build:all": "npm run build:pod && npm run build:store",
+    "giving:record": "node --env-file=.env scripts/record-gift.js"
   }
 }

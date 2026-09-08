@@ -70,3 +70,58 @@ export async function uploadImage(localPath) {
   await saveCache(cache);
   return url;
 }
+
+// Same three-step staged upload as uploadImage, but for non-image files
+// (donation receipt PDFs). Shopify models these as GenericFile, which exposes
+// `url` directly rather than `image { url }`, so it needs its own poll.
+async function waitForFileUrl(id, tries = 15) {
+  for (let i = 0; i < tries; i++) {
+    const d = await gql(
+      `query($id:ID!){ node(id:$id){ ... on GenericFile { fileStatus url } } }`,
+      { id }
+    );
+    const n = d.node;
+    if (n?.fileStatus === "READY" && n.url) return n.url;
+    if (n?.fileStatus === "FAILED") throw new Error(`Shopify file processing FAILED for ${id}`);
+    await sleep(2000);
+  }
+  throw new Error(`Timed out waiting for Shopify to process ${id}`);
+}
+
+export async function uploadFile(localPath, mimeType = "application/pdf") {
+  const cache = await loadCache();
+  if (cache[localPath]) return cache[localPath];
+
+  const bytes = await readFile(localPath);
+  const filename = basename(localPath);
+
+  const staged = await gql(
+    `mutation($input:[StagedUploadInput!]!){
+      stagedUploadsCreate(input:$input){
+        stagedTargets{ url resourceUrl parameters{ name value } }
+        userErrors{ field message }
+      }
+    }`,
+    { input: [{ filename, mimeType, httpMethod: "POST", resource: "FILE" }] }
+  );
+  const target = staged.stagedUploadsCreate.stagedTargets[0];
+
+  const form = new FormData();
+  for (const p of target.parameters) form.append(p.name, p.value);
+  form.append("file", new Blob([bytes], { type: mimeType }), filename);
+  const up = await fetch(target.url, { method: "POST", body: form });
+  if (!up.ok) throw new Error(`Staged upload HTTP ${up.status}: ${await up.text()}`);
+
+  const created = await gql(
+    `mutation($files:[FileCreateInput!]!){
+      fileCreate(files:$files){ files{ id fileStatus } userErrors{ field message } }
+    }`,
+    { files: [{ originalSource: target.resourceUrl, contentType: "FILE", alt: filename }] }
+  );
+  const id = created.fileCreate.files[0].id;
+
+  const url = await waitForFileUrl(id);
+  cache[localPath] = url;
+  await saveCache(cache);
+  return url;
+}

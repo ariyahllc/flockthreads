@@ -3,6 +3,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { upsertPage } from "./lib/shopify.js";
+import { loadLedger, renderLedger, money, totalGiven } from "./lib/giving.js";
 
 const PAGES_DIR = new URL("../data/pages/", import.meta.url);
 
@@ -35,6 +36,7 @@ function mdToHtml(md) {
     .map((block) => {
       const t = block.trim();
       if (!t) return "";
+      if (t.startsWith("<")) return t; // raw HTML block, pass through untouched
       if (t.startsWith("# ")) return `<h1>${inline(t.slice(2))}</h1>`;
       if (t.startsWith("## ")) return `<h2>${inline(t.slice(3))}</h2>`;
       if (t.startsWith("- ")) {
@@ -46,7 +48,18 @@ function mdToHtml(md) {
     .join("\n");
 }
 
+// Pages can drop in live giving numbers with {{giving_ledger}} / {{giving_total}}.
+// Substituting after mdToHtml means the block token arrives wrapped in <p>, so
+// that wrapper has to come off or the table ends up nested inside a paragraph.
+function fillGivingTokens(html, ledger) {
+  return html
+    .replace(/<p>\s*\{\{\s*giving_ledger\s*\}\}\s*<\/p>/g, () => renderLedger(ledger))
+    .replace(/\{\{\s*giving_ledger\s*\}\}/g, () => renderLedger(ledger))
+    .replace(/\{\{\s*giving_total\s*\}\}/g, () => money(totalGiven(ledger)));
+}
+
 async function main() {
+  const ledger = await loadLedger();
   const files = (await readdir(PAGES_DIR)).filter((f) => f.endsWith(".md"));
   if (!files.length) {
     console.log("No pages in data/pages/. Nothing to build.");
@@ -57,7 +70,7 @@ async function main() {
     const { meta, body: md } = frontMatter(raw);
     const handle = basename(file, ".md");
     const title = meta.title || basename(file, ".md");
-    const body = mdToHtml(md);
+    const body = fillGivingTokens(mdToHtml(md), ledger);
     const r = await upsertPage({ handle, title, body });
     console.log(`  page ${r.action}: /${r.handle}`);
   }

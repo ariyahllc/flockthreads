@@ -1,0 +1,12 @@
+{
+  "_comment": "Public, append-only record of FlockThreads' 1% giving. NEVER edit or delete a past entry: git history is what makes this page trustworthy. Add entries with `npm run giving:record`, then `npm run build:store` to publish.",
+  "pledge": {
+    "percent": 1,
+    "basis": "revenue",
+    "cadence": "quarterly",
+    "opened": "2026-09-08",
+    "first_payout": "2027-01-15",
+    "rollover_minimum_usd": 25
+  },
+  "entries": []
+}
