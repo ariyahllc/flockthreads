@@ -2,7 +2,10 @@
   1% giving picker.
 
   Writes the choice to a CART ATTRIBUTE so it lands on every order in admin
-  (Order > Additional details), whatever was bought.
+  (Order > Additional details), whatever was bought. The key is "Giving pick",
+  not "Charity": the attribute is also shown to the customer on their order
+  confirmation, and "Charity: World Vision" there would read as if the order
+  itself donated. Orders placed before 2026-09-08 carry the old "Charity" key.
 
   Selection state is driven by JS reading /cart.js, not by a Liquid string
   compare. Liquid comparison was silently failing on values containing an
@@ -10,18 +13,21 @@
   stamp then wrote that default back over the customer's real choice.
   Option values are also kept apostrophe-free for the same reason.
 
-  The 1% is FlockThreads' own money, not a customer donation: nothing is added
-  to the cart total and no funds are collected for the charity.
+  Framing matters here and is deliberate. This is a VOTE on where FlockThreads'
+  own quarterly giving goes, not a per-order transfer to the named charity.
+  Nothing is added to the cart total, no funds are collected for any charity,
+  and the customer's order is not itself a donation. Keep the copy in this file
+  and on /pages/our-1-percent saying the same thing.
 {%- endcomment -%}
 <div class="ft-charity" data-ft-charity>
   <div class="ft-charity__head">
     <span class="ft-charity__badge">1%</span>
     <div>
-      <p class="ft-charity__title">We give 1% of this order</p>
-      <p class="ft-charity__sub">Pick where it goes. It costs you nothing &mdash; it comes out of our margin, not your total.</p>
+      <p class="ft-charity__title">We give 1% of our revenue</p>
+      <p class="ft-charity__sub">It comes out of our margin, never your total. Tell us where this quarter’s giving should go.</p>
     </div>
   </div>
-  <label class="ft-charity__label" for="ft-charity-select">Send our 1% to</label>
+  <label class="ft-charity__label" for="ft-charity-select">Where should our 1% go?</label>
   <select id="ft-charity-select" class="ft-charity__select">
     <option value="Compassion International">Compassion International &mdash; child sponsorship</option>
     <option value="Samaritans Purse">Samaritan&rsquo;s Purse &mdash; disaster relief</option>
@@ -29,7 +35,7 @@
     <option value="Convoy of Hope">Convoy of Hope &mdash; hunger relief</option>
     <option value="The Salvation Army">The Salvation Army &mdash; local community aid</option>
   </select>
-  <p class="ft-charity__fine" data-ft-charity-status>All five are Charity Navigator 4-star or ECFA-accredited. <a href="/pages/our-1-percent">How our 1% works</a></p>
+  <p class="ft-charity__fine" data-ft-charity-status>All five are Charity Navigator 4-star or ECFA-accredited. We give once a quarter and publish every payment. <a href="/pages/our-1-percent">See every gift we have made</a></p>
 </div>
 
 <style>
@@ -63,12 +69,12 @@
     return fetch('/cart/update.js',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({attributes:{Charity:value}})
+      body:JSON.stringify({attributes:{'Giving pick':value}})
     }).then(function(r){
       if(!r.ok)throw new Error('cart update failed');
       if(announce&&status){
         var label=sel.options[sel.selectedIndex].text.split(' — ')[0];
-        status.textContent='Saved. 1% of this order goes to '+label+'.';
+        status.textContent='Saved. Your pick counts toward '+label+' this quarter.';
         status.classList.add('is-saved');
         setTimeout(function(){status.innerHTML=original;status.classList.remove('is-saved');},4000);
       }
@@ -82,7 +88,7 @@
   fetch('/cart.js',{headers:{'Accept':'application/json'}})
     .then(function(r){return r.json();})
     .then(function(cart){
-      var saved=(cart.attributes&&cart.attributes.Charity)||'';
+      var saved=(cart.attributes&&(cart.attributes['Giving pick']||cart.attributes.Charity))||'';
       var known=false;
       for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===saved){known=true;break;} }
       if(known){ sel.value=saved; } else { save(sel.value,false); }
