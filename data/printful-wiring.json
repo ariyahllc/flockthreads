@@ -1,0 +1,183 @@
+{
+  "_comment": "Physical print spec per Shopify product. Photos must match this. scale = print size vs the art's native 300dpi size; top = inches below the top of the print area. Colors map Shopify color -> [Printful catalog color, ink]. Ink rule: cream on dark, espresso on light (print-art/README.md). Optional 3rd color field overrides the product's blank for that one color.",
+  "blanks": {
+    "mens": {
+      "catalog_id": 71,
+      "area": [
+        1800,
+        2400
+      ],
+      "scale": 1.2,
+      "top_in": 1.5
+    },
+    "womens": {
+      "catalog_id": 360,
+      "area": [
+        1500,
+        1800
+      ],
+      "scale": 0.8,
+      "top_in": 1.5
+    },
+    "unisex-fem": {
+      "catalog_id": 71,
+      "area": [
+        1800,
+        2400
+      ],
+      "scale": 0.8,
+      "top_in": 1.5
+    }
+  },
+  "products": {
+    "new-mercies-mens-tee": {
+      "blank": "mens",
+      "art": "newmercies-m",
+      "colors": {
+        "Black": [
+          "Black",
+          "cream"
+        ],
+        "Navy": [
+          "Navy",
+          "cream"
+        ]
+      }
+    },
+    "jesus-is-the-reason-mens-christmas-tee": {
+      "blank": "mens",
+      "art": "jesusreason-m",
+      "colors": {
+        "Forest Green": [
+          "Forest",
+          "cream"
+        ],
+        "Black": [
+          "Black",
+          "cream"
+        ]
+      }
+    },
+    "it-is-well-mens-faith-tee": {
+      "blank": "mens",
+      "art": "iiw-mens",
+      "colors": {
+        "Charcoal": [
+          "Dark Grey",
+          "cream"
+        ],
+        "Black": [
+          "Black",
+          "cream"
+        ],
+        "Vintage White": [
+          "Vintage White",
+          "espresso"
+        ]
+      }
+    },
+    "blessed-mens-thanksgiving-tee": {
+      "blank": "mens",
+      "art": "blessed-m",
+      "colors": {
+        "Chocolate Brown": [
+          "Brown",
+          "cream"
+        ],
+        "Black": [
+          "Black",
+          "cream"
+        ]
+      }
+    },
+    "give-thanks-mens-thanksgiving-tee": {
+      "blank": "mens",
+      "art": "givethanks-m",
+      "colors": {
+        "Burnt Orange": [
+          "Burnt Orange",
+          "cream"
+        ],
+        "Black": [
+          "Black",
+          "cream"
+        ]
+      }
+    },
+    "new-mercies-womens-tee": {
+      "blank": "womens",
+      "art": "newmercies-w",
+      "colors": {
+        "Blush Pink": [
+          "Pink",
+          "espresso"
+        ],
+        "Vintage White": [
+          "Vintage White",
+          "espresso"
+        ]
+      }
+    },
+    "jesus-is-the-reason-womens-christmas-tee": {
+      "blank": "womens",
+      "art": "jesusreason-w",
+      "colors": {
+        "Maroon": [
+          "Maroon",
+          "cream"
+        ],
+        "Forest Green": [
+          "Forest Green",
+          "cream"
+        ]
+      }
+    },
+    "it-is-well-womens-faith-tee": {
+      "blank": "womens",
+      "art": "iiw-w",
+      "colors": {
+        "Sage": [
+          "Sage",
+          "espresso"
+        ],
+        "Mauve": [
+          "Mauve",
+          "espresso"
+        ],
+        "Vintage White": [
+          "Vintage White",
+          "espresso"
+        ]
+      }
+    },
+    "grateful-womens-thanksgiving-tee": {
+      "blank": "womens",
+      "art": "grateful-w",
+      "colors": {
+        "Burnt Orange": [
+          "Burnt Orange",
+          "cream",
+          "unisex-fem"
+        ],
+        "Vintage White": [
+          "Vintage White",
+          "espresso"
+        ]
+      }
+    },
+    "give-thanks-womens-thanksgiving-tee": {
+      "blank": "womens",
+      "art": "givethanks-w",
+      "colors": {
+        "Vintage White": [
+          "Vintage White",
+          "espresso"
+        ],
+        "Mauve": [
+          "Mauve",
+          "espresso"
+        ]
+      }
+    }
+  }
+}

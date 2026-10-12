@@ -30,7 +30,8 @@ async function paidUnsentOrders() {
         lineItems(first:50){ nodes{ quantity
           variant{ id
             vid:metafield(namespace:"printful", key:"variant_id"){ value }
-            art:metafield(namespace:"printful", key:"art_url"){ value } } } } }
+            art:metafield(namespace:"printful", key:"art_url"){ value }
+            pos:metafield(namespace:"printful", key:"position"){ value } } } } }
     } }`);
   return d.orders.nodes.filter((o) => !o.printful?.value); // skip already-sent
 }
@@ -47,11 +48,13 @@ function toPrintfulOrder(o) {
   for (const li of o.lineItems.nodes) {
     const vid = li.variant?.vid?.value, art = li.variant?.art?.value;
     if (!vid || !art) throw new Error(`${o.name}: line item missing printful mapping (skip/fix product)`);
+    // Per-variant placement (printful.position JSON) wins over the data-file default.
+    const pos = li.variant.pos?.value ? JSON.parse(li.variant.pos.value) : PLACE;
     items.push({
       variant_id: Number(vid), quantity: li.quantity,
       files: [{
-        type: PLACE.placement, url: art,
-        position: { area_width: PLACE.area_width, area_height: PLACE.area_height, width: PLACE.width, height: PLACE.height, top: PLACE.top, left: PLACE.left },
+        type: pos.placement || "front", url: art,
+        position: { area_width: pos.area_width, area_height: pos.area_height, width: pos.width, height: pos.height, top: pos.top, left: pos.left },
       }],
     });
   }

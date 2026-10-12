@@ -8,9 +8,13 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FONT_DIR = os.path.join(BASE_DIR, "fonts")
 OUT_DIR = os.path.join(BASE_DIR, "output")
 
-SERIF_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
-SERIF_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
-SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+def _dejavu(name):  # prefer fonts/ (macOS has no DejaVu), else Linux system path
+    local = os.path.join(FONT_DIR, name)
+    return local if os.path.exists(local) else f"/usr/share/fonts/truetype/dejavu/{name}"
+
+SERIF_BOLD = _dejavu("DejaVuSerif-Bold.ttf")
+SERIF_REG = _dejavu("DejaVuSerif.ttf")
+SANS_BOLD = _dejavu("DejaVuSans-Bold.ttf")
 SCRIPT = os.path.join(FONT_DIR, "GreatVibes-Regular.ttf")
 
 CREAM = (246, 239, 221, 255)
@@ -118,14 +122,24 @@ def feminine(save_name, script_line, serif_lines, verse_ref=None,
     cy = 2500
     if wreath:
         draw_wreath(d, CX, cy, 1180, ink, berry_fill=ink)
-    y = cy - 560
-    y = draw_tracked(d, CX, y, script_line, font(SCRIPT, 330), ink) + 10
-    f = font(SERIF_BOLD, 168)
-    for ln in serif_lines:
-        y = draw_tracked(d, CX, y, ln, f, ink, tracking=22) + 30
+    # Text must clear the leaves: shrink any line wider than the wreath's open
+    # middle, then center the whole block vertically inside the wreath.
+    MAX_W = 1550
+    def fit(path, size, s, tracking):
+        while size > 40 and text_w(d, s, font(path, size), tracking) > MAX_W:
+            size -= 4
+        return font(path, size)
+    rows = [(script_line, fit(SCRIPT, 330, script_line, 0), 0, 10)]
+    serif_size = min(fit(SERIF_BOLD, 168, ln, 22).size for ln in serif_lines)
+    rows += [(ln, font(SERIF_BOLD, serif_size), 22, 30) for ln in serif_lines]
     if verse_ref:
-        draw_tracked(d, CX, y + 40, verse_ref, font(SERIF_REG, 88),
-                     ink, tracking=12)
+        rows.append((verse_ref, fit(SERIF_REG, 88, verse_ref, 12), 12, 0))
+    height = sum(sum(f.getmetrics()) + gap for _, f, _, gap in rows) + (40 if verse_ref else 0)
+    y = cy - height / 2
+    for i, (s, f, tracking, gap) in enumerate(rows):
+        if verse_ref and i == len(rows) - 1:
+            y += 40
+        y = draw_tracked(d, CX, y, s, f, ink, tracking=tracking) + gap
     img.save(os.path.join(OUT_DIR, save_name), dpi=(300, 300))
     return save_name
 
