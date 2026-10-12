@@ -9,6 +9,8 @@
  */
 {
   "current": {
+    "favicon": "shopify://shop_images/flockthreads-favicon-512.png",
+    "social_instagram_link": "https://www.instagram.com/flockthreads",
     "logo_height": 36,
     "logo_height_mobile": 28,
     "page_background_color": "{{ settings.color_palette.background }}",

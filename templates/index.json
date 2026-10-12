@@ -358,7 +358,7 @@
     "pl_couples": {
       "type": "product-list",
       "blocks": {
-        "static-header_cp": {
+        "static-header": {
           "type": "_product-list-content",
           "name": "t:names.header",
           "static": true,
@@ -434,7 +434,7 @@
             "product_list_button_MWeP9V_cp"
           ]
         },
-        "static-product-card_cp": {
+        "static-product-card": {
           "type": "_product-card",
           "name": "t:names.product_card",
           "static": true,
@@ -569,7 +569,7 @@
     "pl_holiday": {
       "type": "product-list",
       "blocks": {
-        "static-header_hd": {
+        "static-header": {
           "type": "_product-list-content",
           "name": "t:names.header",
           "static": true,
@@ -645,7 +645,7 @@
             "product_list_button_MWeP9V_hd"
           ]
         },
-        "static-product-card_hd": {
+        "static-product-card": {
           "type": "_product-card",
           "name": "t:names.product_card",
           "static": true,

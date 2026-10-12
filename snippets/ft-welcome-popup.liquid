@@ -1,0 +1,53 @@
+{%- comment -%}
+  Welcome-discount popup. Shows once per visitor (localStorage), after a short
+  delay, never on cart/checkout/account pages. Signing up posts to Shopify's
+  customer form (tagged newsletter, welcome10); after the reload the popup
+  reopens showing the code. Code must exist in Shopify: WELCOME10.
+{%- endcomment -%}
+{%- assign welcome_code = 'WELCOME10' -%}
+{%- unless request.page_type == 'cart' or request.page_type contains 'customers' or request.design_mode -%}
+<dialog id="ft-welcome" class="ft-welcome" aria-labelledby="ft-welcome-title">
+  <button type="button" class="ft-welcome-close" aria-label="Close">&times;</button>
+  <p class="ft-welcome-eyebrow">FlockThreads</p>
+  <h2 id="ft-welcome-title">Faith you&rsquo;ll actually wear.</h2>
+  <div data-step="ask">
+    <p>Get 10% off your first order plus early access to new verse drops.</p>
+    {%- form 'customer', id: 'ft-welcome-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,welcome10">
+      <label class="visually-hidden" for="ft-welcome-email">Email address</label>
+      <input id="ft-welcome-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
+      <button type="submit">Get my 10% off</button>
+    {%- endform -%}
+    <button type="button" class="ft-welcome-skip">No thanks</button>
+  </div>
+  <div data-step="code" hidden>
+    <p>You&rsquo;re in. Use this code at checkout:</p>
+    <p class="ft-welcome-code">{{ welcome_code }}</p>
+    <a class="ft-welcome-shop" href="/discount/{{ welcome_code }}?redirect={{ routes.all_products_collection_url }}">Apply it and shop</a>
+  </div>
+</dialog>
+<script>
+  (function () {
+    var d = document.getElementById('ft-welcome');
+    if (!d || typeof d.showModal !== 'function') return;
+    var KEY = 'ft_welcome_seen', SENT = 'ft_welcome_sent';
+    var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return '1'; } },
+                  set: function (k) { try { localStorage.setItem(k, '1'); } catch (e) {} } };
+    var close = function () { store.set(KEY); d.close(); };
+    d.querySelector('.ft-welcome-close').addEventListener('click', close);
+    d.querySelector('.ft-welcome-skip').addEventListener('click', close);
+    d.addEventListener('cancel', function () { store.set(KEY); });
+    d.querySelector('form').addEventListener('submit', function () { store.set(KEY); store.set(SENT); });
+
+    // Back from a successful signup: show the code.
+    if (/customer_posted=true/.test(location.search) && store.get(SENT)) {
+      try { localStorage.removeItem(SENT); } catch (e) {}
+      d.querySelector('[data-step="ask"]').hidden = true;
+      d.querySelector('[data-step="code"]').hidden = false;
+      d.showModal();
+      return;
+    }
+    if (!store.get(KEY)) setTimeout(function () { if (!store.get(KEY)) d.showModal(); }, 6000);
+  })();
+</script>
+{%- endunless -%}

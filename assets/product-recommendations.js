@@ -60,6 +60,13 @@ class ProductRecommendations extends Component {
     super.connectedCallback();
     this.#intersectionObserver.observe(this);
     this.#mutationObserver.observe(this, { attributes: true });
+    // FlockThreads: don't wait for a scroll. Visitors/crawlers that never scroll
+    // otherwise see "Loading product recommendations" forever.
+    (window.requestIdleCallback || setTimeout)(() => {
+      if (this.dataset.recommendationsPerformed === 'true') return;
+      this.#intersectionObserver.disconnect();
+      this.#loadRecommendations();
+    });
   }
 
   disconnectedCallback() {

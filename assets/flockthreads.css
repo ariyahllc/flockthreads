@@ -394,6 +394,23 @@ a[class*="logo"],[class*="header"] [class*="logo"]{
   font-family:var(--ft-sans);text-transform:uppercase;letter-spacing:.17em;
   font-size:.62rem;font-weight:400;opacity:.55;margin:0 0 1rem;
 }
+.ft-newsletter{margin-top:1.4rem;max-width:30ch;}
+.ft-newsletter label{display:block;font-family:var(--ft-sans);font-size:.72rem;letter-spacing:.06em;opacity:.75;margin-bottom:.5rem;}
+.ft-newsletter-row{display:flex;border:1px solid rgba(241,237,228,.35);}
+.ft-newsletter-row input{flex:1;min-width:0;background:transparent;border:0;color:var(--ft-vintage);font:300 .82rem var(--ft-sans);padding:.7rem .8rem;}
+.ft-newsletter-row input::placeholder{color:var(--ft-vintage);opacity:.5;}
+.ft-newsletter-row button{background:var(--ft-vintage);color:var(--ft-charcoal);border:0;font:400 .7rem var(--ft-sans);letter-spacing:.14em;text-transform:uppercase;padding:0 1rem;cursor:pointer;}
+.ft-newsletter-ok,.ft-newsletter-err{font-family:var(--ft-sans);font-size:.78rem;margin:.5rem 0 0;}
+.ft-welcome{border:0;padding:2.4rem 2.2rem 2rem;max-width:420px;width:calc(100% - 2rem);background:var(--ft-vintage);color:var(--ft-charcoal);text-align:center;}
+.ft-welcome::backdrop{background:rgba(43,43,43,.55);}
+.ft-welcome-close{position:absolute;top:.6rem;right:.9rem;background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ft-charcoal);}
+.ft-welcome-eyebrow{font:400 .62rem var(--ft-sans);letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin:0 0 .6rem;}
+.ft-welcome h2{font-family:var(--ft-serif);font-weight:400;font-size:1.8rem;margin:0 0 .8rem;}
+.ft-welcome p{font:300 .88rem/1.6 var(--ft-sans);margin:0 0 1.2rem;}
+.ft-welcome input[type=email]{width:100%;box-sizing:border-box;border:1px solid var(--ft-line);background:#fff;font:300 .9rem var(--ft-sans);padding:.8rem;margin-bottom:.6rem;}
+.ft-welcome button[type=submit],.ft-welcome-shop{display:block;width:100%;box-sizing:border-box;background:var(--ft-charcoal);color:var(--ft-vintage);border:0;font:400 .72rem var(--ft-sans);letter-spacing:.16em;text-transform:uppercase;padding:.95rem;cursor:pointer;text-decoration:none;}
+.ft-welcome-skip{background:none;border:0;margin-top:.8rem;font:300 .75rem var(--ft-sans);text-decoration:underline;opacity:.65;cursor:pointer;color:var(--ft-charcoal);}
+.ft-welcome-code{font-family:var(--ft-serif);font-size:2rem!important;letter-spacing:.12em;border:1px dashed var(--ft-charcoal);padding:.6rem;}
 .ft-footer ul{list-style:none;padding:0;margin:0;}
 .ft-footer li{margin-bottom:.55rem;}
 .ft-footer a{
