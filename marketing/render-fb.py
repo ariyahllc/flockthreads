@@ -47,7 +47,7 @@ img.save(os.path.join(OUT, "fb-cover-brand.png"))
 # Thanksgiving cover: his & hers model shots either side, message in the middle.
 img = Image.new("RGB", (W, H), BONE)
 d = ImageDraw.Draw(img)
-shots = os.path.join(ROOT, "assets/model-shots/v4")
+shots = os.path.join(ROOT, "assets/model-shots/v5")
 for name, x in (("m-givethanks-burntorange.png", 0), ("w-grateful-burntorange.png", W - 520)):
     ph = Image.open(os.path.join(shots, name)).convert("RGB")
     ph = ph.resize((int(ph.width * H / ph.height), H), Image.LANCZOS)  # fill full height
