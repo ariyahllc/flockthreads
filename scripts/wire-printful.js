@@ -6,6 +6,7 @@
 //   node --env-file=.env scripts/wire-printful.js apply      # write metafields
 //   node --env-file=.env scripts/wire-printful.js mockups    # save Printful mockups to tmp/printful-mockups/
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { gql } from "./lib/shopify.js";
 import { pf } from "./lib/printful.js";
 import { uploadImage } from "./lib/shopify-files.js";
@@ -43,7 +44,7 @@ async function mockup(catalogId, variantId, file) {
       process.stdout.write(`(429 wait ${wait}s) `); await sleep(wait * 1000);
     }
   }
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 80; i++) {
     await sleep(3000);
     const out = await pf(`/mockup-generator/task?task_key=${task.task_key}`);
     if (out.status === "completed") return out.mockups[0].mockup_url;
@@ -92,7 +93,8 @@ for (const [handle, spec] of Object.entries(cfg.products)) {
     }
     console.log(`${handle} | ${color} -> ${pfColor}, ${ink} ink, ${(w / 150).toFixed(1)}x${(h / 150).toFixed(1)}in, ${vs.length} sizes`);
 
-    if (MOCKUPS) {
+    // Resume: skip mockups already saved this run (delete tmp/printful-mockups/ to redo all).
+    if (MOCKUPS && !existsSync(new URL(`${handle}--${norm(color)}.url`, outDir))) {
       const m = await mockup(blank.catalog_id, firstVid, { placement: "front", image_url: url,
         position: { area_width: position.area_width, area_height: position.area_height, width: w, height: h, top: position.top, left: position.left } });
       const res = await fetch(m);
