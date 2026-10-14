@@ -1,0 +1,242 @@
+{%- comment -%}
+  Design Yours: a shopper uploads their own art and orders from 1 tee.
+  The browser renders the exact Printful print file (1800x2400 px = the 12x16 in
+  front area at 150 dpi) and attaches it to the cart line as properties[Print file].
+  scripts/sync-orders.js sends that file to Printful with a full-area position,
+  so what the preview shows is what gets printed.
+  Product + variants come from scripts/build-design-yours.js.
+{%- endcomment -%}
+{%- assign cp = all_products['design-your-own-tee'] -%}
+<div class="fty">
+  <header class="fty-head">
+    <p class="fty-eyebrow">Design yours</p>
+    <h1>Print your own art</h1>
+    <p class="fty-sub">
+      Upload your design, place it on the shirt, and order just one. Use it as a sample, then order more when you love it.
+      Need 24 or more for a church or group? <a href="{{ pages['design-your-tee'].url | default: '/pages/design-your-tee' }}">Use the church designer</a> for group pricing.
+    </p>
+  </header>
+
+  <div class="fty-grid">
+    <div class="fty-preview">
+      <div class="fty-stage">
+        <div class="fty-body" id="fyBody">
+          <div class="fty-collar"></div>
+          <div class="fty-area" id="fyArea"><canvas id="fyCanvas" width="1800" height="2400"></canvas></div>
+        </div>
+      </div>
+      <p class="fty-note" id="fyNote">Upload art to see it on the shirt</p>
+    </div>
+
+    <div class="fty-controls">
+      <section class="fty-step">
+        <h2><span>1</span> Your art</h2>
+        <label class="fty-drop" id="fyDrop">
+          <input type="file" id="fyFile" accept="image/png,image/jpeg,image/svg+xml" hidden>
+          <span id="fyDropText">Upload a PNG, JPG or SVG. A transparent PNG, 3000px or wider, prints best.</span>
+        </label>
+        <p class="fty-warn" id="fyDpi" hidden></p>
+      </section>
+
+      <section class="fty-step">
+        <h2><span>2</span> Size and placement</h2>
+        <label class="fty-range">Print width <output id="fyWOut">10 in</output>
+          <input type="range" id="fyW" min="3" max="12" step="0.5" value="10">
+        </label>
+        <label class="fty-range">Distance from collar <output id="fyTOut">1.5 in</output>
+          <input type="range" id="fyT" min="0" max="8" step="0.5" value="1.5">
+        </label>
+      </section>
+
+      <section class="fty-step">
+        <h2><span>3</span> Shirt colour</h2>
+        <div class="fty-swatches" id="fyColors"></div>
+        <p class="fty-hint" id="fyColorName"></p>
+      </section>
+
+      <section class="fty-step">
+        <h2><span>4</span> Size and quantity</h2>
+        <div class="fty-chips" id="fySizes"></div>
+        <label class="fty-qty">Quantity <input type="number" id="fyQtyIn" min="1" max="23" value="1" inputmode="numeric"></label>
+        <p class="fty-hint">Different sizes? Add one size to the cart, then come back for the next.</p>
+      </section>
+
+      {%- if cp -%}
+        <form method="post" action="{{ routes.cart_add_url }}" enctype="multipart/form-data" id="fyForm" class="fty-submit">
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="id" id="fyVariant" value="{{ cp.variants.first.id }}">
+          <input type="hidden" name="quantity" id="fyQty" value="1">
+          <input type="file" name="properties[Print file]" id="fyPrintFile" hidden>
+          <input type="file" name="properties[Your artwork]" id="fyArtFile" hidden>
+          <input type="hidden" name="properties[Print size]" id="fySpec">
+          <label class="fty-rights">
+            <input type="checkbox" id="fyRights" required>
+            I own this art or have the right to print it.
+          </label>
+          <button type="submit" class="fty-cta" id="fyCta" disabled>
+            Add to cart · <span id="fyPrice">{{ cp.price | money }}</span>
+          </button>
+          <p class="fty-fine">
+            Printed to order on a Bella+Canvas 3001 unisex tee. Ships in 3-7 business days. Custom prints can't be returned unless they arrive damaged.
+          </p>
+        </form>
+      {%- else -%}
+        <p class="fty-warn">Design Yours is being set up. Please check back soon.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .fty{max-width:1180px;margin:0 auto;padding:56px 24px 96px}
+  .fty-head{max-width:640px;margin-bottom:40px}
+  .fty-eyebrow{font-family:var(--ft-sans,'Jost',sans-serif);text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#5F6650;margin:0 0 12px}
+  .fty h1{font-family:'EB Garamond',Georgia,serif;font-size:clamp(30px,4vw,44px);font-weight:400;margin:0 0 14px;color:#2B2B2B}
+  .fty-sub{font-family:var(--ft-sans,'Jost',sans-serif);font-size:15px;line-height:1.6;color:#5a564f;margin:0}
+  .fty-sub a{color:#5F6650}
+  .fty-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:56px;align-items:start}
+  @media(max-width:900px){.fty-grid{grid-template-columns:1fr;gap:32px}}
+  .fty-preview{position:sticky;top:24px}
+  @media(max-width:900px){.fty-preview{position:static}}
+  .fty-stage{background:#F1EDE4;border:1px solid #e2dbcd;padding:32px;display:flex;justify-content:center}
+  .fty-body{position:relative;width:100%;max-width:440px;aspect-ratio:1/1.2;background:#0c0c0c;border-radius:10px 10px 4px 4px;
+    box-shadow:inset 0 -30px 60px rgba(0,0,0,.08);transition:background .25s ease}
+  .fty-collar{position:absolute;left:50%;top:0;transform:translateX(-50%);width:30%;height:8%;background:#F1EDE4;border-radius:0 0 50% 50%/0 0 100% 100%}
+  /* Printful front area is 12x16 in on a ~20 in wide chest: 60% of the body, starting just under the collar. */
+  .fty-area{position:absolute;left:20%;top:9%;width:60%;aspect-ratio:3/4;outline:1px dashed rgba(150,150,150,.45)}
+  .fty-area canvas{width:100%;height:100%;display:block}
+  .fty-note{font-family:var(--ft-sans,'Jost',sans-serif);text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#8a8377;text-align:center;margin:14px 0 0}
+  .fty-step{border-top:1px solid #e2dbcd;padding:22px 0}
+  .fty-step:first-child{border-top:0;padding-top:0}
+  .fty-step h2{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#2B2B2B;
+    margin:0 0 14px;display:flex;align-items:center;gap:10px;font-weight:500}
+  .fty-step h2 span{width:20px;height:20px;border-radius:50%;background:#5F6650;color:#F1EDE4;display:grid;place-items:center;font-size:10px;letter-spacing:0}
+  .fty-drop{display:block;border:1px dashed #c4bcab;background:#faf8f3;padding:22px 18px;text-align:center;cursor:pointer;
+    font-family:var(--ft-sans,'Jost',sans-serif);font-size:13px;color:#6b665d}
+  .fty-drop:hover,.fty-drop.has{border-color:#5F6650}
+  .fty-range{display:block;font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#5a564f;margin-bottom:12px}
+  .fty-range output{float:right;color:#2B2B2B}
+  .fty-range input{width:100%;accent-color:#5F6650}
+  .fty-swatches{display:flex;gap:10px;flex-wrap:wrap}
+  .fty-swatches button{width:38px;height:38px;border-radius:50%;border:1px solid #cfc7b7;cursor:pointer;padding:0}
+  .fty-swatches button.on{box-shadow:0 0 0 2px #fff,0 0 0 3px #2B2B2B}
+  .fty-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .fty-chips button{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;padding:9px 14px;border:1px solid #d9d2c4;background:#fff;color:#5a564f;cursor:pointer}
+  .fty-chips button.on{background:#2B2B2B;border-color:#2B2B2B;color:#F1EDE4}
+  .fty-qty{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#5a564f;display:flex;align-items:center;gap:10px}
+  .fty-qty input{width:70px;border:1px solid #d9d2c4;padding:8px;text-align:center;font-size:15px}
+  .fty-hint{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#8a8377;margin:10px 0 0}
+  .fty-warn{font-family:var(--ft-sans,'Jost',sans-serif);font-size:12px;color:#a8442e;margin:10px 0 0}
+  .fty-rights{display:flex;gap:10px;align-items:flex-start;font-family:var(--ft-sans,'Jost',sans-serif);font-size:13px;color:#2B2B2B;margin:6px 0 16px}
+  .fty-cta{width:100%;background:#2B2B2B;color:#F1EDE4;border:0;padding:16px;cursor:pointer;font-family:var(--ft-sans,'Jost',sans-serif);
+    font-size:12px;text-transform:uppercase;letter-spacing:.16em}
+  .fty-cta:hover{background:#5F6650}
+  .fty-cta:disabled{opacity:.4;cursor:not-allowed}
+  .fty-fine{font-family:var(--ft-sans,'Jost',sans-serif);font-size:11px;color:#8a8377;text-align:center;margin:12px 0 0;line-height:1.5}
+{% endstylesheet %}
+
+{%- if cp -%}
+  <script>
+    (function () {
+      // Print area: 12x16 in at 150 dpi. Must match the position in scripts/build-design-yours.js.
+      var DPI = 150, AREA_W = 1800, AREA_H = 2400;
+      var COLORS = [
+        ['Black', '#0c0c0c'], ['White', '#ffffff'], ['Vintage White', '#fcf4e8'], ['Heather Dust', '#e5d9c9'],
+        ['Navy', '#212642'], ['Forest', '#223e25'], ['Maroon', '#721d37'], ['Dark Grey', '#2a2929'],
+      ];
+      var SIZES = ['S', 'M', 'L', 'XL', '2XL'];
+      var VARIANTS = {{ cp.variants | map: 'title' | json }};
+      var IDS = {{ cp.variants | map: 'id' | json }};
+      var PRICES = {{ cp.variants | map: 'price' | json }};
+
+      var $ = function (id) { return document.getElementById(id); };
+      var s = { img: null, file: null, w: 10, t: 1.5, color: 0, size: 'M' };
+      var canvas = $('fyCanvas'), ctx = canvas.getContext('2d');
+
+      COLORS.forEach(function (c, i) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.style.background = c[1]; b.title = c[0]; b.setAttribute('aria-label', c[0]);
+        b.onclick = function () { s.color = i; pick('fyColors', b); paint(); };
+        if (i === 0) b.className = 'on';
+        $('fyColors').appendChild(b);
+      });
+      SIZES.forEach(function (z) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.textContent = z;
+        b.onclick = function () { s.size = z; pick('fySizes', b); paint(); };
+        if (z === s.size) b.className = 'on';
+        $('fySizes').appendChild(b);
+      });
+      function pick(wrap, on) { [].forEach.call($(wrap).children, function (x) { x.className = x === on ? 'on' : ''; }); }
+
+      $('fyW').oninput = function (e) { s.w = +e.target.value; paint(); };
+      $('fyT').oninput = function (e) { s.t = +e.target.value; paint(); };
+      $('fyQtyIn').oninput = paint;
+      $('fyRights').onchange = paint;
+
+      $('fyFile').onchange = function (e) {
+        var f = e.target.files[0]; if (!f) return;
+        var img = new Image();
+        img.onload = function () { s.img = img; s.file = f; $('fyDrop').classList.add('has'); $('fyDropText').textContent = f.name; paint(); };
+        img.src = URL.createObjectURL(f);
+      };
+
+      function variantIndex() { return VARIANTS.indexOf(COLORS[s.color][0] + ' / ' + s.size); }
+
+      // Draw the art into the print-area canvas exactly as Printful will place it.
+      function paint() {
+        var c = COLORS[s.color];
+        $('fyBody').style.background = c[1];
+        $('fyColorName').textContent = c[0];
+        ctx.clearRect(0, 0, AREA_W, AREA_H);
+        var w = 0, h = 0;
+        if (s.img) {
+          w = s.w * DPI; h = w * s.img.naturalHeight / s.img.naturalWidth;
+          if (h > AREA_H - s.t * DPI) { h = AREA_H - s.t * DPI; w = h * s.img.naturalWidth / s.img.naturalHeight; }
+          ctx.drawImage(s.img, (AREA_W - w) / 2, s.t * DPI, w, h);
+          // Below 150 dpi at print size, art looks soft on the shirt.
+          var dpi = s.img.naturalWidth / (w / DPI);
+          $('fyDpi').hidden = dpi >= 150 || s.file.type === 'image/svg+xml';
+          $('fyDpi').textContent = 'Your art is ' + Math.round(dpi) + ' dpi at this size, so it may print blurry. Make it smaller or upload a larger file.';
+        }
+        $('fyWOut').textContent = (w / DPI || s.w).toFixed(1) + ' in';
+        $('fyTOut').textContent = s.t + ' in';
+        $('fyNote').textContent = s.img ? (w / DPI).toFixed(1) + ' x ' + (h / DPI).toFixed(1) + ' in print · ' + c[0] : 'Upload art to see it on the shirt';
+        var i = variantIndex();
+        if ($('fyPrice') && i >= 0) $('fyPrice').textContent = '$' + (PRICES[i] / 100).toFixed(2);
+        if ($('fyCta')) $('fyCta').disabled = !s.img || !$('fyRights').checked || i < 0;
+        if ($('fySpec')) $('fySpec').value = (w / DPI).toFixed(1) + ' x ' + (h / DPI).toFixed(1) + ' in, ' + s.t + ' in below collar';
+      }
+      paint();
+
+      var form = $('fyForm');
+      form.addEventListener('submit', function (e) {
+        if (form.dataset.ready === '1') return;
+        e.preventDefault();
+        var i = variantIndex();
+        if (!s.img || i < 0) return;
+        $('fyVariant').value = IDS[i];
+        $('fyQty').value = Math.min(Math.max(parseInt($('fyQtyIn').value, 10) || 1, 1), 23);
+        $('fyCta').disabled = true;
+        canvas.toBlob(function (blob) {
+          var dt = new DataTransfer();
+          dt.items.add(new File([blob], 'print-file.png', { type: 'image/png' }));
+          $('fyPrintFile').files = dt.files;
+          var dt2 = new DataTransfer(); dt2.items.add(s.file);
+          $('fyArtFile').files = dt2.files;
+          form.dataset.ready = '1';
+          form.submit();
+        }, 'image/png');
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Design yours",
+  "tag": "section",
+  "presets": [{ "name": "Design yours" }]
+}
+{% endschema %}
