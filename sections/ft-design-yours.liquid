@@ -77,6 +77,9 @@
           <button type="submit" class="fty-cta" id="fyCta" disabled>
             Add to cart · <span id="fyPrice">{{ cp.price | money }}</span>
           </button>
+          <p class="fty-offer">
+            Love your sample? Order 5 or more of your design and use code <strong>SAMPLE5</strong> for $5 off.
+          </p>
           <p class="fty-fine">
             Printed to order on a Bella+Canvas 3001 unisex tee. Ships in 3-7 business days. Custom prints can't be returned unless they arrive damaged.
           </p>
@@ -133,6 +136,7 @@
     font-size:12px;text-transform:uppercase;letter-spacing:.16em}
   .fty-cta:hover{background:#5F6650}
   .fty-cta:disabled{opacity:.4;cursor:not-allowed}
+  .fty-offer{font-family:var(--ft-sans,'Jost',sans-serif);font-size:13px;color:#2B2B2B;background:#F1EDE4;padding:10px 12px;margin:12px 0 0;text-align:center}
   .fty-fine{font-family:var(--ft-sans,'Jost',sans-serif);font-size:11px;color:#8a8377;text-align:center;margin:12px 0 0;line-height:1.5}
 {% endstylesheet %}
 
