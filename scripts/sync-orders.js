@@ -24,7 +24,7 @@ const PLACE = defaults.printful_placement;
 async function paidUnsentOrders() {
   const d = await gql(`query{
     orders(first:25, query:"financial_status:paid fulfillment_status:unfulfilled"){
-      nodes{ id name
+      nodes{ id name test
         printful:metafield(namespace:"printful", key:"order_id"){ value }
         shippingAddress{ firstName lastName address1 address2 city provinceCode countryCodeV2 zip phone }
         lineItems(first:50){ nodes{ quantity customAttributes{ key value }
@@ -33,7 +33,8 @@ async function paidUnsentOrders() {
             art:metafield(namespace:"printful", key:"art_url"){ value }
             pos:metafield(namespace:"printful", key:"position"){ value } } } } }
     } }`);
-  return d.orders.nodes.filter((o) => !o.printful?.value); // skip already-sent
+  // Skip already-sent orders, and test checkouts (Bogus gateway) so "confirm" never pays for them.
+  return d.orders.nodes.filter((o) => !o.printful?.value && !o.test);
 }
 
 async function markSent(orderId, printfulId) {
