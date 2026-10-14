@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "ft-design-yours", "settings": {} }
+  },
+  "order": ["main"]
+}

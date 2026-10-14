@@ -8,7 +8,7 @@ const ITEMS = [
   { title: "Unisex",   type: "COLLECTION", handle: "faith" },
   { title: "Bundles",  type: "COLLECTION", handle: "bundles" },
   { title: "Churches", type: "PAGE",       handle: "for-churches" },
-  { title: "Design Yours", type: "PAGE",  handle: "design-your-tee" },
+  { title: "Design Yours", type: "PAGE",  handle: "design-yours" },
 ];
 
 const d = await gql(`{ menus(first:10){ nodes{ id handle title } } }`);

@@ -27,7 +27,7 @@ async function paidUnsentOrders() {
       nodes{ id name
         printful:metafield(namespace:"printful", key:"order_id"){ value }
         shippingAddress{ firstName lastName address1 address2 city provinceCode countryCodeV2 zip phone }
-        lineItems(first:50){ nodes{ quantity
+        lineItems(first:50){ nodes{ quantity customAttributes{ key value }
           variant{ id
             vid:metafield(namespace:"printful", key:"variant_id"){ value }
             art:metafield(namespace:"printful", key:"art_url"){ value }
@@ -46,7 +46,9 @@ function toPrintfulOrder(o) {
   if (!a) throw new Error(`${o.name}: no shipping address`);
   const items = [];
   for (const li of o.lineItems.nodes) {
-    const vid = li.variant?.vid?.value, art = li.variant?.art?.value;
+    // Design Yours lines carry their own print file (cart property); catalog tees use the variant's art.
+    const upload = li.customAttributes?.find((x) => x.key === "Print file")?.value;
+    const vid = li.variant?.vid?.value, art = upload || li.variant?.art?.value;
     if (!vid || !art) throw new Error(`${o.name}: line item missing printful mapping (skip/fix product)`);
     // Per-variant placement (printful.position JSON) wins over the data-file default.
     const pos = li.variant.pos?.value ? JSON.parse(li.variant.pos.value) : PLACE;

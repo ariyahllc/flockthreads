@@ -44,6 +44,21 @@
     {%- render 'color-palette' -%}
     {{ 'flockthreads.css' | asset_url | stylesheet_tag }}
     {%- render 'ft-tracking' -%}
+    {%- comment -%}
+      Fetch a page while the shopper hovers or presses its link, so the click opens instantly.
+      Prefetch only (no prerender): no scripts run early, so analytics and discount links are untouched.
+    {%- endcomment -%}
+    <script type="speculationrules">
+      {
+        "prefetch": [{
+          "where": { "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": ["/cart*", "/checkout*", "/checkouts/*", "/account*", "/discount/*", "/apps/*", "/*\\?*"] } }
+          ] },
+          "eagerness": "moderate"
+        }]
+      }
+    </script>
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
