@@ -15,7 +15,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const { productByHandle: p } = await gql(
   `query($h:String!){ productByHandle(handle:$h){ id title
     media(first:50){ nodes{ id } }
-    variants(first:100){ nodes{ id selectedOptions{ name value } } } } }`,
+    variants(first:250){ nodes{ id selectedOptions{ name value } } } } }`,
   { h: handle }
 );
 if (!p) throw new Error(`no product: ${handle}`);

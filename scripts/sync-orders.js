@@ -31,7 +31,8 @@ async function paidUnsentOrders() {
           variant{ id
             vid:metafield(namespace:"printful", key:"variant_id"){ value }
             art:metafield(namespace:"printful", key:"art_url"){ value }
-            pos:metafield(namespace:"printful", key:"position"){ value } } } } }
+            pos:metafield(namespace:"printful", key:"position"){ value }
+            files:metafield(namespace:"printful", key:"files"){ value } } } } }
     } }`);
   // Skip already-sent orders, and test checkouts (Bogus gateway) so "confirm" never pays for them.
   return d.orders.nodes.filter((o) => !o.printful?.value && !o.test);
@@ -48,6 +49,11 @@ function toPrintfulOrder(o) {
   const items = [];
   for (const li of o.lineItems.nodes) {
     // Design Yours lines carry their own print file (cart property); catalog tees use the variant's art.
+    // Multi-placement products (front + back) store the full Printful files list on the variant.
+    if (li.variant?.files?.value && li.variant?.vid?.value) {
+      items.push({ variant_id: Number(li.variant.vid.value), quantity: li.quantity, files: JSON.parse(li.variant.files.value) });
+      continue;
+    }
     const upload = li.customAttributes?.find((x) => x.key === "Print file")?.value;
     const vid = li.variant?.vid?.value, art = upload || li.variant?.art?.value;
     if (!vid || !art) throw new Error(`${o.name}: line item missing printful mapping (skip/fix product)`);

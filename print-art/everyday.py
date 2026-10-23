@@ -15,6 +15,7 @@ ROOT = os.path.dirname(HERE)
 HEAD = os.path.join(HERE, "fonts/BebasNeue-Regular.ttf")
 REF = os.path.join(ROOT, "business-os/design/fonts/Spectral-SemiBold.ttf")
 INKS = {"cream": (246, 239, 221), "espresso": (62, 53, 44)}
+ACCENTS = {"orange": (217, 120, 63), "gold": (214, 164, 76)}
 W = 3000  # 10 in at 300 dpi
 
 DESIGNS = {
@@ -26,6 +27,10 @@ DESIGNS = {
     "shepherd": (["THE LORD IS", "MY SHEPHERD"], "PSALM 23:1"),
     "way": (["THE WAY", "THE TRUTH · THE LIFE"], "JOHN 14:6"),
 }
+
+
+# Two-colour versions (-2c files). DTG prints any number of colours at the same price.
+TWO_COLOUR = {"joy": "orange", "lamp": "gold", "light": "gold", "lift": "orange"}
 
 
 def art_mask(path, width):
@@ -56,7 +61,7 @@ def text_mask(text, font_path, max_w, max_h, tracking=0.0):
     return m.crop(m.getbbox())
 
 
-def build(key, lines, ref):
+def build(key, lines, ref, accent=None):
     art = art_mask(os.path.join(HERE, f"illustrations/{key}.png"), W)
     if art.height > 2100:  # tall art: cap height, keep it centred
         art = art_mask(os.path.join(HERE, f"illustrations/{key}.png"), round(W * 2100 / art.height))
@@ -68,17 +73,25 @@ def build(key, lines, ref):
     refm = text_mask(ref, REF, W * 0.5, 130, tracking=0.25)
     gap, lgap = 120, 50
     H = art.height + gap + sum(m.height for m in heads) + lgap * (len(heads) - 1) + 90 + refm.height
-    mask, y = Image.new("L", (W, H), 0), 0
+    mask, art_only, y = Image.new("L", (W, H), 0), Image.new("L", (W, H), 0), 0
     for m in [art] + heads + [refm]:
         mask.paste(m, ((W - m.width) // 2, y))
+        if m is art:
+            art_only.paste(m, ((W - m.width) // 2, y))
         y += m.height + (gap if m is art else 90 if m is heads[-1] else lgap)
     for ink, rgb in INKS.items():
         out = Image.new("RGBA", (W, H), rgb + (0,))
         out.putalpha(mask)
-        out.save(os.path.join(HERE, f"print-ready/{key}-{ink}.png"), dpi=(300, 300))
+        if accent:  # two-colour: illustration in the accent, words stay in the shirt's ink
+            # Light shirts get a deeper accent so it doesn't wash out.
+            rgb_a = ACCENTS[accent] if ink == "cream" else tuple(round(c * 0.78) for c in ACCENTS[accent])
+            out.paste(Image.new("RGBA", (W, H), rgb_a + (255,)), (0, 0), art_only)
+        out.save(os.path.join(HERE, f"print-ready/{key}-{ink}{'-2c' if accent else ''}.png"), dpi=(300, 300))
     return W, H
 
 
 if __name__ == "__main__":
     for key, (lines, ref) in DESIGNS.items():
         print(key, build(key, lines, ref))
+    for key, accent in TWO_COLOUR.items():
+        build(key, *DESIGNS[key], accent=accent)
