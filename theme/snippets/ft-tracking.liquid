@@ -2,10 +2,12 @@
   Analytics + ads tracking. PASTE YOUR IDS HERE, then nothing else to change:
     ga4_id   : Google Analytics 4 measurement ID, looks like G-XXXXXXXXXX
     pixel_id : Meta (Facebook) Pixel ID, a 15-16 digit number
+    heycatch_key : HeyCatch project key (publishable), looks like hck_pk_...
   Leave a value blank to keep that tracker off. Nothing loads until an ID is set.
 {%- endcomment -%}
 {%- assign ga4_id = 'G-E1N9WT7YES' -%}
 {%- assign pixel_id = '' -%}
+{%- assign heycatch_key = 'hck_pk_j4AN_mYcGjvxiyL9MgJ1Z7UEQ-a4cslx' -%}
 
 {%- if ga4_id != blank -%}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
@@ -28,4 +30,16 @@
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id={{ pixel_id }}&ev=PageView&noscript=1"></noscript>
+{%- endif -%}
+
+{%- if heycatch_key != blank -%}
+  {%- comment -%} HeyCatch analytics (heycatch.ai/agents.md). Pinned version; batching off because every page is a full load. {%- endcomment -%}
+  <script type="module">
+    import { analytics } from 'https://esm.sh/@heycatch/sdk@0.8.3';
+    analytics.init({
+      projectKey: '{{ heycatch_key }}',
+      requestBatching: false,
+      install: { framework: 'web', agent: 'claude-code' },
+    });
+  </script>
 {%- endif -%}
