@@ -620,3 +620,14 @@ variant-picker button, .variant-option__button-label, [class*="variant"] label,
   .ft-track{grid-template-columns:1fr;}
   .ft-track-stages{border-left:0;border-top:1px solid var(--ft-line);}
 }
+
+/* Homepage story teaser + customer quotes (audit D3.2, D3.3) */
+.ft-story{max-width:640px;margin:0 auto;padding:56px 20px;text-align:center;}
+.ft-story p{font-family:var(--ft-serif);font-size:1.2rem;line-height:1.5;margin:12px 0 16px;}
+.ft-story a{text-decoration:underline;text-underline-offset:3px;}
+.ft-quotes{padding:56px 20px;text-align:center;}
+.ft-quotes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1100px;margin:16px auto 0;}
+.ft-quote{margin:0;text-align:left;}
+.ft-quote-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;}
+.ft-quote blockquote{margin:12px 0 8px;font-family:var(--ft-serif);font-size:1.05rem;line-height:1.5;}
+.ft-quote figcaption{font-size:.85rem;opacity:.75;}

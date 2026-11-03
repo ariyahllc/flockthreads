@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Faith you'll actually wear.</p>",
+            "text": "<h1>Faith you'll actually wear.</h1>",
             "text_color": "#2B2B2B",
             "width": "fit-content",
             "max_width": "normal",
@@ -60,7 +60,7 @@
           "type": "text",
           "name": "Subcopy",
           "settings": {
-            "text": "<p>Soft Airlume cotton, quiet detailing, a verse where only you will find it.</p>",
+            "text": "<p>Scripture tees for Christian men, women and couples, without the loud slogans. Soft Airlume cotton, a verse where only you will find it.</p>",
             "text_color": "#2B2B2B",
             "width": "fit-content",
             "max_width": "normal",
@@ -80,12 +80,64 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           }
+        },
+        "text_assure": {
+          "type": "text",
+          "name": "Subcopy",
+          "settings": {
+            "text": "<p>Made to order. Wrong item or print flaw? We reprint it free within 30 days. <a href=\"/pages/shipping-returns\">Returns</a></p>",
+            "text_color": "#2B2B2B",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "0.8rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "text_links": {
+          "type": "text",
+          "name": "Subcopy",
+          "settings": {
+            "text": "<p><a href=\"/pages/size-fit\">Size &amp; Fit</a>  ·  <a href=\"/pages/for-churches\">For churches</a>  ·  <a href=\"/pages/about\">Our story</a></p>",
+            "text_color": "#2B2B2B",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "0.8rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
         }
       },
       "block_order": [
         "text_YLPk4p",
         "text_sub",
-        "button_H9gpTf"
+        "button_H9gpTf",
+        "text_assure",
+        "text_links"
       ],
       "name": "t:names.hero",
       "settings": {
@@ -776,6 +828,18 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "ft_story": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"ft-story\">\n  <span class=\"ft-eyebrow\">Our story</span>\n  <p>FlockThreads started with a bad t-shirt: a ministry leader, three phone calls for one group order,\n  and prints that cracked after a few washes. We make the opposite: quietly well-made tees that are easy to order.</p>\n  <a href=\"/pages/about\">Read our story</a>\n</div>",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "ft_testimonials": {
+      "type": "ft-testimonials",
+      "settings": {}
     }
   },
   "order": [
@@ -785,6 +849,8 @@
     "pl_holiday",
     "ft_fitstrip",
     "ft_fabric",
-    "ft_churches"
+    "ft_story",
+    "ft_churches",
+    "ft_testimonials"
   ]
 }
