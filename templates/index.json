@@ -832,7 +832,7 @@
     "ft_story": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"ft-story\">\n  <span class=\"ft-eyebrow\">Our story</span>\n  <p>FlockThreads started with a bad t-shirt: a ministry leader, three phone calls for one group order,\n  and prints that cracked after a few washes. We make the opposite: quietly well-made tees that are easy to order.</p>\n  <a href=\"/pages/about\">Read our story</a>\n</div>",
+        "custom_liquid": "<div class=\"ft-story\">\n  <span class=\"ft-eyebrow\">Our story</span>\n  <p>FlockThreads started with a bad t-shirt: a ministry leader, three phone calls for one group order,\n  and prints that cracked after a few washes. We make the opposite: quietly well-made tees that are easy to order.</p>\n  <p class=\"ft-story-by\">Ariyah, founder</p>\n  <a href=\"/pages/about\">Read our story</a>\n</div>",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
