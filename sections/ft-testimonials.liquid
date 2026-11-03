@@ -1,0 +1,43 @@
+{%- comment -%}
+  Named-customer quotes. Renders nothing until at least one quote block is added in the theme editor,
+  so the homepage never shows placeholder or invented reviews.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <div class="ft-quotes">
+    <span class="ft-eyebrow">{{ section.settings.eyebrow }}</span>
+    <div class="ft-quotes-grid">
+      {%- for block in section.blocks -%}
+        <figure class="ft-quote" {{ block.shopify_attributes }}>
+          {%- if block.settings.photo != blank -%}
+            {{ block.settings.photo | image_url: width: 160 | image_tag: loading: 'lazy', alt: block.settings.name, class: 'ft-quote-photo' }}
+          {%- endif -%}
+          <blockquote>{{ block.settings.quote }}</blockquote>
+          <figcaption>{{ block.settings.name }}{% if block.settings.detail != blank %}, {{ block.settings.detail }}{% endif %}</figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FT customer quotes",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From people who wear them" }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote (real customer, with permission)" },
+        { "type": "text", "id": "name", "label": "First name" },
+        { "type": "text", "id": "detail", "label": "Detail (city, or what they bought)" },
+        { "type": "image_picker", "id": "photo", "label": "Photo (with permission)" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [{ "name": "FT customer quotes" }]
+}
+{% endschema %}
