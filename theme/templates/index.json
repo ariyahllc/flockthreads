@@ -144,7 +144,7 @@
         "media_type_1": "image",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
+        "custom_mobile_media": true,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
         "open_in_new_tab": false,
@@ -168,8 +168,8 @@
         "reflection_opacity": 75,
         "padding-block-start": 100,
         "padding-block-end": 72,
-        "image_1": "shopify://shop_images/flockthreads-hero-2400x1300_75dde4ac-0799-463d-b297-bea25e44ab21.png",
-        "image_1_mobile": "shopify://shop_images/flockthreads-hero-2400x1300_75dde4ac-0799-463d-b297-bea25e44ab21.png"
+        "image_1": "shopify://shop_images/flockthreads-hero-thanksgiving-2400x1300.jpg",
+        "image_1_mobile": "shopify://shop_images/flockthreads-hero-thanksgiving-phone-1080x1717.jpg"
       }
     },
     "pl_bestsellers": {
