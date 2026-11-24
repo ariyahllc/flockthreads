@@ -32,7 +32,8 @@ async function paidUnsentOrders() {
             vid:metafield(namespace:"printful", key:"variant_id"){ value }
             art:metafield(namespace:"printful", key:"art_url"){ value }
             pos:metafield(namespace:"printful", key:"position"){ value }
-            files:metafield(namespace:"printful", key:"files"){ value } } } } }
+            files:metafield(namespace:"printful", key:"files"){ value }
+            opts:metafield(namespace:"printful", key:"options"){ value } } } } }
     } }`);
   // Skip already-sent orders, and test checkouts (Bogus gateway) so "confirm" never pays for them.
   return d.orders.nodes.filter((o) => !o.printful?.value && !o.test);
@@ -51,7 +52,9 @@ function toPrintfulOrder(o) {
     // Design Yours lines carry their own print file (cart property); catalog tees use the variant's art.
     // Multi-placement products (front + back) store the full Printful files list on the variant.
     if (li.variant?.files?.value && li.variant?.vid?.value) {
-      items.push({ variant_id: Number(li.variant.vid.value), quantity: li.quantity, files: JSON.parse(li.variant.files.value) });
+      // printful.options carries required product options, e.g. stitch_color on all-over-print items.
+      items.push({ variant_id: Number(li.variant.vid.value), quantity: li.quantity, files: JSON.parse(li.variant.files.value),
+        ...(li.variant.opts?.value && { options: JSON.parse(li.variant.opts.value) }) });
       continue;
     }
     const upload = li.customAttributes?.find((x) => x.key === "Print file")?.value;

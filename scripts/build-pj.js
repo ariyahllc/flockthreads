@@ -30,9 +30,10 @@ const PIECES = [
     panels: { default: "5400x4650" } },
   { name: "Youth leggings (8-20)", product: 323, sizes: { 8: 32, 10: 32, 12: 32, 14: 32, 16: 32, 18: 32, 20: 32 },
     panels: { default: "6000x6000" } },
-  { name: "Baby bodysuit (6-24M)", product: 843, color: "White", sizes: { "6M": 26, "12M": 26, "18M": 26, "24M": 26 }, heart: true },
+  // Bella+Canvas 100B: in stock in the US down to 3-6m (Rabbit Skins 4424 is supplier-out at 6M).
+  { name: "Baby bodysuit (3-18m)", product: 308, color: "White", sizes: { "3-6m": 26, "6-12m": 26, "12-18m": 26 }, heart: true },
 ];
-const SIZE_ORDER = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "2T", "3T", "4T", "5T", "6", "6X", "7", "8", "10", "12", "14", "16", "18", "20", "6M", "12M", "18M", "24M"];
+const SIZE_ORDER = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "2T", "3T", "4T", "5T", "6", "6X", "7", "8", "10", "12", "14", "16", "18", "20", "3-6m", "6-12m", "12-18m"];
 
 // Shopify Files upload (mockup photos and the baby heart).
 async function upload(path, kind) {
@@ -147,6 +148,8 @@ for (const v of product.variants.nodes) {
   const piece = PIECES.find((p) => p.name === o.Piece);
   mf.push({ ownerId: v.id, namespace: "printful", key: "variant_id", type: "single_line_text_field", value: String(piece.pfv[o.Size]) });
   mf.push({ ownerId: v.id, namespace: "printful", key: "files", type: "json", value: JSON.stringify(filesFor(piece)) });
+  // All-over-print items require a stitch colour; black disappears into the plaid. sync-orders sends this.
+  if (!piece.heart) mf.push({ ownerId: v.id, namespace: "printful", key: "options", type: "json", value: JSON.stringify([{ id: "stitch_color", value: "black" }]) });
 }
 for (let i = 0; i < mf.length; i += 25) {
   const r = await gql(`mutation($m:[MetafieldsSetInput!]!){ metafieldsSet(metafields:$m){ userErrors{ field message } } }`, { m: mf.slice(i, i + 25) });
